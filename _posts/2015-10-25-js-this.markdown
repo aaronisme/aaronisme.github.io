@@ -1,0 +1,311 @@
+---
+layout: post
+title:  "[译]理解和掌握JavaScript中的this"
+date:   2015-10-25 22:00:00
+tags:
+    - 前端开发
+    - 翻译
+---
+
+西安天凉了，冬天要来了。
+最近在看javascript的书，之前没用系统的看过js方面的书，虽然也看了网上的不少教程，也一直在用，但是总没有体系的感觉，所以最近在补这方面的课程，下面就是看到的一篇关于this的文章，觉得讲的不错，翻译过来。
+
+JavaScript中的this的keyword对于很多初学者，甚至是有经验的js开发人员来说，有时候会难以理解。这篇文章的目的就是解决这个问题，阅读完之后，妈妈再也不用担心我理解不了this了:) 这篇文章会讨论到this应用中的各种情况。
+
+编程语言是人与机器的交流语言，使其它的设计就是参考了我们人类的自然语言。this的使用与自然语言中代词（pronouns）的使用是类似的。但我们写下 John is running fast he is trying to catch the train。注意这里的人称代词 he的使用，当然上边的那句话我们也可以写成这样：John is running fast John is trying to catch the train.当然了，在现实中你并不会这么说，你的朋友会笑死你的。在Javascript中，我们使用this作为一个对象的简称，一个引用。来看下边的例子。
+{% highlight JS %}
+var person = {
+    firstName: "Penelope",
+    lastName: "Barrymore",
+    fullName: function () {
+        ​// 注意这里的this就类似上个例子中的he:​
+        console.log(this.firstName + " " + this.lastName);
+    ​// 同样可以写成这样:​​
+        console.log(person.firstName + " " + person.lastName);
+    }
+}
+{% endhighlight %}
+如果在上边的例子里用person.firstName 和person.lastName，我们的代码就变得有歧义了。如果有另外一个全局变量叫person。那么例子中的person.firstName会可能访问到那个全局变量中的属性。这将会导致你的程序难以调试。所以使用this关键字不仅仅是为了美观，同时也是为了准确。就像在自然语言中我们使用代词让句子变得更加的清晰和简洁。(在上文的例子中，使用he代表的就是前文的那个john，并不是其他的John)。
+
+就是代词he是用来指代前文的人称。this也是用于指向绑定函数中的一个对象。类似于人称代词，this可以认为是一个对象在相应的上下文（词法环境）中的简称。
+
+##Javascript中this关键字的基本用法
+首先，javascript中的所有的函数都有属性，就像对象一样。但一个function被执行的时候，它就会得到它的this属性——一个变量用于保存这个function被调用的环境。
+
+this总是指向一个对象，并经常在一个函数或者方法中进行使用，虽然它可以在函数外，在全局作用域中使用。注意在严格模式下，this在全局函数中的值为undefined，在匿名函数中不指向任何的对象。
+
+当this在函数中使用时（例如函数A）它包含了调用函数A的环境对象。我们需要this去获取调用函数A的那个对象的方法和属性。特别是，我们并不是总是知道调用函数A的那个对象的名字，有时候也可能是没有那个名字。所以this就是作为调用对象的一个简称。看下边的例子来说明javascript中this的使用。
+{% highlight JS %}
+var person = {
+    firstName   :"Penelope",
+    lastName    :"Barrymore",
+    //由于this关键字是在showFullName方法中使用，同时showFullName方法在person对象中定义，this代表了person对象，因为person对象调用的showFullName方法。
+    invoke showFullName ()​
+    showFullName:function () {
+    console.log (this.firstName + " " + this.lastName);
+    }
+​}
+
+    person.showFullName (); // Penelope Barrymore
+{% endhighlight %}
+
+再看一个jQuery中的this的例子。
+{% highlight JS %}
+  $ ("button").click (function (event) {
+    // $(this) will have the value of the button ($("button")) object​
+​// because the button object invokes the click () method​
+
+	//$(this)代表的是($("button"))那个button的对象，因为button对象调用的click()方法。
+    console.log ($ (this).prop ("name"));
+    });
+{% endhighlight %}
+对于这个jQuery的例子展开来讲讲。$(this)，jQuery中对this关键字的表示，在一个匿名函数中被使用，这个匿名函数在button的click方法中进行执行。$(this)绑定到button对象的原因是因为JQuery将$(this)绑定到了调用click方法的那个对象上。所以$(this)会取到jQuery button($('button'))对象的值，即便$(this)是定义在一个匿名函数中，其自身是无法获取到外层函数的this值的。
+
+
+##Javascript this关键字的核心是神马？
+JavaScript中this关键字的核心是：this是值是不确定的，只有当一个对象调用包含this定义的那个函数时，this的值才确定，我们称那个函数为this函数。
+
+虽然this看上去是指向包含其定义的那个对象，但是只有当this Function被调用的时候才能确定this的值。然而由于JavaScript的设计缺陷，this并不一定指向包含其定义的那个对象。后文会介绍这样的情况。
+
+##全局作用域下的this的使用
+在全局作用域下，当代码在浏览器中运行的时候，所有的全局对象和函数后定义在window对象上。所以在一个全局函数时，this会指向全局的window对象（在严格模式下，并非如此。）
+
+下面是一个例子：
+{% highlight JS %}
+ var firstName = "Peter",
+    lastName = "Ally";
+​
+    function showFullName () {
+    //这个函数中this指向是window object因为shouwFullName()是定义在全局作用域上，就像firstName 和lastName一样
+    console.log (this.firstName + " " + this.lastName);
+    }
+​
+    var person = {
+    firstName   :"Penelope",
+    lastName    :"Barrymore",
+    showFullName:function () {
+    //这里的this是指向 person 对象,因为 showFullName函数会被 person 对象所调用。
+    console.log (this.firstName + " " + this.lastName);
+    }
+    }
+​
+    showFullName (); // Peter Ally​
+​
+    // 所有的全局对象和函数都是定义在window对象下, 因此:​
+    window.showFullName (); // Peter Ally​
+​
+    //定义在person 对象上的showFullname()方法中的this会指向person对象，因此：
+    person.showFullName (); // Penelope Barrymore
+
+{% endhighlight %}
+
+##this中的坑
+this关键字在下边的情况下会有坑，在使用的时候，要注意一下。当我们借用了一个函数其中定义了this，当在回调函数中使用this的时候，当this在闭包时使用时，this在回调函数的时候。下边会对于这些情况一一分析，并给出解决方法。
+
+在继续之前，我们来看一点Context（上下文）的概念。
+JavaScript中的上下文与自然语言中的主语类似。"John is the winner who return the money" 这句话的的主语是John，那我可以说这句话的上下文是John，因为在这句话的整个的关注点在John上，所以who这个代词都是代表的John。同样就如同我们可以使用分号来切换句子的主语一样，我们可以通过用另外一个对象来调用一个函数来切换一个对象的现在的上下文环境（这句话翻译的确实有些问题，大家可以看原文。）来，还是看例子吧。
+
+{% highlight JS %}
+var person = {
+   firstName   :"Penelope",
+   lastName    :"Barrymore",
+   showFullName:function () {
+​// The "context"​
+console.log (this.firstName + " " + this.lastName);
+ }
+}
+
+// 当调用 showFUllname的时候，由于我们调用的是 person对象上的shownFullName方法。上下文是person对象
+// 在showFullName方法中的this就指向了person对象。
+person.showFullName (); // Penelope Barrymore​
+​
+​// If we invoke showFullName with a different object:​
+​var anotherPerson = {
+firstName   :"Rohit",
+lastName    :"Khan"​
+};
+​
+//通过使用apply方法,this方法获得是调用的对象，因此：
+//通过使用apply方法，现在 上下文是 anotherPerson，因为是anotherPerson调用了 showFullName的方法。
+person.showFullName.apply (anotherPerson); // Rohit Khan​
+​
+
+{% endhighlight %}
+下面继续进入this关键字的坑阶段.
+
+###this在回调函数中的问题和解决
+当this是在回调函数中进行使用的时候，事情就变的有些奇怪了，看如下例子：
+{% highlight JS %}
+  //如下是一个简单的对象，他上边有个clickhandler方法，当我们点击一个button的时候，这个方法会被调用。
+var user = {
+    data:[
+    {name:"T. Woods", age:37},
+    {name:"P. Mickelson", age:43}
+    ],
+    clickHandler:function (event) {
+    var randomNum = ((Math.random () * 2 | 0) + 1) - 1; // random number between 0 and 1​
+​
+    //打印一个在data数组中随机一个人的名字和年龄。
+    console.log (this.data[randomNum].name + " " + this.data[randomNum].age);
+    }
+    }
+
+    //button是一个jquery对象吗，但是output是undefined因为在button对象上并没有data属相。
+    $ ("button").click (user.clickHandler); // Cannot read property '0' of undefined
+{% endhighlight %}
+在上文的例子中，由于button是一个对象，并且我们将user.clickhandler方法作为它click事件的回调函数中，在user.clickHandler方法中定义的this不在指向user对象。它会指向user.clickHandler执行时的那个对象，因为this是定义在user.clickhandler中的。由于调用user.click方法的是button对象，user.clickHandler会在button对象的click方法的中被执行。
+
+注意到一个点，是即使是我们使用了user.clickHanedlerhandler来调用这个方法（也没有其他什么方法能调用），clickHandler的方法的执行上下文是button对象，所以this现在是指向的button对象。
+
+在这里，我们可以注意到，当执行的上下文变化以后，我们执行了某些方法在其他的对象上而不是其本身定义时的那个对象上，this关键字就不指向原先的对象，而是指向调用这些方法的那个对象。
+如何解决能，其实方法也是很简单。我们可以使用bind(),apply(),call()等方法来确定this的值。
+为了解决上边的问题，进行如下的一些改变：
+{% highlight JS %}
+ $("button").click (user.clickHandler.bind (user));
+{% endhighlight %}
+
+###闭包中的this问题
+另外一个使用this的问题是闭包中的问题。有一点很重要的需要说明的是闭包不能获取外层函数的this变量，这是因为this关键字只能被自己访问，不能被内层函数访问。可以看以下的例子：
+{% highlight JS %}
+
+var user = {
+    tournament:"The Masters",
+    data      :[
+    {name:"T. Woods", age:37},
+    {name:"P. Mickelson", age:43}
+    ],
+​
+    clickHandler:function () {
+​    //这里使用this.data是可以的，因为this指向user对象，并且data是user对象的一个属性。
+    this.data.forEach (function (person) {
+    //但是匿名函数中的this就不是指向的user object了，因为内层函数的不是无法获得外层函数的this
+    console.log ("What is This referring to? " + this); //[object Window]​
+
+    console.log (person.name + " is playing at " + this.tournament);
+    // T. Woods is playing at undefined​
+    // P. Mickelson is playing at undefined​
+    })
+    }
+​
+    }
+​
+    user.clickHandler(); // What is "this" referring to? [object Window]
+{% endhighlight %}
+
+在匿名函数内的this不能获取到外部函数的this，所以在非严格模式下，他被绑定到了window对象上。
+如何解决呢？
+答案很简单把外部函数的this赋给另外的一个变量。看例子：
+
+{% highlight JS %}
+var user = {
+    tournament:"The Masters",
+    data      :[
+    {name:"T. Woods", age:37},
+    {name:"P. Mickelson", age:43}
+    ],
+​
+    clickHandler:function (event) {
+    //在这里我们将this赋给另外的一个变量，以便我们后边使用。
+    var theUserObj = this;
+    this.data.forEach (function (person) {
+    // Instead of using this.tournament, we now use theUserObj.tournament​
+    console.log (person.name + " is playing at " + theUserObj.tournament);
+    })
+    }
+​
+    }
+​
+    user.clickHandler();
+    // T. Woods is playing at The Masters​
+    //  P. Mickelson is playing at The Masters
+{% endhighlight %}
+
+
+###this方法被赋给一个变量
+当我们将一个使用了this的方法覆了一个变量的时候，this的值会变的与我们预想的不同。
+{% highlight JS %}
+  // 这里的data是一个全局变量
+    var data = [
+    {name:"Samantha", age:12},
+    {name:"Alexis", age:14}
+    ];
+​
+    var user = {
+    // 这里的data是user对象的一个属性
+    data    :[
+    {name:"T. Woods", age:37},
+    {name:"P. Mickelson", age:43}
+    ],
+    showData:function (event) {
+    var randomNum = ((Math.random () * 2 | 0) + 1) - 1; // random number between 0 and 1​
+​
+    // This line is adding a random person from the data array to the text field​
+    console.log (this.data[randomNum].name + " " + this.data[randomNum].age);
+    }
+​
+    }
+​
+    // 将 user.showData赋给一个变量
+    var showUserData = user.showData;
+​
+    // 当执行showUserData函数的时候，this指向了全局的data数组，而不是user上定义的data数组。
+    //​
+    showUserData (); // Samantha 12 (from the global data array)​
+{% endhighlight %}
+
+如何解决呢，也很简单，使用bind方法
+{% highlight JS %}
+    var showUserData = user.showData.bind (user);
+{% endhighlight %}
+
+###借用方法中的this
+借用方法是JavaScript中的常见的实践方法，我们经常在实际的使用中应用这种方法。还是用一个看看在借用方法中this的问题。
+{% highlight JS %}
+
+    //这里有两个对象，一个里边有 avg()方法，另外一个没有，我们会借用这个 avg()方法。
+var gameController = {
+    scores  :[20, 34, 55, 46, 77],
+    avgScore:null,
+    players :[
+    {name:"Tommy", playerID:987, age:23},
+    {name:"Pau", playerID:87, age:33}
+    ]
+    }
+​
+    var appController = {
+    scores  :[900, 845, 809, 950],
+    avgScore:null,
+    avg     :function () {
+​
+    var sumOfScores = this.scores.reduce (function (prev, cur, index, array) {
+    return prev + cur;
+    });
+​
+    this.avgScore = sumOfScores / this.scores.length;
+    }
+    }
+
+    //如果执行以下的代码 gameController.avgScore的属性会被设置成为appController对象的scores数组的平均值。
+    gameController.avgScore = appController.avg();
+{% endhighlight %}
+avg方法中的this关键字会不会指向gameController对象，它会只指向appController对象的，因为是appController对象啊调用了这个函数。
+
+如何解决呢？
+为解决这个问题我们要确定appController.avg()方法指向gameController，我们可以使用apply()方法：
+{% highlight JS %}
+    //利用apply方法将this指向了gameContrller对象，同时将gameController.scores作为参数传入。
+    appController.avg.apply (gameController, gameController.scores);
+​
+    //我们借用了appController对象上的avg()方法，并将gameController的avgScore设置成功了。
+
+    console.log (gameController.avgScore); // 46.4​
+​
+    //注意appController的avgSocre还是null
+    console.log (appController.avgScore); // null
+{% endhighlight %}
+gameController借用了appController的avg()的方法，appController中的avg()方法中this会被指向到gameController中，因为我们使用了apply()方法，apply方法会根据参数准确的制定this的值。
+
+##结束语
+希望这篇文章可以帮助大家能够很多的理解JavaScript中的this关键字，以及this中各个坑和解决方法。
+
+[原文](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)

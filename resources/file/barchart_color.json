@@ -1,0 +1,112 @@
+{
+  "data": [
+    {
+      "id": "data",
+      "fields": [
+        {
+          "id": "name",
+          "label": "name",
+          "categories": [
+            "MCI",
+            "MUN",
+            "ARS",
+            "TOT",
+            "NEW"
+          ]
+        },
+        {
+          "id": "wins",
+          "label": "Game Wins"
+        }
+      ],
+      "rows": [
+        [
+          0,
+          29
+        ],
+        [
+          1,
+          29
+        ],
+        [
+          2,
+          22
+        ],
+        [
+          3,
+          20
+        ],
+        [
+          4,
+          19
+        ]
+      ]
+    }
+  ],
+  "grammar": [
+    {
+      "coordinates": {
+        "dimensions": [
+          {
+            "axis": {
+              "boxStyle":{
+                "fill":"black"
+              }
+            }
+          },
+          {
+            "axis": {}
+          }
+        ],
+        "style": {
+          "fill": "white"
+        }
+      },
+      "elements": [
+        {
+          "type": "interval",
+          "position": [
+            {
+              "field": {
+                "$ref": "wins"
+              }
+            },
+            {
+              "field": {
+                "$ref": "name"
+              }
+            }
+          ],
+          "color": [
+            {
+              "id": "colorId",
+              "field": {
+                "$ref": "name"
+              },
+              "palette": [
+                "#1183ad",
+                "#39b2ac",
+                "#60942c",
+                "#d4a600",
+                "#d15c00",
+                "#b2293d",
+                "#532f8c"
+              ]
+            }
+          ],
+          "style": {
+            "width": "80%"
+          }
+        }
+      ]
+    }
+  ],
+  "size": {
+    "width": 500,
+    "height": 400
+  },
+  "version": "3.0",
+  "style": {
+    "fill": "transparent"
+  }
+}
