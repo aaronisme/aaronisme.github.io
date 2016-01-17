@@ -5,7 +5,7 @@ date:   2015-08-12 22:00:00
 categories: jekyll update
 tags:
     - 前端开发
-    - summary
+    - Summary
 ---
 IONIC 是较为红火的mobile app 开发框架，所以花了点时间研究了一下，一下就是对于具体实施的一些项目中的总结和分享。
 

@@ -2,6 +2,8 @@
 layout: post
 title: "ios-alert-share"
 date: "2015-12-25 20:09"
+tags:
+    - IOS
 ---
 # IOS-Summary-Alert-Activiy-Share-web-API-week2
 
