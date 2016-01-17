@@ -7,6 +7,7 @@ tag:
     - IOS
 ---
  本周完成了糖记的1.0版本的主要工作，完成了打包上传的步骤。等待apple的审核。本周还进行了其他的学习记录.
+ 
 ## outlets and Action
 outlets 是一种特殊的OC属性可以用来执行storyboard or nib中的objects，它的keywords是IBOutlet，声明它的表达式为：
 ```
