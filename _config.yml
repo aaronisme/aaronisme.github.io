@@ -22,7 +22,7 @@ github_username:    aaronisme
 
 
 # Build settings
-highlighter: pygments
+# highlighter: pygments
 permalink: pretty
 paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
@@ -37,7 +37,7 @@ anchorjs: true                          # if you want to customize anchor. check
 markdown: kramdown
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
-
+  syntax_highlighter: rouge
 
 
 # Disqus settings
@@ -68,10 +68,12 @@ sidebar-avatar: /img/avatar-ac.jpg      # use absolute URL, seeing it's used in 
 
 
 # Featured Tags
-featured-tags: true                     # whether or not using Feature-Tags
-featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+pygments-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be pygments if the size of it is more than this condition value
 
 
+
+gems: [jekyll-paginate, jekyll-gist]
 
 # Friends
 # friends: [
