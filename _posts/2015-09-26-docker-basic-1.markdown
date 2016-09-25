@@ -6,7 +6,8 @@ tags:
   - docker
 ---
 
-上篇文章我们介绍了docker的历史由来和他的一些好处，从这篇文章开始，我们开始正式的进入Docker的世界，首先给大家介绍一下Docker一些基本概念。
+上篇文章我们介绍了docker的历史由来带来的一些好处，从这篇文章开始，我们开始正式的进入Docker的世界，首先给大家介绍一下Docker一些基本概念。
+
 ### Docker的基本概念
 Docker的基本概念并不是很多，就是三个：
 
@@ -14,18 +15,17 @@ Docker的基本概念并不是很多，就是三个：
 * 容器（Container）
 * 仓库（Repository）
 
-深入的理解这三个概念，对于docker的理解会有很大的帮助。
+深入理解这三个概念，对于docker的理解会有很大的帮助。
 
 1. 什么是image呢，简单来说image就是一个镜像，一个系统的snapshot,可以类比于一个vm的image，或者如果你用过AWS，类似于一个AMI文件。
 
 2. 什么是Container，Container是简易版的Linux环境，可以类比的与一个Virtual Machine 或者 一个EC2的instance。
 3. 那个image和Container什么关系呢？一个docker Container 需要加载一个image然后执行。image是run在Container里的。
 4. 什么是repository呢？repository是一个image仓库，可以将打好的Docker image push这个仓库中与他人分享。
-5. 
 
 ![image]({{url}}/resources/img/image-run-container.PNG)
 
-详细上篇文章后大家已经把docker安装好了吧。下边我们就来一步步的介绍这个三个概念。
+相信上篇文章后大家已经把docker安装好了吧。下边我们就来一步步的介绍这个三个概念。
 
 ### Docker Image
 运行```docker pull```命令可以从仓库中获取镜像。
