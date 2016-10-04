@@ -141,15 +141,12 @@ __```docker exec``` 会启动另外一个进程来进入Container，这里的操
 
 好了，对于Container今天就聊到这里，下片文章我们继续聊最后一个概念，Docker仓库。
 
+------
+
+原创文章，欢迎转发，但请标明出处。欢迎关注图表君的公众号，一起成长。在微信中搜索 “多彩数据” 或者 “Data_Visualization”
 
 
-
-
-
-
-
-	
-
+![image]({{url}}/resources/img/wechat.jpg)
 
 
 
