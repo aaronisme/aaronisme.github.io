@@ -6,7 +6,7 @@ tags:
   - docker
 ---
 
-# 图表君聊Dokcer-Container
+# 图表君聊Docker-Container
 上篇文章我们介绍了Docker三大概念中的Image，这篇我们来介绍Container，上篇文章中我们了解到了Image是运行在Container中的，实际上在容器里跑的指令都是在Container中run的。
 
 ## 启动容器
