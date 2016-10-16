@@ -7,7 +7,7 @@ tags:
 ---
 
 # 图表君聊docker-仓库
-今天我们来继续聊docker，上篇文章我们介绍了docker里的Container.今天来继续三大概念中的最后一个--仓库（Repository)。
+今天我们来继续聊docker，上篇文章我们介绍了docker里的Container。今天来继续三大概念中的最后一个--仓库（Repository)。
 
 当我做好了一个Image，我该怎么和其他人分享呢？答案很简单，把他push到一个仓库里，这样其他人也能使用我的Image了。这个仓库可以是一个私有的仓库，供一个team内部使用。也可以是一个公共的仓库，开放给所有使用。
 
