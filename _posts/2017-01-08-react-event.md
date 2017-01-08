@@ -22,31 +22,34 @@ tags:
 
 	我们来直接看代码
 	
-	```
-		import React, {Component} from 'react';
-		
-		class EventApp extends Component {
-		
-			handleClick(e,args){
-				console.log('this is the react event',e)
-				console.log('this is the args', args)
-			}
-		
-		
-			render(){
-				return <button onClick={this.handleClick.bind(this,'test')}>Test</button>
-			}
-		
-		}
+```
 	
-	```
+import React, {Component} from 'react';
+		
+class EventApp extends Component {
+		
+	handleClick(e,args){
+		console.log('this is the react event',e)
+		console.log('this is the args', args)
+	}
+		
+		
+	render(){
+		return <button onClick={this.handleClick.bind(this,'test')}>Test</button>
+	}
+		
+}
+		
+	
+```
 
 2. 构造器内声明
 	
 	再来看代码
 	
-	```
-		import React, {Component} from 'react';
+```
+
+	import React, {Component} from 'react';
 		
 		class EventApp extends Component {
 		
@@ -67,16 +70,16 @@ tags:
 		
 		}
 
-	```
-	使用构造器内声明的方法，仅仅要绑定一次而不需要每次使用的时候都绑定一次。
+```
+使用构造器内声明的方法，仅仅要绑定一次而不需要每次使用的时候都绑定一次。
 
 3. 箭头函数
 
-	```
+```
 
 	class ButtonApp extends React.Component {
 
-  		handleClick (e){
+  		handleClick (e) {
     		console.log(e.target.value)
   		}
  
@@ -85,9 +88,10 @@ tags:
   		}
 	}
 	
-	```
-
+```
+	
 从上边的使用方式我们可以看出React来使用合成事假还是很简单的，但是现实的世界总是更加的复杂的。那么在React中我们可以使用原始事件吗？当然是可以的。
+	
 
 ## 使用原生事件
 在React中我们也可以使用原生事件，那么如何进行绑定呢，因为React提供了ComponentDidMount这样的API让我们可以调用，那么要使用原生事件我们就可以在DidMount后进行绑定。例如上边的那个例子中如果我们想把click事件绑定在原生button上该怎么做呢？我们来看代码：
