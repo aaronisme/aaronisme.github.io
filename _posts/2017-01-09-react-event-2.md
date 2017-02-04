@@ -193,6 +193,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 [Open in CodePen](http://codepen.io/aaronisme/pen/Kaewxz?editors=0001)
+
 在这个例子中我们有三个component，Son Dad，Grandpa。同时定义了React Event handler 和 native event handler，并在Dad的native Event handler中stopPropagation，当我们点击Son or Dad component的时候会发现，React Event handler并没有被trigger。
 console里的output为：
 
