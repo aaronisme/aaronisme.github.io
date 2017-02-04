@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "浅析React之事件系统（一）"
+title: "浅析React之事件系统（二）"
 date: "2017-1-09 08:01"
 tags:
   - React
