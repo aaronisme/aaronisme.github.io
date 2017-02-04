@@ -49,26 +49,26 @@ class EventApp extends Component {
 	
 ```
 
-	import React, {Component} from 'react';
+import React, {Component} from 'react';
 		
-		class EventApp extends Component {
+	class EventApp extends Component {
 		
-			constructor(props){
+		constructor(props){
 				super(props);
 				
 				this.handleClick = this.handleClick.bind(this);
-			}
-		
-			handleClick(e){
-				console.log('this is the react event',e)
-			}
-		
-		
-			render(){
-				return <button onClick={this.handleClick}>Test</button>
-			}
-		
 		}
+		
+		handleClick(e){
+				console.log('this is the react event',e)
+		}
+		
+		
+		render(){
+				return <button onClick={this.handleClick}>Test</button>
+		}
+		
+ }
 
 ```
 使用构造器内声明的方法，仅仅要绑定一次而不需要每次使用的时候都绑定一次。
@@ -76,15 +76,14 @@ class EventApp extends Component {
 3. 箭头函数
 
 ```
+class ButtonApp extends React.Component {
 
-	class ButtonApp extends React.Component {
-
-  		handleClick (e) {
-    		console.log(e.target.value)
-  		}
+	handleClick (e) {
+    	console.log(e.target.value)
+  	}
  
- 	 	render(){
-    		return <button onClick={(e) => this.handleClick(e)}>Test</button>;
+ 	render(){
+    	return <button onClick={(e) => this.handleClick(e)}>Test</button>;
   		}
 	}
 	
