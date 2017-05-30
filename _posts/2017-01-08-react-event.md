@@ -86,7 +86,6 @@ class ButtonApp extends React.Component {
     	return <button onClick={(e) => this.handleClick(e)}>Test</button>;
   		}
 	}
-	
 ```
 	
 从上边的使用方式我们可以看出React来使用合成事假还是很简单的，但是现实的世界总是更加的复杂的。那么在React中我们可以使用原始事件吗？当然是可以的。
@@ -113,7 +112,6 @@ class ButtonApp extends React.Component {
 	}
 
 }
-
 ```
 在这里例子中我们使用原生事件的方法绑到了button上，注意一点的是在DidMount上add了这个listener在willUnmont上remove这个listener。一定要手动的记住移除，不然可能会出现内存泄漏问题。如果我们使用React合成事件，这些事React已经帮你做好了。但是现实的情况下我们有一些场景是不得不用到原生的事件的那么该怎么做呢？
 
@@ -174,9 +172,3 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 参考文献：
 深入react技术栈
-
-
-
-
-
-
