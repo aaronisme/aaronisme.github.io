@@ -37,7 +37,7 @@ jekyll-archives:
   permalinks:
     tag: '/tag/:name/'
 
- Disqus comments
+ #Disqus comments
  disqus_shortname: aaronisme
 
 # Google analytics
