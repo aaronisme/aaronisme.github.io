@@ -4,7 +4,7 @@ title:  "数据可视化工具巡礼-RAVE(1)"
 date:   2015-02-02 11:15:00
 tags:
     - 前端开发
-    - Visualization
+    - visualization
 ---
 今天开始分享更多干货。从什么开始呢？那就从RAVE开始吧，因为图表君对它最为熟悉了。
 

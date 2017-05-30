@@ -4,7 +4,7 @@ title:  "工欲善其事，必先利其器 -  RAVE(2)"
 date:   2015-02-05 11:15:00
 tags:
     - 前端开发
-    - Visualization
+    - visualization
 ---
 这是RAVE系列文章的第二篇，你可以在微信公众号：多彩数据（微信号：Data_Visualization)后台回复"数据"查看此系列的其他文章。
 

@@ -4,7 +4,7 @@ title:  "数据可视化101-到底该用什么图"
 date:   2015-01-29 11:15:00
 tags:
     - 前端开发
-    - Visualization
+    - visualization
 ---
 
 本文是阅读Data Visualization with JavaScript(by Stephen A. Thomas)时的摘要和心得体会。感谢阮一峰老师的Blog，让我发现了这本好书。
