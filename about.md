@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-<img src="{{ site.baseurl }}/assets/profile-placeholder.gif" title="Profile Picture" class="profile">
+<img src="{{ site.baseurl }}/assets/ac-image.jpg" title="Profile Picture" class="profile">
 
 Aaron Chen is a software developer now working in ThoughtWorks. This is his own blog, and Aaron Chen is also a independent software developer. you can access my ios app from [糖记](https://itunes.apple.com/cn/app/tang-ji/id1074569228)
 

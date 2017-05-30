@@ -38,7 +38,7 @@ jekyll-archives:
     tag: '/tag/:name/'
 
  #Disqus comments
-disqus_shortname: aaronisme
+#disqus_shortname: www-aaronisme-com
 
 # Google analytics
 # ga_tracking_id: "UA-XXXX-1"
