@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>图表君聊docker-开篇</title>
+  <meta name="description" content="图表君聊Docker-开篇今天是图表君聊Docker得第一篇，为什么会有这个系列呢？作为容器技术的Docker出现已经有一段时间了，之前零零星星的也看过一些文章，图表君现在所的项目上也在使用Docker，对这种技术的理解也这是皮毛而已，工作上用到也是谢谢DockerFile，然后遇到问题的时候Google一下。最...">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="图表君聊Docker-开篇今天是图表君聊Docker得第一篇，为什么会有这个系列呢？作为容器技术的Docker出现已经有一段时间了，之前零零星星的也看过一些文章，图表君现在所的项目上也在使用Docker，对这种技术的理解也这是皮毛而已，工作上用到也是谢谢DockerFile，然后遇到问题的时候Google一下。最..." />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="图表君聊docker-开篇" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="图表君聊docker-开篇">
+  <meta name="twitter:description" content="图表君聊Docker-开篇今天是图表君聊Docker得第一篇，为什么会有这个系列呢？作为容器技术的Docker出现已经有一段时间了，之前零零星星的也看过一些文章，图表君现在所的项目上也在使用Docker，对这种技术的理解也这是皮毛而已，工作上用到也是谢谢DockerFile，然后遇到问题的时候Google一下。最...">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2016/09/24/docker-1.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">图表君聊docker-开篇</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">September 24, 2016</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="docker-">图表君聊Docker-开篇</h1>
+<p>今天是图表君聊Docker得第一篇，为什么会有这个系列呢？作为容器技术的Docker出现已经有一段时间了，之前零零星星的也看过一些文章，图表君现在所的项目上也在使用Docker，对这种技术的理解也这是皮毛而已，工作上用到也是谢谢DockerFile，然后遇到问题的时候Google一下。最近刚好参加了Docker的培训，正好趁着这个机会，深入学习一下。一句话描述Docker，这货真是个改变世界的技术。</p>
+
+<h3 id="docker">Docker的由来</h3>
+<p>Docker原来这是dotCloud公司的内部业余项目，基于Go语言实现，后来开源了加入了Linux基金会，自开源后收到了广泛的关注和讨论，后来dotCloud将公司都改名为Docker Inc.dotCloud公司原本的产品并没有成果，但是凭借Docker做的风生水起了，真是柳暗花明又一村。所以呀，很多朋友们都有自己的side Project，只要大家觉得自己的想法是有趣，有用的。坚持做下去，谁也不知道会不会是下个Docker。</p>
+
+<h3 id="docker-1">Docker的技术特点</h3>
+<p>Docker的技术特点，详细大家都比较的了解了。想比较于传统的虚拟化技术,Virtual Machine包含了一套完整的OS，每个VM上都有自己的GUEST OS。而一个Docker Container并不包含一个OS，只包含这个App和期依赖，所以Docker Container更加的轻量快速。下边这张图大家一看就明白了。</p>
+
+<p>-&gt;<img src="/resources/img/docker-img.PNG" alt="image" />&lt;-</p>
+
+<p>-&gt;<img src="/resources/img/vm-img.PNG" alt="image" />&lt;-</p>
+
+<h3 id="docker-2">Docker怎么安装呢</h3>
+<p>Docker是基于Linux的容器技术，所以天生在Linux上安装十分的简单。</p>
+
+<p><code class="highlighter-rouge">curl -sSL https://get.docker.com/ | sh</code></p>
+
+<p>对于Mac，喜大普奔的是Docker现在原生的支持Docker了。到Docker官网上下载Docker的安装包，简单的几部next，Docker就安装好了。<a href="https://www.docker.com/products/docker#/mac">Docker</a></p>
+
+<p>至于Windows，图表君没试过，官网有windows的教程，大家可以参考。</p>
+
+<h3 id="docker-3">Docker到底解决了什么问题</h3>
+<p>一个新技术的出现，备受追捧，必定是解决了一些很多的问题。Docker这么红火到底是解决了什么问题呢？最直观的问题是，Docker让开发，测试，生产环境，彻底的统一了，统一了，统一了。</p>
+
+<p>有没有小伙伴有这样的经历，线上出了一个问题，我们查了半天。what the fuck！我本地没问题啊，于是乎上测试环境，生产环境，吭哧吭哧查半天，然后发现是环境配置问题。内心一万个草泥马飞过。现在好了程序写好，做成镜像。想在那里部署运行都行。</p>
+
+<p>-&gt;<img src="/resources/img/cnm-img.jpg" alt="image" />&lt;-</p>
+
+<p>另外目前什么样的软件架构最火，当然是微服务了啊。图表君的项目上都是微服务的构建，一个Project，7到8个Repo是很常见的。为了我们搭建开发环境这些services都得启动起来。于是乎一个个的启动。太麻烦了。想当初图表君为了看一个CSS的修改效果，不得不启动3个service，我内心是奔溃的。（虽然是仅仅多run了几条命令而已，然而程序员都很懒的）现在好了一个docker compose up。所有的service都起好了，太方便了，太方便了。</p>
+
+<p>-&gt; <img src="/resources/img/shuang-img.jpg" alt="image" />&lt;-</p>
+
+<p>目前，docker还只是运用在开发和测试环境上，但是已经Docker运用在生产环境上，只是时间的问题了。原来在为了run一个简单的job，我可能要启动一个instance，来处理出来，现在我只要简单的run一个docker container就OK了。节省了多少资源成本和时间。特别是对于图表君这种仅仅只有一台阿里云服务器来说，可以做跟多的事情了。特别利用DaoCloud这样的云服务，代码的提交，测试，发布，部署，一下全搞定。生活简直太美好了。</p>
+
+<p>好了，开篇就写这个多了。下篇文章开始进入正题。如果你还不知道什么是docker，应该跟新下知识库了。上docker的官网，安装docker，然后跟着图表君一起学习吧。</p>
+
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/docker">docker</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%E5%9B%BE%E8%A1%A8%E5%90%9B%E8%81%8Adocker-%E5%BC%80%E7%AF%87&url=http%3A%2F%2Faaronchen.cn%2F2016%2F09%2F24%2Fdocker-1.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2016%2F09%2F24%2Fdocker-1.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

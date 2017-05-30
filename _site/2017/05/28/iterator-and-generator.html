@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ES6新特性 iterators and Generators</title>
+  <meta name="description" content="ES6新特性 iterators and GeneratorsES6中引入了许多新特性，目前大量的JavaScript项目已经使用了ES6来进行开发，那么熟悉这些新的特性是十分必要的，例如Redux-Saga中大量的使用了Iterator和generator。这篇文章总结和介绍一下ES6中的Iterator和Ge...">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="ES6新特性 iterators and GeneratorsES6中引入了许多新特性，目前大量的JavaScript项目已经使用了ES6来进行开发，那么熟悉这些新的特性是十分必要的，例如Redux-Saga中大量的使用了Iterator和generator。这篇文章总结和介绍一下ES6中的Iterator和Ge..." />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="ES6新特性 iterators and Generators" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ES6新特性 iterators and Generators">
+  <meta name="twitter:description" content="ES6新特性 iterators and GeneratorsES6中引入了许多新特性，目前大量的JavaScript项目已经使用了ES6来进行开发，那么熟悉这些新的特性是十分必要的，例如Redux-Saga中大量的使用了Iterator和generator。这篇文章总结和介绍一下ES6中的Iterator和Ge...">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2017/05/28/iterator-and-generator.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">ES6新特性 iterators and Generators</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">May 28, 2017</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="es6-iterators-and-generators">ES6新特性 iterators and Generators</h1>
+<p>ES6中引入了许多新特性，目前大量的JavaScript项目已经使用了ES6来进行开发，那么熟悉这些新的特性是十分必要的，例如Redux-Saga中大量的使用了Iterator和generator。这篇文章总结和介绍一下ES6中的Iterator和Generator。</p>
+
+<h2 id="iterators-and-generators">iterators and Generators</h2>
+<p>第一个问题什么是iterator？答案很简单， Iterator是一个object，但是含有特定的接口，它有next method可以返回一个result object，这个result object有两个属性第一个是value，代表这个迭代的值, 第二个是done，代表迭代是否结束。如果我们自己来简单实现一个Iterator，它是这样的。</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">createIterator</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="na">next</span> <span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+            <span class="kd">var</span> <span class="nx">done</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+            <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">items</span><span class="p">[</span><span class="nx">i</span><span class="o">++</span><span class="p">]</span>
+
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="na">done</span><span class="p">:</span> <span class="nx">done</span><span class="p">,</span>
+                <span class="na">value</span><span class="p">:</span> <span class="nx">value</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">items</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="kr">const</span> <span class="nx">iteratorA</span> <span class="o">=</span> <span class="nx">createIterator</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span>
+<span class="nx">iteratorA</span><span class="p">.</span><span class="nx">next</span><span class="p">()</span> <span class="c1">// {result:1, done: false}</span>
+</code></pre>
+</div>
+<p>那么Generator又是什么？Generator 是一个函数可以产生iterator。Generator函数用function关键字后边带*来表示。在函数定义上使用yield关键字来表示next方法调用时返回的值。例如</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function *createIterator(){
+	yield 1;
+	yield 2;
+	yield 3;
+}
+
+let iterator = createIterator();
+console.log(iterator.next().value);  //1
+console.log(iterator.next().value);  //2
+console.log(iterator.next().value);  //3
+</code></pre>
+</div>
+
+<h2 id="iterables">iterables</h2>
+<p>上边介绍了什么是Iterator，什么是generator，下边再介绍一个概念iterable。iterable是一个有Symbol.iterator属性的object。这个symbol指向一个generator函数，这个函数返回关于这个对象的iterator。在ES6中所有的集合类对象(array, set, maps)和字符串都是iterable，并且有自己默认的iterator。当我们在使用 for-of时候实际上是利用了这些对象上的iterator,每次调用了next方法，将返回的result上的value返回回来。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>let values = [1, 2, 3];
+for (let num of values) { 
+	console.log(num);
+}
+</code></pre>
+</div>
+<p>例如这段简单的代码，实际上调用了values上的iterator的next方法，将result上的value拿出来赋给num。既然是这样我们可以采用这样的方法来获得默认的iterator。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>let values = [1, 2, 3];
+let iterator = values[Symbol.iterator]();
+</code></pre>
+</div>
+
+<p>在ES6中对于集合类型的Object,其上定义了一些内置的iterator，分别是；</p>
+
+<ul>
+  <li>entries() - 返回一个返回key-value pair的iterator</li>
+  <li>values() - 返回一个返回collection对应值的iterator // chrome not supported
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/values?v=control">MDN</a></li>
+  <li>keys() - 返回一个返回collecttion对应key的iterator</li>
+</ul>
+
+<p>以上就是iterator和generator的一些基本概念，下边我们来看一下一些高阶应用。</p>
+
+<h2 id="iterator">向iterator中传递参数</h2>
+<p>上边的例子中我们在调用iterator的next方法都是无参数调用的，但是我们同样可以向next方法中传递参数。例如这样。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function* createIterator() {
+    let first = yield 1;
+    let second = yield first + 2;
+    yield second + 3;
+}
+
+let i= createItreator（）
+
+i.next() // {value:1 done: false}
+i.next(5) // {value: 7 done: false}
+i.next(3) // {value: 6 done: false}
+</code></pre>
+</div>
+<p>我们看上边这个例子,在第二次调用中我们传进去了5，返回值是7，这个传进去的参数可以理解为上一次yield的返回值。注意yield本身是不返回任何值的，它只向外部产生值。如果我们查看yield在英语词典中的意思，<code class="highlighter-rouge">produce or generate (a result, gain, or financial return</code> 所以yield的值是向外产生值。所以在第一次next后 first的值依旧是undefined。但是向next中传递参数，这个参数代表我们想要上一次yield在generator函数中的值。所以在第二次next后 返回值的value就是7(5+2)了。第三例子同理。所以基于上边的原因我们向第一个next函数中传入任何值都是没有意义的。我们变化一下再看</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function* createIterator() {
+    yield 1;
+    let first;
+    let second = yield first + 2;
+    yield second + 3;
+}
+
+i.next() // {value:1 done: false}
+i.next(5) // {value: NaN done: false}
+i.next(3) // {value: 6 done: false}
+
+</code></pre>
+</div>
+
+<p>在第二个next中我们的返回是NaN, 为什么呢？这是因为first是Undefined，第一次的yield并没有给first赋值。所以在yeild中的执行顺序是每一次执行到相应的yield就完了，下次继续向下执行。</p>
+
+<h2 id="iteratorthrow-error">在Iterator中Throw Error</h2>
+<p>在iterator中我们可以来throw error 来达到控制执行的目的。例如上边一个例子。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function* createIterator() {
+    let first = yield 1;
+    let second = yield first + 2;
+    yield second + 3;
+}
+
+let i= createItreator（）
+
+i.next() // {value:1 done: false}
+i.next(5) // {value: 7 done: false}
+i.throw(new Error('error')) // error thrown done is set to true after throw error
+
+</code></pre>
+</div>
+
+<h2 id="generator-functionreturn">Generator function中的Return</h2>
+<p>同样在generator 我们可以使用 return来返回。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function* createIterator() {
+    yield 1;
+    return;
+    yield 2;
+    yield 3;
+}
+let iterator = createIterator();
+console.log(iterator.next()); // "{ value: 1, done: false }"
+console.log(iterator.next()); // "{ value: undefined, done: true }"
+</code></pre>
+</div>
+<p>第一次next后已经结束了所以 我们第二次next后done就已经是true了。</p>
+
+<h2 id="generator--iteratortask-runner">Generator 和 Iterator的应用实例：Task Runner</h2>
+<p>我们可以使用generator和Iterator来实现一个task runner,可以让我们不用手动的next，而是一次执行结束。代码如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function run(taskDef) {
+    let task = taskDef();
+    let value = task.next()
+
+    function step() {
+        if (!value.done) {
+            value = task.next(value.value)
+            step()
+        }
+    }
+
+    step()
+}
+
+run(function*(){
+    let first = yield 1;
+    let second = yield first + 3;
+    yield second + 4;
+})
+</code></pre>
+</div>
+<p>上边就是一个例子，这样定义的run function就可以顺序执行这些generator定义的步骤。</p>
+
+<p>实际上generator和Iterator最为实际的作用是可以控制异步函数的执行，下边我们可以简单的例子。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function run(taskDef) {
+    let task = taskDef();
+    let result = task.next()
+
+    function step() {
+        if (!result.done) {
+            if (typeof result.value === "function") {
+                result.value(function(err, data) {
+                    if (err) {
+                        console.log('err', err);
+                        task.throw(err)
+                        return
+                    }
+                    console.log('err', data);  
+                    result = task.next(data);
+                    step()
+                    
+                })
+            } else {
+                result = task.next(result.value)
+                step()
+            }
+            
+        }
+    }
+
+    step()
+}
+
+let fs = require("fs");
+
+function readFile(filename) {
+  return function (callback) {
+    fs.readFile(filename, callback);
+  };
+}
+
+run(function* () {
+  let contents = yield readFile("abc.json");
+  console.log(contents);
+  console.log("Done");
+});
+</code></pre>
+</div>
+
+<p>首先我们定义了一个task runner <code class="highlighter-rouge">run function</code> 在其中当发现result中的value是function的时候，就执行这个function, 并且在异步函数的callback中，当没有error的时候执行下一步。</p>
+
+<p>在看我们的ReadFile function，fs模块中的readFile是一个异步的函数，而在这里我们将其进行了封装成为一个新的函数。让其返回一个function给在task runner中使用。那么在我们的generator函数中，我们看上去的代码就和同步的一样了，先readfile，完成后将其输出。这样使用Iterator和generator可以帮助我们写出一个比较好看的异步执行函数。</p>
+
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/前端开发">前端开发</a>,&nbsp;<a href="/tag/JavaScript">JavaScript</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=ES6%E6%96%B0%E7%89%B9%E6%80%A7+iterators+and+Generators&url=http%3A%2F%2Faaronchen.cn%2F2017%2F05%2F28%2Fiterator-and-generator.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2017%2F05%2F28%2Fiterator-and-generator.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

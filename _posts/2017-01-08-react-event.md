@@ -3,7 +3,7 @@ layout: post
 title: "浅析React之事件系统（一）"
 date: "2017-1-08 08:01"
 tags:
-  - React
+  - react
 ---
 # 浅析React之事件系统（一）
 

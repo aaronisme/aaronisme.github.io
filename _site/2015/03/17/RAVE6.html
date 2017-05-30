@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>RAVE中的自定义axis的方法</title>
+  <meta name="description" content="在图表中往往有很纠结的地方，比如我们既想方便的做出一个图形，同时也想让图形具有很强的灵活性。所以要满足这样的需求也是挺难的。打个比方说在以往的图库的图形引擎中要更改一个自定义一些图，确实也是很挺困难的。但是RAVE提供的VizJSon的语法描述语言，所以它的灵活性就有相应的提升，那么如何表现呢？下面就是个很好的例...">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="在图表中往往有很纠结的地方，比如我们既想方便的做出一个图形，同时也想让图形具有很强的灵活性。所以要满足这样的需求也是挺难的。打个比方说在以往的图库的图形引擎中要更改一个自定义一些图，确实也是很挺困难的。但是RAVE提供的VizJSon的语法描述语言，所以它的灵活性就有相应的提升，那么如何表现呢？下面就是个很好的例..." />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="RAVE中的自定义axis的方法" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RAVE中的自定义axis的方法">
+  <meta name="twitter:description" content="在图表中往往有很纠结的地方，比如我们既想方便的做出一个图形，同时也想让图形具有很强的灵活性。所以要满足这样的需求也是挺难的。打个比方说在以往的图库的图形引擎中要更改一个自定义一些图，确实也是很挺困难的。但是RAVE提供的VizJSon的语法描述语言，所以它的灵活性就有相应的提升，那么如何表现呢？下面就是个很好的例...">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2015/03/17/RAVE6.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">RAVE中的自定义axis的方法</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">March 17, 2015</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>在图表中往往有很纠结的地方，比如我们既想方便的做出一个图形，同时也想让图形具有很强的灵活性。所以要满足这样的需求也是挺难的。打个比方说在以往的图库的图形引擎中要更改一个自定义一些图，确实也是很挺困难的。但是RAVE提供的VizJSon的语法描述语言，所以它的灵活性就有相应的提升，那么如何表现呢？下面就是个很好的例子。在现实的需求中我们往往需要自定义一些轴上的信息，但是在data里又不方便直接的对于这样的信息进行定义，所以就存在了一个转化的问题。那么如何进行转换呢？以下就是一个很好的事件例子。</p>
+
+<p>在VizJson Reference Doc 中对于axis的描述中有这样的一段：</p>
+
+<p>tickLabel</p>
+
+<p>Type: content</p>
+
+<p>Defines the formatting for the axis tick label.</p>
+
+<p>The label will be constructed by appending these parts together. References to fields will be translated to the name of the field. This content array is similar to axis title or element label. The only different is that it will have a placeholder to insert the tick actual value. This placeholder is an entity with an argument and value such as</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tick"</span><span class="p">}</span></code></pre></figure>
+
+<p>For example if the attribute is defined as follows:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"tickLabel"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Price: "</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tick"</span><span class="p">}]</span></code></pre></figure>
+
+<p>than a tick value of 1000 will become “Price: 1000” Images can be added to tick label by providing a image referance in content array. This is as described in content attribute of label. Different image for each category can be added by providing a field referance with method as image as shown below. This field will contain referance to image resources as categories.</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"tickLabel"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+	</span><span class="p">{</span><span class="nt">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"imgField"</span><span class="p">,</span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">},</span><span class="w">
+	</span><span class="s2">" "</span><span class="p">,</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tick"</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span></code></pre></figure>
+
+<p>Note: For numeric scale the tick value may not exactly match the value of data field so image defined at nearest matching data row index is used for the tick.
+Tick label actual values can be styled by defining the style along with argument. Rules for specifying style are same as for any other content part as described in content attribute of label.</p>
+
+<p>For example:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"tickLabel"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tick"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"style"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    	</span><span class="nt">"fill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"font"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        	</span><span class="nt">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"style"</span><span class="p">:</span><span class="w"> </span><span class="s2">"italic"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"weight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bold"</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span></code></pre></figure>
+
+<p>大致的意思就是说tickLabel这个属性对于axis中的label提供一些自定义的方式。只要插入一个placeholder{“args”：“tick”}中就可以将原有的lable引入进来。在这样的表述中提到了三种方式:</p>
+<ol>
+  <li>在现有的label统一加一个前缀字段。实现的方法就是在这个array里加一个字符串[“Price: “, {“args”: “tick”}]</li>
+  <li>利用image加入到现有的label中。实现的方式是在这个array中加入对于image的引用[{“$ref”:”image”,”method”:”image”}, “ “,{“args”:”tick”}]</li>
+  <li>同样可以对于tickLabel 改变它的style，通过改变其style property来到达。</li>
+</ol>
+
+<p>这里是官方的文档的描述。那么问题来了，如果我的目的不是要引入image，而是要做一个mapping的变换该如何操作呢。具体来说就是要讲：
+1 - abc1
+2 - abc2
+3 - abc3
+4 - abc4
+5 - abc5
+这样一一对应的方式进行对应。该如何定义？？</p>
+
+<p>要达到这样的目的我们就可以参考VizJson的ticklael image的定义方法。假如新定义的categories 的名字叫 reallabel。那么我们就是可以这样的定义ticklabel。</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"tickLabel"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+	</span><span class="p">{</span><span class="nt">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reallabel"</span><span class="p">,</span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data"</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span></code></pre></figure>
+
+<p>这样就利用自定义的label代替了原有的label。
+下边写一个例子能更好的说明这个问题。还有一点即使在RAVE 5.0 以后才支持这个属性。
+<img src="/resources/img/rave6-pic1.png" alt="图例2" /></p>
+
+<p>这里是源码<a href="/resources/file/customlabel.json">源码</a></p>
+
+<p>思考题1：
+如果有缺项怎么呢办，意思是要显示的label不是和原始数据一一对应的，中间有空项？</p>
+
+<p>答案：
+在对应的data rows里补null 同时改变原始的tickstyle 为透明色。这是一点tricks。</p>
+
+<p>思考题2：
+如何创建有null项的图，有空点，不连续的图。
+答案：
+只要在对应项中补null就可以了，例如 [[1,2],[2,null],[3,8] …]</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/前端开发">前端开发</a>,&nbsp;<a href="/tag/Visualization">Visualization</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=RAVE%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89axis%E7%9A%84%E6%96%B9%E6%B3%95&url=http%3A%2F%2Faaronchen.cn%2F2015%2F03%2F17%2FRAVE6.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2015%2F03%2F17%2FRAVE6.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

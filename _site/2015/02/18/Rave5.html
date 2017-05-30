@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>今天，我们完成这个栅格图-RAVE（5）</title>
+  <meta name="description" content="今天是大年三十，图表君祝大家羊年大吉，新年快乐。今天我们完成这个栅格图,也是我们RAVE 第一季 的最后一篇文章。在上一篇文章中给大家介绍了如何用美化栅格图。这篇文章我们再为这个图形再增加点其他元素。">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="今天是大年三十，图表君祝大家羊年大吉，新年快乐。今天我们完成这个栅格图,也是我们RAVE 第一季 的最后一篇文章。在上一篇文章中给大家介绍了如何用美化栅格图。这篇文章我们再为这个图形再增加点其他元素。" />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="今天，我们完成这个栅格图-RAVE（5）" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="今天，我们完成这个栅格图-RAVE（5）">
+  <meta name="twitter:description" content="今天是大年三十，图表君祝大家羊年大吉，新年快乐。今天我们完成这个栅格图,也是我们RAVE 第一季 的最后一篇文章。在上一篇文章中给大家介绍了如何用美化栅格图。这篇文章我们再为这个图形再增加点其他元素。">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2015/02/18/Rave5.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">今天，我们完成这个栅格图-RAVE（5）</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">February 18, 2015</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>今天是大年三十，图表君祝大家羊年大吉，新年快乐。今天我们完成这个栅格图,也是我们RAVE 第一季 的最后一篇文章。在上一篇文章中给大家介绍了如何用美化栅格图。这篇文章我们再为这个图形再增加点其他元素。</p>
+
+<h2 id="section">添加两个轴的信息</h2>
+<p>对于一个完整的图形来说一般是需要有，坐标轴来表示其中的信息的，在RAVE中如何来添加这些信息呢？其实如果看看我们之前的代码片段，已经有这样的定义了。</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"coordinates"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"dimensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"axis"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"axis"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"style"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"fill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"white"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>在上边的代码段落中就定义了图表的轴的信息，例如，它有两个axis也就是说有两个轴，只不过现在我们并没有定义轴上的样式，所以axis里是一个空的object。现在我们来做些修改。
+我们需要两个轴有title,y轴上的坐标为黑色，X轴的坐标为银色。
+下边呢，就是我们的实现代码段。</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w">     </span><span class="s2">"coordinates"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"dimensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"axis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"lineStyle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"fill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"black"</span><span class="p">},</span><span class="w">
+                </span><span class="nt">"markStyle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"fill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"white"</span><span class="p">},</span><span class="w">
+                </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Win Games"</span><span class="w"> </span><span class="p">]</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"axis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"lineStyle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"fill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sliver"</span><span class="p">},</span><span class="w">
+                </span><span class="nt">"markStyle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"fill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"white"</span><span class="p">},</span><span class="w">
+                </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Teams"</span><span class="w"> </span><span class="p">]</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nt">"style"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"fill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span></code></pre></figure>
+
+<p>在这里lineStyle属性定义了坐标轴的颜色，title属性定义的x,y两个轴的名字。来看看图是什么样的。<img src="/resources/img/rave5-pic1.png" alt="图例1" />
+##添加图例和名字，
+作为一张图一定要有自己的名字，并且一张完整的图，一定有合适的图例来表达自己。那么如何添加呢？下边就是</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w">  </span><span class="s2">"legends"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{}</span><span class="w">
+  </span><span class="p">]</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"titles"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"title"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"English premier league Top 5 2012-2013"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"style"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"fill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"black"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="err">,</span></code></pre></figure>
+
+<p>在这里我们将图例以及图的名字添加好了。titles属性是对图的名字的描述，在它的content里是title的内容，style定义了它的颜色。同样增加了legends属性来表示图例，这里我使用的是默认的配置。所以给个空的object就ok了。
+<img src="/resources/img/rave5-pic2.png" alt="图例2" />
+这里是这个栅格图的源码，提供给大家进行参考。<a href="/resources/file/barchart_color_5.json">源码</a></p>
+
+<p>感谢大家对于多彩数据的支持，图表君在这里给大家拜年了，祝大家羊年工作进步，身体健康，万事如意。图表君在新的一年里，会尽力把多彩数据做好，给大家分享更多的内容，也欢迎大家把好的文章分享给图表君，大家学习交流。</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/前端开发">前端开发</a>,&nbsp;<a href="/tag/Visualization">Visualization</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%E4%BB%8A%E5%A4%A9%EF%BC%8C%E6%88%91%E4%BB%AC%E5%AE%8C%E6%88%90%E8%BF%99%E4%B8%AA%E6%A0%85%E6%A0%BC%E5%9B%BE-RAVE%EF%BC%885%EF%BC%89&url=http%3A%2F%2Faaronchen.cn%2F2015%2F02%2F18%2FRave5.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2015%2F02%2F18%2FRave5.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

@@ -1,0 +1,1386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AARONISME</title>
+    <description>This is Aaron Chen's personal blog,welcome.
+</description>
+    <link>http://aaronchen.cn/</link>
+    <atom:link href="http://aaronchen.cn/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 30 May 2017 12:37:05 +0800</pubDate>
+    <lastBuildDate>Tue, 30 May 2017 12:37:05 +0800</lastBuildDate>
+    <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>ES6新特性 iterators and Generators</title>
+        <description>&lt;h1 id=&quot;es6-iterators-and-generators&quot;&gt;ES6新特性 iterators and Generators&lt;/h1&gt;
+&lt;p&gt;ES6中引入了许多新特性，目前大量的JavaScript项目已经使用了ES6来进行开发，那么熟悉这些新的特性是十分必要的，例如Redux-Saga中大量的使用了Iterator和generator。这篇文章总结和介绍一下ES6中的Iterator和Generator。&lt;/p&gt;
+
+&lt;h2 id=&quot;iterators-and-generators&quot;&gt;iterators and Generators&lt;/h2&gt;
+&lt;p&gt;第一个问题什么是iterator？答案很简单， Iterator是一个object，但是含有特定的接口，它有next method可以返回一个result object，这个result object有两个属性第一个是value，代表这个迭代的值, 第二个是done，代表迭代是否结束。如果我们自己来简单实现一个Iterator，它是这样的。&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;createIterator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+            &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iteratorA&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;createIterator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;iteratorA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// {result:1, done: false}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;那么Generator又是什么？Generator 是一个函数可以产生iterator。Generator函数用function关键字后边带*来表示。在函数定义上使用yield关键字来表示next方法调用时返回的值。例如&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function *createIterator(){
+	yield 1;
+	yield 2;
+	yield 3;
+}
+
+let iterator = createIterator();
+console.log(iterator.next().value);  //1
+console.log(iterator.next().value);  //2
+console.log(iterator.next().value);  //3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;iterables&quot;&gt;iterables&lt;/h2&gt;
+&lt;p&gt;上边介绍了什么是Iterator，什么是generator，下边再介绍一个概念iterable。iterable是一个有Symbol.iterator属性的object。这个symbol指向一个generator函数，这个函数返回关于这个对象的iterator。在ES6中所有的集合类对象(array, set, maps)和字符串都是iterable，并且有自己默认的iterator。当我们在使用 for-of时候实际上是利用了这些对象上的iterator,每次调用了next方法，将返回的result上的value返回回来。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let values = [1, 2, 3];
+for (let num of values) { 
+	console.log(num);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;例如这段简单的代码，实际上调用了values上的iterator的next方法，将result上的value拿出来赋给num。既然是这样我们可以采用这样的方法来获得默认的iterator。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let values = [1, 2, 3];
+let iterator = values[Symbol.iterator]();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在ES6中对于集合类型的Object,其上定义了一些内置的iterator，分别是；&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;entries() - 返回一个返回key-value pair的iterator&lt;/li&gt;
+  &lt;li&gt;values() - 返回一个返回collection对应值的iterator // chrome not supported
+&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/values?v=control&quot;&gt;MDN&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;keys() - 返回一个返回collecttion对应key的iterator&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以上就是iterator和generator的一些基本概念，下边我们来看一下一些高阶应用。&lt;/p&gt;
+
+&lt;h2 id=&quot;iterator&quot;&gt;向iterator中传递参数&lt;/h2&gt;
+&lt;p&gt;上边的例子中我们在调用iterator的next方法都是无参数调用的，但是我们同样可以向next方法中传递参数。例如这样。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function* createIterator() {
+    let first = yield 1;
+    let second = yield first + 2;
+    yield second + 3;
+}
+
+let i= createItreator（）
+
+i.next() // {value:1 done: false}
+i.next(5) // {value: 7 done: false}
+i.next(3) // {value: 6 done: false}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;我们看上边这个例子,在第二次调用中我们传进去了5，返回值是7，这个传进去的参数可以理解为上一次yield的返回值。注意yield本身是不返回任何值的，它只向外部产生值。如果我们查看yield在英语词典中的意思，&lt;code class=&quot;highlighter-rouge&quot;&gt;produce or generate (a result, gain, or financial return&lt;/code&gt; 所以yield的值是向外产生值。所以在第一次next后 first的值依旧是undefined。但是向next中传递参数，这个参数代表我们想要上一次yield在generator函数中的值。所以在第二次next后 返回值的value就是7(5+2)了。第三例子同理。所以基于上边的原因我们向第一个next函数中传入任何值都是没有意义的。我们变化一下再看&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function* createIterator() {
+    yield 1;
+    let first;
+    let second = yield first + 2;
+    yield second + 3;
+}
+
+i.next() // {value:1 done: false}
+i.next(5) // {value: NaN done: false}
+i.next(3) // {value: 6 done: false}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在第二个next中我们的返回是NaN, 为什么呢？这是因为first是Undefined，第一次的yield并没有给first赋值。所以在yeild中的执行顺序是每一次执行到相应的yield就完了，下次继续向下执行。&lt;/p&gt;
+
+&lt;h2 id=&quot;iteratorthrow-error&quot;&gt;在Iterator中Throw Error&lt;/h2&gt;
+&lt;p&gt;在iterator中我们可以来throw error 来达到控制执行的目的。例如上边一个例子。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function* createIterator() {
+    let first = yield 1;
+    let second = yield first + 2;
+    yield second + 3;
+}
+
+let i= createItreator（）
+
+i.next() // {value:1 done: false}
+i.next(5) // {value: 7 done: false}
+i.throw(new Error('error')) // error thrown done is set to true after throw error
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;generator-functionreturn&quot;&gt;Generator function中的Return&lt;/h2&gt;
+&lt;p&gt;同样在generator 我们可以使用 return来返回。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function* createIterator() {
+    yield 1;
+    return;
+    yield 2;
+    yield 3;
+}
+let iterator = createIterator();
+console.log(iterator.next()); // &quot;{ value: 1, done: false }&quot;
+console.log(iterator.next()); // &quot;{ value: undefined, done: true }&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;第一次next后已经结束了所以 我们第二次next后done就已经是true了。&lt;/p&gt;
+
+&lt;h2 id=&quot;generator--iteratortask-runner&quot;&gt;Generator 和 Iterator的应用实例：Task Runner&lt;/h2&gt;
+&lt;p&gt;我们可以使用generator和Iterator来实现一个task runner,可以让我们不用手动的next，而是一次执行结束。代码如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function run(taskDef) {
+    let task = taskDef();
+    let value = task.next()
+
+    function step() {
+        if (!value.done) {
+            value = task.next(value.value)
+            step()
+        }
+    }
+
+    step()
+}
+
+run(function*(){
+    let first = yield 1;
+    let second = yield first + 3;
+    yield second + 4;
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;上边就是一个例子，这样定义的run function就可以顺序执行这些generator定义的步骤。&lt;/p&gt;
+
+&lt;p&gt;实际上generator和Iterator最为实际的作用是可以控制异步函数的执行，下边我们可以简单的例子。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function run(taskDef) {
+    let task = taskDef();
+    let result = task.next()
+
+    function step() {
+        if (!result.done) {
+            if (typeof result.value === &quot;function&quot;) {
+                result.value(function(err, data) {
+                    if (err) {
+                        console.log('err', err);
+                        task.throw(err)
+                        return
+                    }
+                    console.log('err', data);  
+                    result = task.next(data);
+                    step()
+                    
+                })
+            } else {
+                result = task.next(result.value)
+                step()
+            }
+            
+        }
+    }
+
+    step()
+}
+
+let fs = require(&quot;fs&quot;);
+
+function readFile(filename) {
+  return function (callback) {
+    fs.readFile(filename, callback);
+  };
+}
+
+run(function* () {
+  let contents = yield readFile(&quot;abc.json&quot;);
+  console.log(contents);
+  console.log(&quot;Done&quot;);
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;首先我们定义了一个task runner &lt;code class=&quot;highlighter-rouge&quot;&gt;run function&lt;/code&gt; 在其中当发现result中的value是function的时候，就执行这个function, 并且在异步函数的callback中，当没有error的时候执行下一步。&lt;/p&gt;
+
+&lt;p&gt;在看我们的ReadFile function，fs模块中的readFile是一个异步的函数，而在这里我们将其进行了封装成为一个新的函数。让其返回一个function给在task runner中使用。那么在我们的generator函数中，我们看上去的代码就和同步的一样了，先readfile，完成后将其输出。这样使用Iterator和generator可以帮助我们写出一个比较好看的异步执行函数。&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 28 May 2017 19:15:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2017/05/28/iterator-and-generator.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2017/05/28/iterator-and-generator.html</guid>
+        
+        <category>前端开发</category>
+        
+        <category>JavaScript</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>微服务构架下的Serveless实践</title>
+        <description>&lt;h1 id=&quot;serveless&quot;&gt;微服务构架下的Serveless实践&lt;/h1&gt;
+&lt;p&gt;目前的软件构架，什么样的构架方式是最受关注？答案自然是微服务了。似乎人人都在谈微服务，维护老系统的开发人员，在思考如何将系统迁移到微服务的构架下。开发新项目的，自热而然已经在的构架设计上，会采用微服务的构架方式了。网络上讨论微服务的文章现在是汗牛充栋，这篇文章不打算更多的讨论什么是微服务，它好处，它的问题，而想讨论下我们在微服务构架下在实现上一些演进的方式，希望能带来更多的思考。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;微服务构架下的数据处理业务&lt;/h2&gt;
+&lt;p&gt;在互联网应用下，数据越来越成为驱动业务的一个重要的驱动力了。CEO要需要依靠数据来做出战略的决定，运营人员需要看数据来做出运营方案，开发人员需要根据交互数据来调整开发方案。所以可以说数据处理服务慢慢的成为一个企业IT系统中的重要环节。笔者之前参与的项目就是为了开发出这样一套数据的ETL系统，为企业的业务人员服务。&lt;/p&gt;
+
+&lt;p&gt;具体来说，我们使用了第三方的用户数据追踪服务，来为我们追踪用户的行为，而每天他们都会为我们提供一份用户行为的数据文件，我们需要拿到这些数据，加上我们自己的产品数据，就能清楚的让我们的运营人员看到，我们有哪些产品是最受欢迎的，哪哪些产品的访问量较低等等。那么最初我们是怎么设计的技术方案的呢？&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;传统的微服务架构&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/img/data-jpa.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们将业务拆分为3个独立的微服务，2个data collector，1个data loader， 都分别的部署在EC2的Instance上，将中间数据存储在一个外部的S3 bucket上（AWS的数据存储）最后将数据保存在我们的数据库中，在数据库之上我们使用专门的BI工具来制作Report。至于为什么这样拆分微服务，这样拆分的好处是什么，这篇文章这不进行详细的讨论。我们第一个数据服务就是按照这样的构架进行设计和实践的。当系统上线服务以后，我们发现了里边的一些问题。&lt;/p&gt;
+
+&lt;p&gt;在我们这套系统中，Data Collector 2 每天的执行时间较长需要1个小时左右的时间，而 Data Collector 1 每天的执行时间较短，通常执行时间不会超过1分钟，但是由于外边的数据源的更新时间是不确定的，所以虽然我们服务实际的有用时间只有仅仅的一到两分钟，但是也不得不让instance24小时全天运行。&lt;/p&gt;
+
+&lt;p&gt;可以看到，我们的服务每天实际有效的时间只有一个小时，其他23个小时实际上是在浪费资源，如何改善这样的情况呢？首先我们想到了让服务定点运行的方法。由于我们外服数据源的更新特点，虽然它的更新时间是不确定的，但是它在一个特定的时间点前是一定会更新的。所以基于这样的情况，我们将服务的运行时间改为定点运行，这样是不是就能解决问题了呢？&lt;/p&gt;
+
+&lt;p&gt;然而现实总不是那么美好，因为我们服务间是有依赖关系的，data loader 是依赖于我们data Collector的处理结果的，当我们把运行方式改为定点运行后，带来的问题是，一旦data Collector的运行状态出现了问题，例如运行时间过长，运行中出现错误，那么data loader必然出错。并且改为定点运行后，我们的数据更新必然有延迟。&lt;/p&gt;
+
+&lt;p&gt;那么如何解决这些问题呢？&lt;/p&gt;
+
+&lt;h3 id=&quot;serveless-1&quot;&gt;Serveless的系统架构&lt;/h3&gt;
+&lt;p&gt;2016年Serveless Architectures的提出引发了对于软件构建的关注，那么什么是Serveless Architectures呢？现在还没有一个明确的定义，但是就我的理解而言，Serveless顾名思义，就是没有Serve的构架方式。我们业务逻辑代码并不是执行在一个Server上了，例如一台EC2的instance。而是运行在一些基于事件驱动的，无状态的第三方计算服务上，也就是Function as a Service。概念可能比较抽象，举例来说就是AWS的Lambda，Lamnda可是说是Function as a Service的典型代表。那么下边我就来介绍下，我们是如何使用Lambda来改进上边的数据处理系统。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/img/data-servelessjpg.jpeg&quot; alt=&quot;data-serveless&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其实也很简单，我们将Data Collector 和 Data loader用Lambda进行了替换，有哪些好处呢？第一点因为我们的基础架构是架构在AWS上的所以，Lambda提供了很多事件驱动的机制，例如，S3上一个数据的变化可以触发一个事件，SNS的一条消息可以触发一个时间等等，在使用Lambda后，我们就可以讲原来基于时间的数据处理流程，转变为基于事件的数据处理流程，这样一方面可以保证我们数据更新的实时性，另一方面可以大大节省资源，由于Lambda是按照触发次数收费的，所以在我们的这个用例下，可以大大减少花费。可能细心的读者想问为什么我们data Collector 2 没有使用Lambda进行替换呢？这是因为它的业务逻辑比较复杂，每次运行的时间较长，而Lambda的最长执行时间是5分钟，所以在这种情况下，就不适合使用Lambda进行替换了。&lt;/p&gt;
+
+&lt;h3 id=&quot;serveless-2&quot;&gt;实时数据处理下Serveless构建&lt;/h3&gt;
+&lt;p&gt;在初识Serveless 构建的好处之后，我们开始在其他方面应用的尝试，比较典型的一个例子就是在实时数据处理业务下的Serveless构架，目前在我们有原来越多的实时数据需要处理，例如记录用户行为的log数据，实时的数据分析等等。在我们业务下，同样有这样的需求，我们需要实时的跟踪一个外部的数据源API，实时根据它的数据变化来更新我们的数据，下边就是我们在解决这样业务场景下的Serveless构架。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/img/real-time-data-processing.png&quot; alt=&quot;realtime-data-processing&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在我们的构架设计中，我们使用一个lambda来跟踪外部数据源的数据变化，并将其推到AWS Kinesis Stream里，AWS Kinesis 会触发第二个lambda进行相应的数据处理，并把数据存储到数据库中，值得注意的是由于Lambda是可以根据需求自动伸缩的，所以Lambda会根据Kinesis的需求来自动的scaling，到流中的数据量大时，触发的lamnda会相应增大。当数据量小时，触发的lambda会相应的减少。这就体现了Serveless 构架下的另一个好处，可以相对简单的，自动的进行伸缩扩展。&lt;/p&gt;
+
+&lt;p&gt;#Web系统的Serveless构架
+上文我们更多的是讨论，对于数据处理系统下的Serveless构架，那么对于Web系统来说，这种我们最为熟悉和常见的IT系统它是如何能不能用Serveless的构建来进行实现呢？我们来看下边的例子。我们先来看看经典的传统的例子。
+&lt;img src=&quot;/resources/img/web-classical.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在传统的实现中，我们会利用load Blancer来做负载均衡，然后后边的app在AutoScaling Group中，根据request的情况来做自动的Scaling，这种模式已经是十分成熟了。那么我们看看在Serveless的构架下该如何设计呢？&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/img/servless-api.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在serveless的构架下，一般我们的frontend app的资源包括Html，js，css是部署在S3 bucket下的。前端通过http请求向后台请求数据。后台通过API GateWay定义对外的endpoint，同时每个endpoint会触发一个lamnda进行数据操作，例如图中的GET，和POST请求会触发两个不同lambda。
+在这种构架下，带来的第一点好处就是，我们不必自己担心Scaling的问题了，以前我们要自己去建立AutoScaling Group根据请求来进行不断的挑战，而在Serveless构架下我们就可以很大程度上不必担心这样的问题了。同样可以不必自己去监控Instance了，云平台上相应的服务替代我们做了这些工作。&lt;/p&gt;
+
+&lt;p&gt;但是是不是我们现在就要完全的拥抱Serveless构架，将我们所以得Service都变成这样呢？我觉得并不一定是这样的，Serveless在给我们带来好处的同时，也给我们来了很多的问题，例如上边的构架图，我们可以看到已经十分复杂了，这里每一块我们都要考虑它的deployment，logging，monitoring等等的问题，这无疑给带了更多的复杂度。&lt;/p&gt;
+
+&lt;p&gt;的确就像以往任何一种新的技术一样，Serveless 不是银弹，再给我们带了优势和益处的同时，也相应的带了不少的问题。选不选择还是要安装业务场景来具体分析，希望本文我们的实践经验能给您带来更多的思考。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 25 Mar 2017 08:01:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2017/03/25/Serveless-practice.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2017/03/25/Serveless-practice.html</guid>
+        
+        <category>构架</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>浅析React之事件系统（二）</title>
+        <description>&lt;h1 id=&quot;react&quot;&gt;浅析React之事件系统（二）&lt;/h1&gt;
+
+&lt;p&gt;上篇文章中，我们谈到了React事件系统的实现方式，和在React中使用原生事件的方法，那么这篇文章我们来继续分析下，看看React中合成事件和原生事件混用的各种情况。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;上一个例子&lt;/h2&gt;
+&lt;p&gt;在上篇文章中，我们举了个例子。为了防止大家不记得，我们来看看那个例子的代码。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class App extends React.Component {
+
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      show: false
+    }
+    
+    this.handleClick = this.handleClick.bind(this)
+    this.handleClickImage = this.handleClickImage.bind(this);
+  }
+  
+  handleClick(){
+   this.setState({
+     show: true
+   })
+  }
+  
+  componentDidMount(){
+    document.body.addEventListener('click', e=&amp;gt; {
+      this.setState({
+        show: false
+      })
+    })
+  }
+  
+  componentWillUnmount(){
+    document.body.removeEventListener('click');
+  }
+  
+  handleClickImage(e){
+    console.log('in this ')
+    e.stopPropagation();
+  }
+  
+  render(){
+    return (
+      &amp;lt;div className=&quot;container&quot;&amp;gt;
+        &amp;lt;button onClick={this.handleClick}&amp;gt;Open Image&amp;lt;/button&amp;gt;
+          &amp;lt;div className=&quot;img-container&quot; style= onClick={this.handleClickImage}&amp;gt;
+            &amp;lt;img src=&quot;http://blog.addthiscdn.com/wp-content/uploads/2014/11/addthis-react-flux-javascript-scaling.png&quot; /&amp;gt;
+          &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    )
+  }
+}
+ReactDOM.render(&amp;lt;App /&amp;gt;, document.getElementById('root'));
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这有什么问题呢？ 问题就在于，如果我们点击image的内部依旧可以收起Image，那么这是为什么呢？这是因为我们及时点击了Image的内部，body上绑定的事件处理器依旧会执行，这样就让我们的image收起来了。那我们如果不想让image收起来改怎么做呢？&lt;/p&gt;
+
+&lt;p&gt;首先的想法是停止冒泡，如果我们在img-container中就停止冒泡了是不是就可以让image不消失了呢？比如这样：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;...
+handleClickImage(e){
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  
+  render(){
+    return (
+      &amp;lt;div className=&quot;container&quot;&amp;gt;
+        &amp;lt;button onClick={this.handleClick}&amp;gt;Open Image&amp;lt;/button&amp;gt;
+          &amp;lt;div className=&quot;img-container&quot; style= onClick={this.handleClickImage}&amp;gt;
+            &amp;lt;img src=&quot;http://blog.addthiscdn.com/wp-content/uploads/2014/11/addthis-react-flux-javascript-scaling.png&quot; /&amp;gt;
+          &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    )
+  }
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;http://codepen.io/aaronisme/pen/jyPRPJ?editors=0010&quot;&gt;Open In CodePen&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;在这里我们定义一个handleClickImage的方法，在其中我们执行取消默认行为和停止冒泡。那是似乎效果并不是我们想要的。因为阻止React事件冒泡的行为只能用于React合成事件中，没法阻止原生事件的冒泡。同样用React.NativeEvent.stopPropagation()也是无法阻止冒泡的。&lt;/p&gt;
+
+&lt;p&gt;如何解决这样的问题呢？首先，尽量的避免混用合成事件和原生事件。需要注意的点是：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;阻止react 合成事件冒泡并不会阻止原生时间的冒泡，从上边的例子我们已经看到了，及时使用stopPropagation也是无法阻止原生时间的冒泡的。&lt;/li&gt;
+  &lt;li&gt;第二点需要注意的是，取消原生时间的冒泡会同时取消React Event。并且原生事件的冒泡在react event的触发和冒泡之前。同时React Event的创建和冒泡是在原生事件冒泡到最顶层的component之后的。我们来看这个例子：&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class App extends React.Component {
+  
+  render(){
+   return &amp;lt;GrandPa /&amp;gt;;
+  }
+}
+
+class GrandPa extends React.Component {
+  constructor(props){
+      super(props);
+      this.state = {clickTime: 0};
+      this.handleClick = this.handleClick.bind(this);
+  }
+  
+ handleClick(){
+   console.log('React Event grandpa is fired');
+  this.setState({clickTime: new Date().getTime()})
+};
+  
+  componentDidMount(){
+    document.getElementById('grandpa').addEventListener('click',function(e){
+      console.log('native Event GrandPa is fired');
+    })
+  }
+  
+  render(){
+    return (
+      &amp;lt;div id='grandpa' onClick={this.handleClick}&amp;gt;
+        &amp;lt;p&amp;gt;GrandPa Clicked at: {this.state.clickTime}&amp;lt;/p&amp;gt;
+        &amp;lt;Dad /&amp;gt;
+      &amp;lt;/div&amp;gt;
+    )
+  }
+}
+
+class Dad extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {clickTime:0};
+    this.handleClick=this.handleClick.bind(this);
+  }
+  
+  componentDidMount(){
+    document.getElementById('dad').addEventListener('click',function(e){
+      console.log('native Event Dad is fired');
+      e.stopPropagation();
+    })
+  }
+  
+  handleClick(){
+    console.log('React Event Dad is fired')
+    this.setState({clickTime: new Date().getTime()})
+  }
+  
+  render(){
+    return (
+      &amp;lt;div id='dad' onClick={this.handleClick}&amp;gt;
+       &amp;lt;p&amp;gt;Dad Clicked at: {this.state.clickTime}&amp;lt;/p&amp;gt;
+        &amp;lt;Son /&amp;gt;
+      &amp;lt;/div&amp;gt;
+     )
+  }
+}
+
+class Son extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {clickTime:0};
+    this.handleClick=this.handleClick.bind(this);
+  }
+  
+  handleClick(){
+    console.log('React Event Son is fired');
+    this.setState({clickTime: new Date().getTime()})
+  }
+  
+  componentDidMount(){
+    document.getElementById('son').addEventListener('click',function(e){
+      console.log('native Event son is fired');
+    })
+  }
+  
+  render(){
+    return (
+      &amp;lt;div id=&quot;son&quot;&amp;gt;
+       &amp;lt;p onClick={this.handleClick}&amp;gt;Son Clicked at: {this.state.clickTime} &amp;lt;/p&amp;gt;
+      &amp;lt;/div&amp;gt;
+     )
+  }
+}
+
+ReactDOM.render(&amp;lt;App /&amp;gt;, document.getElementById('root'));
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://codepen.io/aaronisme/pen/Kaewxz?editors=0001&quot;&gt;Open in CodePen&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;在这个例子中我们有三个component，Son Dad，Grandpa。同时定义了React Event handler 和 native event handler，并在Dad的native Event handler中stopPropagation，当我们点击Son or Dad component的时候会发现，React Event handler并没有被trigger。
+console里的output为：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;native Event son is fired&quot;
+&quot;native Event Dad is fired&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这就说明native Event的停止冒泡可以阻断所有的React Event。所以即使我们是在Dad上停止冒泡的，依旧阻断了Son上的React Event。&lt;/p&gt;
+
+&lt;p&gt;同时如果我们把dad上的stopPropagation remove掉我们会看到如下结果：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;native Event son is fired&quot;
+&quot;native Event Dad is fired&quot;
+&quot;native Event GrandPa is fired&quot;
+&quot;React Event Son is fired&quot;
+&quot;React Event Dad is fired&quot;
+&quot;React Event grandpa is fired&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;这就说明React的合成时间是在原生事件冒泡到最顶层组件结束后才创建和冒泡的，也是符合React的原理，因为在是实现的时候React只是将一个Event listener 挂在了最顶层的组件上，其内部一套自己的机制进行事件的管理。&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 09 Jan 2017 08:01:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2017/01/09/react-event-2.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2017/01/09/react-event-2.html</guid>
+        
+        <category>react</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>浅析React之事件系统（一）</title>
+        <description>&lt;h1 id=&quot;react&quot;&gt;浅析React之事件系统（一）&lt;/h1&gt;
+
+&lt;p&gt;大家周末好，2016年的最后几篇文章开始写到了React的一些东西，那么最近就来一些图表君对于React的简单总结和理解，那么今天就开始第一篇，说一说React的事件系统。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;总览&lt;/h2&gt;
+&lt;p&gt;简单来说React实现了一个SyntheticEvent层，所有定义的事件处理器都可以接受到一个SyntheticEvent对象的实例，他是一个跨浏览器的对于原生事件的包装，和原生事件一样有同样的接口，包括stopPropagation()和preventDefault()。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;合成事件的使用方式&lt;/h2&gt;
+&lt;p&gt;在React中不会把所有的事件处理器绑定到相应的真实的DOM节点上，而是使用一个统一的事件监听器，把所有的事件绑定在最外层。当事件发生的时候，首先被这个统一的事件监听器处理，随后找到真正的事件处理函数进行调用，这样是为了提高效率，这是因为在UI系统中，事件处理器越多，那么占据的内存就越大，React的做法是将其简化为一个，这样就大大提高了效率。在之前开发者需要为了优化性能需要自己来优化自己的事件处理器的代码，现在React帮助你完成了这些工作。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;合成事件的绑定方式&lt;/h3&gt;
+&lt;p&gt;说了这么许多理论上的知识，我们来看看合成事件是怎么使用的。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;bind方法。&lt;/p&gt;
+
+    &lt;p&gt;我们来直接看代码&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	
+import React, {Component} from 'react';
+		
+class EventApp extends Component {
+		
+	handleClick(e,args){
+		console.log('this is the react event',e)
+		console.log('this is the args', args)
+	}
+		
+		
+	render(){
+		return &amp;lt;button onClick={this.handleClick.bind(this,'test')}&amp;gt;Test&amp;lt;/button&amp;gt;
+	}
+		
+}
+		
+	
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;构造器内声明&lt;/p&gt;
+
+    &lt;p&gt;再来看代码&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+import React, {Component} from 'react';
+		
+	class EventApp extends Component {
+		
+		constructor(props){
+				super(props);
+				
+				this.handleClick = this.handleClick.bind(this);
+		}
+		
+		handleClick(e){
+				console.log('this is the react event',e)
+		}
+		
+		
+		render(){
+				return &amp;lt;button onClick={this.handleClick}&amp;gt;Test&amp;lt;/button&amp;gt;
+		}
+		
+ }
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;使用构造器内声明的方法，仅仅要绑定一次而不需要每次使用的时候都绑定一次。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;箭头函数&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class ButtonApp extends React.Component {
+
+	handleClick (e) {
+    	console.log(e.target.value)
+  	}
+ 
+ 	render(){
+    	return &amp;lt;button onClick={(e) =&amp;gt; this.handleClick(e)}&amp;gt;Test&amp;lt;/button&amp;gt;;
+  		}
+	}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;从上边的使用方式我们可以看出React来使用合成事假还是很简单的，但是现实的世界总是更加的复杂的。那么在React中我们可以使用原始事件吗？当然是可以的。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;使用原生事件&lt;/h2&gt;
+&lt;p&gt;在React中我们也可以使用原生事件，那么如何进行绑定呢，因为React提供了ComponentDidMount这样的API让我们可以调用，那么要使用原生事件我们就可以在DidMount后进行绑定。例如上边的那个例子中如果我们想把click事件绑定在原生button上该怎么做呢？我们来看代码：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class ButtonApp extends React.Component {
+	
+	componentDidMount(){
+		this.refs.button.addEventListener('click'  e =&amp;gt; {
+			console.log(e);
+		})
+	}
+	
+	componentWillUnmount(){
+		this.refs.button.removeEventListener('click')
+	}
+
+	render(){
+		return &amp;lt;button ref=&quot;button&quot;&amp;gt;Test&amp;lt;/button&amp;gt;
+	}
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;在这里例子中我们使用原生事件的方法绑到了button上，注意一点的是在DidMount上add了这个listener在willUnmont上remove这个listener。一定要手动的记住移除，不然可能会出现内存泄漏问题。如果我们使用React合成事件，这些事React已经帮你做好了。但是现实的情况下我们有一些场景是不得不用到原生的事件的那么该怎么做呢？&lt;/p&gt;
+
+&lt;p&gt;我们来看下边的一个例子。例如我们要实现这样的一个功能，在页面上有个button，当点击它会出现一个图片。当点击页面的其他部分的时候，这个图片会自动的消失，那么这样的需求我们就不得不使用原生的事件了。话不多说我们来看代码实现。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import React from 'react';
+
+class App extends React.Component {
+
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      show: false
+    }
+    
+    this.handleClick = this.handleClick.bind(this)
+    this.handleClickImage = this.handleClickImage.bind(this);
+  }
+  
+  handleClick(){
+   this.setState({
+     show: true
+   })
+  }
+  
+  componentDidMount(){
+    document.body.addEventListener('click', e=&amp;gt; {
+      this.setState({
+        show: false
+      })
+    })
+  }
+  
+  componentWillUnmount(){
+    document.body.removeEventListener('click');
+  }
+    
+  render(){
+    return (
+      &amp;lt;div className=&quot;container&quot;&amp;gt;
+        &amp;lt;button onClick={this.handleClick}&amp;gt;Open Image&amp;lt;/button&amp;gt;
+          &amp;lt;div className=&quot;img-container&quot; style= &amp;gt;
+            &amp;lt;img src=&quot;http://blog.addthiscdn.com/wp-content/uploads/2014/11/addthis-react-flux-javascript-scaling.png&quot; /&amp;gt;
+          &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    )
+  }
+}
+ReactDOM.render(&amp;lt;App /&amp;gt;, document.getElementById('root'));
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;http://codepen.io/aaronisme/pen/jyPRPJ?editors=0010&quot;&gt;Open In CodePen&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;上边一个例子中，我们实现了组件APP，他里边有一个button，它上边有一个handleClick的事件处理器，当触发时会把app的state里show制成true，这样图片就显示了出来。同时在body上使用了原生事件，当发生点击事件的时候，就会被收起，这样就简单实现了需求的功能，那是看似这样好像就没有问题的，但是这其中有个bug，到底是什么问题呢，我们下篇文章继续。看看原生事件和合成事件混用的那些事。&lt;/p&gt;
+
+&lt;p&gt;参考文献：
+深入react技术栈&lt;/p&gt;
+</description>
+        <pubDate>Sun, 08 Jan 2017 08:01:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2017/01/08/react-event.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2017/01/08/react-event.html</guid>
+        
+        <category>react</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>再见2016，你好2017</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;再见2016，你好2017&lt;/h1&gt;
+&lt;p&gt;今天是2016年的最后一天，时间过的好快，一转眼一年又过去了，这一年做了不少事情了，年底的最后一天，转头回来看看吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;糖记发布&lt;/h2&gt;
+&lt;p&gt;2016年初发布了糖记，自己学习IOS开发的一个小小的作品，本想今年能继续开发出Android版本，看来是现在是没有机会了。看2017年有没有时间用React Native写一个Android版本吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;博文更新&lt;/h2&gt;
+&lt;p&gt;说来惭愧，2016年一共也写了20篇文章，有技术，有非技术的。完成一个小小的专题“图表君聊docker”，其实docker还有很多可以写，看2017年继续这个系列的第二季了。2017年继续把成长的点滴记录下。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;工作变化&lt;/h2&gt;
+&lt;p&gt;2016年最大的变化可以说是换了一家公司，如果对图表君熟虑的朋友，应该知道我现在去到了ThoughtWorks，终于可以愉快的写代码了。至于在ThoughtWorks工作的体验，前几天写了篇文章发表在了公司的微信公号上，有兴趣的同学可以点击下边的阅读原文，读一读。在这快一年的时间内，认识了许多新的伙伴，看到了许多新的风景。感谢各位对我的各种帮助，很高兴能和大家战斗在一个集体里。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;生活点滴&lt;/h2&gt;
+&lt;p&gt;感谢家人一年的支持和照顾，有了你们的支持，才有可能完成今年的所有成绩。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;你好2017&lt;/h2&gt;
+&lt;p&gt;2016年底看到了Zuckerberg写的JARVIS，牛人就是牛，还能抽出时间来写个挺有意思的东西。图表君也有点类似的想法，看看2017年能不能写点东西，完成这个小愿望。2017年希望能见识更多人，走过更多的地方。&lt;/p&gt;
+
+&lt;p&gt;新年快乐！祝好。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 31 Dec 2016 08:01:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2016/12/31/2016-Summary.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2016/12/31/2016-Summary.html</guid>
+        
+        <category>Summary</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>骚窝点滴，一个新人的年终感悟</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;骚窝点滴，一个新人的年终感悟&lt;/h1&gt;
+
+&lt;p&gt;又到了2016年的年末，感觉时间过得真快，一年的时间又匆匆的流过。但是这一年的工作经历，应该说比以往几年都要来的丰富，原因很简单，因为换工作了。2016年的三月份正式的加入了ThoughtWorks，到现在已经有9个月的时间，回想起来还是有所感悟。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;初识骚窝&lt;/h2&gt;
+&lt;p&gt;虽然是今年才正式加入ThoughtWorks，但是听说和了解这家公司也是很早之前的事了。在西安，ThoughtWorks可以说是社区活动的引领者，每个技术领域的社区活动，都有ThoughtWorks的身影。比如前端圈的UI Super Day，测试圈的BQConf, 运维圈的Devops MeetUp，BA圈的DnA Workshop，还有Code Retreat等等，在西安只要是你对于技术感兴趣，应该多多少少都参加过ThoughtWorks的活动。所以之前我也参加了不少活动，在Code Retreat上见识到了ThoughtWorks同学对于代码的热情和信仰。觉得这是一家不同的公司，再加上不少好友已经加入了ThoughtWorks, 现在看来我加入骚窝也是一件自热而然的事情。现在深切的记得3月份入职的时候是那满怀期待的心情。&lt;/p&gt;
+
+&lt;p&gt;入职的第一天的最大感受就是，真是太快了。上午办完入职手续，下午就是进了项目组。以我之前的经验，入职第一天一般来说多是熟悉公司，应该没什么特别的事情。但是下午两点我刚做的工位上的时候，组里的同事已经开始给我讲项目的业务了。这速度是我完全没有预料到的。而后下来的几天，最大的感受就是快。同事打字的速度快，快捷键之熟练，写代码之快，让我大开眼界。讨论问题，一旦问题清楚，马上解决。而同样的问题，在以前的公司，必定是一场邮件大战，到真正解决怕也得好几天的时间。速度快是我加入初识骚窝的第一感触。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;敏捷之旅&lt;/h2&gt;
+&lt;p&gt;在度过了几天是适应期后，真正的就开始上手工作了，各种新鲜的感受也是接踵而至，首先就是团队构成的让我耳目一新。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;全功能团队&lt;/h3&gt;
+&lt;p&gt;之前的公司，基本上团队都是长这个样子的，有专门开发团队，专门的测试团队，专门的运维和支持团队。然后问题就来了，基本上各个团队都是相互仇恨的，开发团队仇恨测试团队报的Bug多，测试团队嫌开发团队的质量差。如果一个bug出现了，开发团队里的前后台还得吵半天。但是，ThoughtWorks的团队是另外一个样子，一个团队里有PM，BA，DEV，QA。所有的人员是一个团队，大家的目标是统一的，为了让项目高效，高质量的交付出去。看不到相互的仇恨和推诿，更多的是相互的支撑和支持。这种体验让经历过传统团队的我，确实感觉倍加舒服。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;那面看板墙&lt;/h3&gt;
+&lt;p&gt;以前的工作中，我一直好奇的一个问题就是我的老板是怎么掌握项目的进度的。虽然我们也使用scrum的实践，虽然我们每天也站会，但是我作为一个团队成员，总是感觉我并不清楚，现在项目到底是一个什么状态，而我仅仅是完成每天分给我的一个个task。我隐约的觉得之并不是一个正常的状态。而我加入ThoughtWorks在看到那面看板墙后，我心中的困惑一下解开了。
+&lt;img src=&quot;/resources/img/kanban.png&quot; alt=&quot;image&quot; /&gt;
+我们一直使用看板来管理我们的项目，有了看板，让所有的团队成员对于项目的进度一目了然。每个story的情况所有人都很清楚，而在站会的时候所有人过一下板子，对于项目的运行情况，对于遇到的问题一清二楚了。现在我在做自己的side project的时候也会首先建起一面看板墙。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;结对编程&lt;/h3&gt;
+&lt;p&gt;在ThoughtWorks的工作方式，一般来说都是结对编程，对此不同人有不同的看法，我也并不想说结对编程到底好不好，仅说说我自己感受的好处吧。
+&lt;img src=&quot;/resources/img/pairprogram.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;结对的第一点好处是能让新人快速进入上下文。不知道有多少同学在拿到一个老的代码库，那种无从下嘴的感觉。通过结对的方式，一个老人带着一个新人，能很快的带新人进入上下文，而且是因为是结对完成一个story，这样就有特定的目标，能给快速的得到反馈，这样新人的学习速度是会大幅度提高的。&lt;/p&gt;
+
+&lt;p&gt;结对的第二点好处是能较高的保证质量，结对的过程实际上就是一个相互review的过程，两个人通过思维上的交锋和讨论，能避免不少问题的出现，这样使得代码的质量能够得到较高的提升。&lt;/p&gt;
+
+&lt;p&gt;结对的第三点好处是在结对的过程中，会有大量时间有互相的交流和讨论。你会感受到不同人的不同工作方式，这是一个很好的学习过程。另外结对的过程实际上这就是一个设计的过程，通过表述可以让设计的过程更加的完善，从而减少bug的产生。&lt;/p&gt;
+
+&lt;p&gt;结对无论好与不好，1000个人有1000个看法，仅就对我而言，这样的工作方式对我帮助很大。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;团队之感&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;年轻的团队，战斗的团队，成长的团队&lt;/h3&gt;
+&lt;p&gt;ThoughtWorks是家年轻的公司，大部分的人都是年轻人，这样的团队战斗力是很强悍的，记得上半年的一个夜晚，突然发生了一个线上的事故，大家立马解决。虽然家里的网络各种的不给力，但是最终还是解决了这个问题，那时已是凌晨4点左右。没有人有半点不满，我之前是无法想象的。之后的Retro中，大家一起分析这个问题的根本原因，并制定了相应的action避免类似的问题再次发生。在实践中学习，从问题中总结，在总结中成长。少有抱怨，更多是怎么办，怎么改变，这样的团队是推进人成长的良好环境。&lt;/p&gt;
+
+&lt;h3 id=&quot;session&quot;&gt;Session文化&lt;/h3&gt;
+&lt;p&gt;Session文化是我加入以来感受最深的一个方面，在Thoughtworks你会看到人人都在讲Session，人人都在听Session。在团队中有讲，在公司中有讲，在社区内有讲。你会感觉到人人都在学习，人人都在进步，你要是不学点什么，就会落后在别人后边，这也就是公司讲的同僚压力吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;p3&quot;&gt;P3之行&lt;/h2&gt;
+&lt;p&gt;将社会的公平公正作为公司Mission的，我听说也就是Thoughtworks一家了，P3的精神和文化可以说是融入在ThoughtWorks的每个人中的，ThoughtWorks的诸多P3项目，从非洲的儿童走失，到医疗公平公正，从关注渔业安全，到帮助慈善组织完善IT系统。公司的确实打实的地在做事情来实践自己的P3 Mission。可以说是所有看到的，听到的，这一切的一起影响，也促使我们做出了全民救援这样的P3产品。这在之前可能是我不层想到，也不会做的事情。&lt;/p&gt;
+
+&lt;p&gt;加入Thoughtworks在快一年的时间，看到很多，见识了不少，以上只是记忆比较深的小片段。套用我们伟大领袖的一句话，加入骚窝，广阔天地，大有可为。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 24 Dec 2016 08:01:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2016/12/24/year-summray.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2016/12/24/year-summray.html</guid>
+        
+        <category>Summary</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Thinking In React Way - 有限状态机</title>
+        <description>&lt;h1 id=&quot;thinking-in-react-way---&quot;&gt;Thinking In React Way - 有限状态机&lt;/h1&gt;
+&lt;p&gt;今天来聊聊前端，其实这个公众号刚开始写起来的时候，是想和大家分享数据可视化的一些知识的。这也是图表君名头的由来，后来慢慢就写进了些前端的东西，再后来，因为图表君工作的转换，现在更多的做一些后台的工作，那么讨论的问题就更杂了，现在看起来算是我的一些工作和学习心得和感受吧。&lt;/p&gt;
+
+&lt;p&gt;好了，说了这么多。今天聊点什么呢？聊聊React。其实这也并不是什么新东西了。2014年，图表君就知道有这么个东西，听着几位业界大牛聊，说这东西有多么多么的好，当时也不是特别的理解，跟了一遍官方的Tutorial，也没有特别的感受。应该是因为当时前端的经验特别的浅（虽然现在也不敢说深，捂脸），没有什么特别的感受吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;angular&quot;&gt;Angular的痛&lt;/h2&gt;
+&lt;p&gt;后来做了几个项目，使用的是Angular，刚开始觉得双向数据绑定好牛逼啊，好好用，好好用。但是随着项目逐渐的一点点变大，感觉$scope上的东西是越来越多，各个controller里各有各的$scope,再加上$scope是继承的，当项目一复杂就越来越难以管理和控制。还有自己要封装一个组件在angular里得用directive吧，好吧看看directive的文档你就得晕了，link，compile，controller都是什么鬼。好了，今天不是吐槽angular的时间，但是angular得设计和使用的确是太复杂了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;前端到底是在干什么&lt;/h2&gt;
+&lt;p&gt;好了，让我们先暂时跳出框架的讨论，来思考一下，前端的工作到底是干什么的？其实可以简单的说就是将数据到View的一个映射上，也就是说无论什么框架解决的基本问题就是讲数据展示到View上, 然后将讲用户的操作最后再反应到数据的变化上来。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+
+					Data --&amp;gt; Whatever FrameWork --&amp;gt; View
+					Data &amp;lt;-- Whatever FrameWork &amp;lt;-- View
+
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;再想清楚这个问题之后，React是怎么做的呢？React并不是一个完整的前端框架，只是一个专注于渲染View的library，在看了React的文档之后，我们会发现他的api是很简单的。一个典型的react的组件&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class ShoppingList extends React.Component {
+  render() {
+    return (
+      &amp;lt;div className=&quot;shopping-list&quot;&amp;gt;
+        &amp;lt;h1&amp;gt;Shopping List for {this.props.name}&amp;lt;/h1&amp;gt;
+        &amp;lt;ul&amp;gt;
+          &amp;lt;li&amp;gt;Instagram&amp;lt;/li&amp;gt;
+          &amp;lt;li&amp;gt;WhatsApp&amp;lt;/li&amp;gt;
+          &amp;lt;li&amp;gt;Oculus&amp;lt;/li&amp;gt;
+        &amp;lt;/ul&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+
+// Example usage: &amp;lt;ShoppingList name=&quot;Mark&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;即使你没有React的经验，看这样的代码也不会有什么特别的问题。好了，今天图表君不打算安利React，并不想写一个hello world出来。这样的文章太多，看看React的官方例子会比图表君写的好很多。那么今天说什么呢？&lt;/p&gt;
+
+&lt;h2 id=&quot;react-thinking---&quot;&gt;React Thinking - 状态机&lt;/h2&gt;
+&lt;p&gt;看这部分之前，图表君强烈建议你可以看一看React的官方tutorial&lt;a href=&quot;https://facebook.github.io/react/tutorial/tutorial.html&quot;&gt;tutorial&lt;/a&gt;，很好的一个例子，也不长。一个小时就能看完，自己上手写一写，感受会更深。好了现在假设你看完了这个tutorial有什么感觉？&lt;/p&gt;
+
+&lt;p&gt;图表君的最大的感受是，最后将State，function都定义到了Game的这个Root级别的Component上了，再把所有的数据和function都传进自己的子Component里，需要的地方直接调用就好了。这样就使得我们上边说把Data的操作逻辑都被提出来，并集中在一起了，一下就清晰了，明确了。App管理从此变得一下简单了。反复品味这样的设计，忽然有个东西，进入了我的思维里。这东西不就是一个有限状态机呀。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;有限状态机&lt;/h3&gt;
+&lt;p&gt;有限状态机是个十分有用的模型，可以用来模拟世界上大部分的事物，其有三个特征：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;状态总数（state）是有限的。&lt;/li&gt;
+  &lt;li&gt;任一时刻，只处在一种状态之中。&lt;/li&gt;
+  &lt;li&gt;某种条件下，会从一种状态转变（transition）到另一种状态。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;我们再来看看例子中的代码&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Game extends React.Component {
+  constructor(){
+    super();
+    this.state={
+      history:[{
+        squares: Array(9).fill(null)
+      }],
+      stepNumber: 0,
+      xIsNext: true
+    }
+  }
+  
+  handleClick(i){
+    const history = this.state.history;
+    const stepNumber = this.state.stepNumber
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    squares[i] = this.state.xIsNext? 'X':'O';
+    this.setState(
+      {
+        history: history.concat([{
+      squares: squares   
+    }]),
+        stepNumber: stepNumber + 1,
+    xIsNext: !this.state.xIsNext,
+      }
+    )
+  }
+  
+  jumpTo(step){
+    const newHistory = this.state.history.slice(0,step+1)
+    console.log(newHistory);
+    this.setState({
+      history: newHistory,
+      stepNumber:step,
+      xIsNext: (step % 2) ? false: true, 
+    })
+  }
+  
+  render() {
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
+    const winner = calculateWinner(current.squares);
+    let status;
+    if(winner){
+       status = 'Winner Is :' + winner;
+    }else{
+       status = 'Next player: ' + (this.state.xIsNext ? 'X':'O');
+    }
+    const moves = history.map((step,move) =&amp;gt; {
+       const desc = move ? 'Move #' + move : 'Game Start';
+       return(
+         &amp;lt;li key={move}&amp;gt;
+            &amp;lt;a href=&quot;#&quot; onClick={() =&amp;gt; this.jumpTo(move)}&amp;gt;{desc}&amp;lt;/a&amp;gt;
+         &amp;lt;/li&amp;gt; 
+       )
+    });
+    return (
+      &amp;lt;div className=&quot;game&quot;&amp;gt;
+        &amp;lt;div className=&quot;game-board&quot;&amp;gt;
+          &amp;lt;Board squares={current.squares} onClick={(i) =&amp;gt; this.handleClick(i)} /&amp;gt;
+        &amp;lt;/div&amp;gt;
+        &amp;lt;div className=&quot;game-info&quot;&amp;gt;
+          &amp;lt;div&amp;gt;{status}&amp;lt;/div&amp;gt;
+          &amp;lt;ol&amp;gt;{moves}&amp;lt;/ol&amp;gt;
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;构造方法，constructor - 定义了APP的初始状态。&lt;/p&gt;
+
+&lt;p&gt;handleClick - 定义了在棋盘里点击事件后的APP状态的变化。&lt;/p&gt;
+
+&lt;p&gt;jumpTo - 定义点击历史记录中某一步后APP的状态变化。&lt;/p&gt;
+
+&lt;p&gt;render- 描述如何在View上来展示当前的状态。&lt;/p&gt;
+
+&lt;p&gt;这样精巧的设计，facebook果然聚集了当今世界一流的工程师。然后我看了阮一峰的&lt;a href=&quot;http://www.ruanyifeng.com/blog/2013/09/finite-state_machine_for_javascript.html&quot;&gt;这篇介绍有限状态机的文章&lt;/a&gt;，看到这段代码。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var menu = {
+　　    
+　　　　// 当前状态
+　　　　currentState: 'hide',
+　　
+　　　　// 绑定事件
+　　　　initialize: function() {
+　　　　　　var self = this;
+　　　　　　self.on(&quot;hover&quot;, self.transition);
+　　　　},
+　　
+　　　　// 状态转换
+　　　　transition: function(event){
+　　　　　　switch(this.currentState) {
+　　　　　　　　case &quot;hide&quot;:
+　　　　　　　　　　this.currentState = 'show';
+　　　　　　　　　　doSomething();
+　　　　　　　　　　break;
+　　　　　　　　case &quot;show&quot;:
+　　　　　　　　　　this.currentState = 'hide';
+　　　　　　　　　　doSomething();
+　　　　　　　　　　break;
+　　　　　　　　default:
+　　　　　　　　　　console.log('Invalid State!');
+　　　　　　　　　　break;
+　　　　　　}
+　　　　}
+　　
+　　};
+　　
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;有没有似曾相识的感觉，Redux里是不是就是这么干的？然后再想想Redux，到底干了一件什么事？帮我们做了这样的一个状态机啊，我们开发者只要定义Action，Reducer，他把我们的APP组织成了一个状态机。&lt;/p&gt;
+
+&lt;p&gt;从这样的角度再来看React,Redux这个的技术栈，我觉得理解的更加的清楚了，当然这仅仅是我的一点点小小的思考，欢迎大家一起讨论拍砖，后边逐步的和大家分享我的心得体会。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 10 Dec 2016 08:01:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2016/12/10/react-01.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2016/12/10/react-01.html</guid>
+        
+        <category>前端 React</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>我们在ThoughtWorks打造一款P3产品</title>
+        <description>&lt;h1 id=&quot;thoughtworksp3&quot;&gt;我们在ThoughtWorks打造一款P3产品&lt;/h1&gt;
+&lt;p&gt;从今年3月份加入ThoughtWorks以来，已经过去了8个月的时间，从刚开始的激动，新奇，到逐渐的适应。虽然8个月的时间不长，但是有些新奇的感悟，并且还是特别强烈。&lt;/p&gt;
+
+&lt;h2 id=&quot;p3&quot;&gt;初识P3&lt;/h2&gt;
+&lt;p&gt;在New Hire Orientation上，公司的HR介绍了ThoughtWorks的3个Pillar。也就是：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;可持续化的业务（Run a sustainable business）&lt;/li&gt;
+  &lt;li&gt;追求软件和技术卓越（Champion software excellence and revolutionize the IT industry）&lt;/li&gt;
+  &lt;li&gt;引导社会和经济公平（Advocate passionately for social and economic justice）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;ThoughtWorks所做的每一件事，每一个决定都是基于这个三个Pillar。
+&lt;img src=&quot;/resources/img/TW-3Pillars.png&quot; alt=&quot;image&quot; /&gt;
+当然每个公司都有自己的Mission和Vision。例如Google的Mission是整合世界的信息，让其可以更有效的被人类利用。（Google’s mission is to organize the world’s information and make it universally accessible and useful. ）Facebook的mission是让人们可以更加有效的分享和联结（ Facebook’s mission is to give people the power to share and make the world more open and connected.）每个公司无论大小，无论是否被总结写下来，都有自己的Mission，只不过有大小之分罢了。&lt;/p&gt;
+
+&lt;p&gt;ThoughtWorks的Mission，前两条都很好理解，我们追求可持续化的业务，我们追求软件技术的卓越。例如我们定期的会发布技术雷达，为行业提供技术选型的指导，我们为客户提供敏捷软件工程方法，提高客户的软件工程质量。但是ThoughtWorks将追求社会和经济公正，作为自己的Mission之一，而且写出来说出去，在之前我并不是十分的理解。追求社会和经济公正，在一个国家来说，不应该是政府应该做的事情吗？如果提高到一个人类的角度上来说，那不应该是联合国应该做的事情吗？会不会是仅仅说说而已？&lt;/p&gt;
+
+&lt;p&gt;其实很多大公司也做慈善，比如说可能会捐献一些善款，组织一些公益活动。当然这些都是很好的回馈社会的方法。但ThoughtWorks的做法的确不同，公司更多的是利用自己的技术，来推动和影响社会和经济公正。ThoughtWorks与很多NGO组织合作，利用技术的手段来帮助他们提高IT能力，让他们能更高效的完成工作。ThoughtWorks组建的思沃学院，为在校的学生提供更多技术指导和培训，帮助学生成长。当看到了这些以后，我慢慢的觉得，公司的P3好像并不是仅仅的说说而已，而是尽自己的能力，来改变一些事情。实话实说，这种冲击对我来说还是挺大的，但更大的冲击，是来自于我看到了“心声”这个APP。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;缘起&lt;/h2&gt;
+&lt;p&gt;“心声”是Thoughtworks西安Office的开发人员，利用自己的业余时间，做出一款帮助聋哑人与正常人交流的APP，可以让正常人的语音转换为文字，帮助与聋哑人交流。这是我之前根本不会想到的事情，当我看到身边的同事，花费自己的时间，利用自己的技术，在确实帮助聋哑人的时候，感受到了P3已经确实融到了TWer的DNA里。在这家公司做这样的事情，是一种自然而然的事情。那么我又能做点什么呢？&lt;/p&gt;
+
+&lt;p&gt;直到有一天看到一篇报道文学，讲述是中国人口老龄化，农村和城镇的空心化，产生了大量的留守老人，有一些因为无人照顾，突发疾病，发生一桩桩人间悲剧，具体的我就不详细描述了，因为是实在是太过悲惨。感慨万千一番，我想，自己能做些什么，哪怕能带来一丝丝的改变？当然我改变不了，中国城市化的进程，让大城市的年轻人能回乡照顾自己的亲人；当然我改变不了，国家的户籍政策，让这些留守老人，能在大城市与自己的子女团聚。当然我也改变不了，现在的养老行业，让留守老人可以都住在养老院里，得到基本的照顾。&lt;strong&gt;但是我可以做的是，利用自己的技术，帮助他们在生命紧急的关头，发出求救的信号。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;开始&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;产品梳理&lt;/h3&gt;
+&lt;p&gt;有了这样的想法，与身边的小伙伴一起商议，得出了一个成型的方案，简单来说就是开发一个APP，搭建一个平台。在一个城市，一个社区，或者村桩里，招募志愿者。同时开发老人端的APP，和一些硬件设备，比如说手环，手表等等。当老人发生危险或者需求救助的时候，他可以按下这些设备上的救助按键。那么这个救助信息就会在平台上看到，附近的志愿者就能看到，从而在最短的时间内能提供救助，避免悲剧发生。当然这只是一个初始的想法。紧接着我们就做了一次User journey，梳理了对于我们最为关键的需求点。
+&lt;img src=&quot;/resources/img/ag-user-journey.jpeg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;理清楚需求后，安装优先级划分好task，并建起了我们的项目看板，追踪项目的运行情况。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;技术选型&lt;/h3&gt;
+&lt;p&gt;产品需求梳理好了以后，下面的问题就是如何进行技术选型了。第一个问题就是因为我们都缺乏硬件的知识，考察了市面上现有的手环，没有发现提供SDK可以让我们直接利用的。又想到了Apple Watch，但是想到高昂的价格并不是一个最好的选择。于是乎还是决定再做一个针对老人的手机APP。
+&lt;img src=&quot;/resources/img/aidsgo-elder-app.png&quot; alt=&quot;image&quot; /&gt;
+&lt;img src=&quot;/resources/img/aidsgo-elder-app-2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;同样因为我们的Mobile开发经验，并不是特别的丰富，于是选择了React Native。并设计出了我们的系统构架图。
+&lt;img src=&quot;/resources/img/ag-tech-artch.jpeg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是迟迟没有找到一个合适硬件产品，来触发求救信息始终让我们觉得这还不是一个真正可用的产品。终于有天，公司广发英雄帖，召开技术大赛。并在邮件中介绍了一款AWS刚出的硬件设备AWS IOT Button。这让我们都眼前一亮，这不就是我们要找的东西吗。简单来说IOT Button的按键可以trigger AWS上的一个lambda。有了这个，后边的事情就是我们的强项了，于是乎立马报名参赛，并购入了IOT Button。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;产品实现&lt;/h3&gt;
+&lt;p&gt;下面就进入到了具体开发的阶段，充分的发挥每个人的特长，虽然大家都是开发，但是有人有UX的特长，有人有mobile的特长，大家各尽所能，发挥自己的特长，让这个产品越来越好，首先就是UI设计。
+&lt;img src=&quot;/resources/img/aidsgo-app.png&quot; alt=&quot;image&quot; /&gt;
+&lt;img src=&quot;/resources/img/aidsgo-app-2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;React-Native可以说是给传统的APP开发带来了新的方式，可以让传统的web开发人员可以快速的实现产品。但是同样也是因为它在快速的发展中，也带了不少问题，例如API的变化，第三方组件的支持，但是好在我们的产品场景相对的简单，所以使用ReactNative还是一个比较好的选择。&lt;/p&gt;
+
+&lt;p&gt;同时救助者的实时位置同步也是一个比较大的挑战，我们可以在自己的后台的实现一套消息队列的服务，来做位置同步。但是最终我们使用了市面上成熟的实时数据同步服务，来快速的实现产品。&lt;/p&gt;
+
+&lt;p&gt;目前产品已经进入了后期开发的阶段，小伙伴们在进行最后的优化，期待能在最后技术大赛的showcase里拿出一个能够成行的，可以真正帮助到老年人的产品出来。&lt;/p&gt;
+
+&lt;h2 id=&quot;why&quot;&gt;Why&lt;/h2&gt;
+&lt;p&gt;从初始想法的生成到现在产品的逐渐成行，花费了我们不少的业务时间，有朋友问做这些事为了什么？其实我现在也说不好，在加入TW之前，遇见一些社会事件，可能最多也就是捐点钱，在网上转发转发，评论评论。加入了TW后，看到了这么多之后，自己也想真正做些事情，可以让这个社会能变得稍微美好一点。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 26 Nov 2016 08:01:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2016/11/26/tw-p3.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2016/11/26/tw-p3.html</guid>
+        
+        <category>Summary</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>图表君碎碎念</title>
+        <description>&lt;p&gt;大家周末好，天气这是越来越冷了，冬季到来了。西安冬日的传统雾霾又上演了，不过最近又限行了，希望能有点用处吧。好了今天不说什么新的东西，把之前的坑给填一填吧。&lt;/p&gt;
+
+&lt;p&gt;上篇文章的最后给大家留了一个问题，如果顺序的执行多个promise，已经有同学答对了，就是用链式调用。的确答案就是如此，那么具体一点怎么做链式调用呢？那么我们来看一个例子吧。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var guid = 0;
+function run() {
+  guid++;
+  var id = guid;
+  return new Promise(resolve =&amp;gt; {
+    setTimeout(function () {
+      console.log(id);
+      resolve(id);
+    }, (Math.random() * 1.5 | 0) * 1000);
+  });
+}
+
+var promises = Array.from({ length: 10 }, run);
+Promise.all(promises)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;上篇文章（上边的例子）中我们看到了 使用promise.all可以把几个promise组合起来使用，那么如果我们想让这些promise顺序执行改怎么办呢？来看答案。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var guid = 0;
+function run() {
+  guid++;
+  var id = guid;
+  return new Promise(resolve =&amp;gt; {
+    // resolve in a random amount of time
+    setTimeout(function () {
+      console.log(id);
+      resolve(id);
+    }, (Math.random() * 1.5 | 0) * 1000);
+  });
+}
+
+var promises = Array.from({ length: 10 }).reduce(function (acc) {
+  return acc.then(function (res) {
+    console.log(res)
+    return run().then(function (result) {
+      res.push(result);
+      return res;
+    });
+  });
+}, Promise.resolve([]));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;这里有点很有意思，我们先创建了一个创建一个长度为10的Array出来，然后呢，调用了其上的reduce方法，关键是这个reduce方法有意思了，传入的初始值是个resolved的promise，然后传入了一个function，其作用就是将这些promise都chain了起来。这样达到了顺序调用的目的，当然可以用其他写法达到目的，但是使用reduce还是有点意思的。大家有兴趣了可以自己来试试。&lt;/p&gt;
+
+&lt;p&gt;OK，之前在介绍DockerFile的时候图表君还是留了问题。下边的DockerFile其实定义的是有问题的。&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	FROM node:4.6
+ 	MAINTAINER Aaron Chen&amp;lt;mail@aaronchen.cn&amp;gt;
+ 
+ 	RUN mkdir /app
+ 	WORKDIR /app
+ 	COPY . /app
+ 
+ 	RUN npm install
+ 	
+ 	EXPOSE 8080
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;那么问题在哪呢？问题就是这样的DockerFile我们就不能利用webpack-dev-server的hot reload的特性了。这对于开发阶段是相当大的效率影响的，那么如何解决呢，也是比较容易的，我们将代码做成一个volume挂到容器里就解决问题了。&lt;/p&gt;
+
+&lt;p&gt;下边说几句非技术的话题，技术的道路做久了，都会考虑到技术路线的问题，作为一个年轻人图表君并没有太多的经验，但是上周看到了池建强老师的一篇文章，说的挺好，在这里分享给大家。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;技术发展（这里只谈我了解的软件）不外乎三条路：算法、底层和业务。能在一条路上精通，就很不错了。而厉害的人可以同时兼顾两条路。三条都牛的人，蛮罕见的。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;技术1：算法路线 &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;走算法路线，对智商的要求是高于其它路线的。但也不能说高到哪里去了。毕竟在企业里做算法工作，更多的是应用成熟算法，而不是自己设计算法。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;算法路线比较适合耐得住寂寞的人，因为做算法常常是站在产品的幕后，好的结果又往往需要慢慢「熬」出来。算法往高走，对基础的要求就比较高了。不是博士出身，没在顶尖研究机构混过，在企业里也很难做出特别牛的成果。所以一般本科生不太建议走这个方向（当然，本科生也不用太难过，毕竟没退学生也做出过一些惊人的成就，池建强注）。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;技术2：底层路线&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;底层路线，是围绕着操作系统、编译原理、分布式系统、数据库、软件工程这些理论，用各种工具搭建出酷酷的应用开发、运行环境。把各种复杂的工具跑起来，不仅和谐共处，还能发挥各自的长处，弥补各自的短处，并不是个简单工作。如果能再自己开发一些好用工具，就更不简单了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;极客、黑客范儿的人，是最适合走这条路线的。爱折腾，爱尝鲜，崇尚开源文化，细致缜密，是做好这一行的标签。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;运维、DevOp、云计算、大数据、架构师，这些岗位或领域的人，多是能呼云唤雨的底层高手。 &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;技术3：业务路线&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;大多数技术都是在业务线生存和创造价值的。如果论技术光环，这条线是比不过前两条的，容易产生「对技术能力要求不高」的感觉。从某些角度看，确实如此，但这条线也有自己独步天下的技术，那就是复杂业务建模能力。
+修炼这项能力，除了技术的通用要求外，还需要比其它路线更强的沟通能力和抽象能力。或者说，对情商的要求最高。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;适合自己的才是最好的，到底走那条路线是一个选择问题，做出自己的选择，并坚持的走下去。这可能是漫长和痛苦的过程。好了，唠唠叨叨了这么多，今天就写到这吧，我们下周见。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;原创文章，欢迎转发，但请标明出处。欢迎关注图表君的公众号，一起成长。在微信中搜索 “多彩数据” 或者 “Data_Visualization”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/img/wechat.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 06 Nov 2016 09:25:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2016/11/06/Summary01.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2016/11/06/Summary01.html</guid>
+        
+        <category>summary</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>只为那句承诺-大话Promise</title>
+        <description>&lt;h1 id=&quot;promise&quot;&gt;只为那句承诺-大话Promise&lt;/h1&gt;
+
+&lt;p&gt;大家周末好，要说最近几年什么语言大红大紫，当属JavaScript了。话说虽然是10天就创造出的语言，但是人家能文能武。web前端自然不必多说了，各种框架你方登罢我上场，前两年还是Angular一统天下，这两年React又是大红大紫，还有Vue最近异军突起，好不红火。要是仅仅是前端也就算了，但是由于Node.js人家在后台也能写，React Native的出现让人家移动端也能做。好吧，还有硬件上也出现Ruff方案，好像硬件上也能写了。真是让人感觉挺有意思的事情。&lt;/p&gt;
+
+&lt;p&gt;图表君上边叨叨了这么多，难道是为JavaScript唱赞歌的吗？呵呵，其实并不是。只是最近因为在用上篇文章介绍的AWS Lambda。Lambda现在只支持Java，Node.js,Python。最终选择了Node.js进行开发，不可避免的要牵扯到异步操作的问题。那么今天就来聊聊JavaScript中的Promise。&lt;/p&gt;
+
+&lt;h2 id=&quot;promise-1&quot;&gt;什么是Promise&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了Promise对象。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise是一个对象，从它可以获取异步操作的消息。Promise提供统一的API，各种异步操作都可以用同样的方法进行处理。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;上面是Promise的一个定义，引自阮一峰的ES6标准入门一书。&lt;a href=&quot;http://es6.ruanyifeng.com/&quot;&gt;S6标准入门&lt;/a&gt;。多说一句，目前的JavaScript项目无论是前台或者是后台，都应该采用ES6的标准语法来写，ES6让JavaScript的书写更加的清晰和规范。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;基本用法&lt;/h2&gt;
+&lt;p&gt;如何来构造一个promise对象呢？ES6中提供了原生Promise可以使用。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var promise = new Promise(function(resolve, reject) {
+  // ... here is some code
+
+  if (/* 异步操作成功 */){
+    resolve(value);
+  } else {
+    reject(error);
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;上面的例子给出了new一个promise对象的方法，Promise的构造函数接受一个函数作为参数传入，这个函数的两个参数，reject和resolve是JavaScript本身提供的两个函数。
+一个promise对象有三个状态分别是，pending，resolved，rejected。resolve函数可以将pending状态转变为resolved状态。reject函数可以讲pending状态转变了rejected状态。对象的状态不受外界的影响，同样也是promise名字的由来。外部你拿着我的一个承诺，一会我会告诉你我的状态。&lt;/p&gt;
+
+&lt;p&gt;promise对象通过then方法来添加回调函数。例如这样&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;promise.then(data=&amp;gt; console.log(data), err=&amp;gt; console.log(err));
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;当promise被resolved的时候，就会把data log出来。当promise被rejected的时候，err就会被log出来。
+看上去好像是挺简单的，的确Promise的应用使得异步的操作，以同步的形式表现出来。当发生错误的时候可以通过catch方法，来定义回调函数。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;怎么用&lt;/h2&gt;
+&lt;p&gt;上边都是一些干巴巴的定义，那么到底该怎么用呢？Promise又怎么样的解决了问题呢，下边我们看一个例子。假设下边一个场景，我们一个服务，从一个外边service获取数据，然后写到一个db里，或者一个存储里，最后在把存储的状态龙出来，那么如果没有promise是怎么写的呢？可能会是这样。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;getData(function (value1) {
+  storeToDb(value1, function(value2) {
+    logStore(value2, function(value3) {
+      //...
+    });
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;传统的回调的写法，这样使得代码逻辑混乱在一起。再想想如果再加上错误处理的情况，更是酸爽。那么用promise来写会怎么样呢？看下边这样的代码&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function getData(){
+	return new Promise((resolve,reject) =&amp;gt;{
+		// ... send request to get data
+		
+		if(/* get successfully*/){
+			resolve(data)
+		}else{
+			reject(err)
+		}
+	})
+}
+
+function storeData(data){
+	return new Promise((resolve,reject)=&amp;gt;{
+		// ... store the data
+		
+		if(/*store successfully*/){
+			resolve(data)
+		}else{
+			reject(err)
+		}
+	})
+}
+
+
+getData()
+	.then(data =&amp;gt; storeData(data))
+	.then(data =&amp;gt; console.log('the process is done',data));
+	.catch(err =&amp;gt; console.error('there is the err',err));
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;这样写是不是就是很清楚了，先getData，然后再storeData，最后将这次运行的情况log了出来，其中有任何的问题，在catch中都可以Catch出来。代码的逻辑以同步的方式得到了体现。我们来看看如果是其他语言会怎么写，下边是个ruby的语言的例子&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def get_data 
+	// ...send request
+	
+	if /*get successfully */
+		return data
+	else
+		raise GetDataError
+	end
+end
+
+
+def store_data
+	// ...save to db
+	
+	if /*save successfully */
+		return data
+	else
+		raise StoreDataError
+	end
+end
+
+
+/*Main Logic*/
+begin
+	request_data = get_data
+	db_data = store_data request_data
+	p &quot;here is the store data #{db_data}&quot;
+rescue e
+	p &quot;here is some errors #{e}&quot;
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;我们对比两个例子，可以看到在使用的Promise后让JavaScript的异步方式的编程模式更将清楚，也更加让人容易理解。&lt;/p&gt;
+
+&lt;p&gt;由于JavaScript的执行环境是单线程的，所以大量采用了异步的方式来进行编程，这使得我们写起代码并不十分符合我们一般的习惯。但是Promise的出现让这种问题能得到一定程度的缓解。&lt;/p&gt;
+
+&lt;p&gt;但是异步操作异步操作的好处，比如上边的那个例子，如果我们想要做的同时并发10个操作，那个在ruby或者其他语言中中就要启多个线程来进行。但是JavaScript就完全没有这个问题。只要简单的loop下就行了。&lt;/p&gt;
+
+&lt;p&gt;但是如果我们想要在这10个操作完成后根据返回的状态做点其他操作该怎么做呢？这时候用Promise.all就是最好的了。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let p = Promise.all([p1, p2, p3]);
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Promise.all接受数组作为参数传入，每个元素都是一个promise对象。只要所有子promise都resolved以后，p才会被resolved。只要有一个被rejected，这个p就会被rejected。但是有一点是这些子promise之间并不会有顺序的关系。再来看一个例子：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var guid = 0;
+function run() {
+  guid++;
+  var id = guid;
+  return new Promise(resolve =&amp;gt; {
+    setTimeout(function () {
+      console.log(id);
+      resolve(id);
+    }, (Math.random() * 1.5 | 0) * 1000);
+  });
+}
+
+var promises = Array.from({ length: 10 }, run);
+Promise.all(promises)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;OUTPUT:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2
+3
+5
+6
+7
+8
+10
+1
+4
+9
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;从这次的output可以看到，promise之间并没有顺序执行，实际上是并发的。那么如何让这些promise是顺序执行呢？留个大家自己思考下，下篇文章，我们揭晓。或者可以联系图表君，私下告诉你答案哦。 										
+ps，当然也可以用一些第三方的库和方案，例如（async）来实现顺序操作，但是代码的乐趣不就是做些思维挑战吗:)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;原创文章，欢迎转发，但请标明出处。欢迎关注图表君的公众号，一起成长。在微信中搜索 “多彩数据” 或者 “Data_Visualization”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/img/wechat.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 23 Oct 2016 08:01:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2016/10/23/promise.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2016/10/23/promise.html</guid>
+        
+        <category>Summary</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

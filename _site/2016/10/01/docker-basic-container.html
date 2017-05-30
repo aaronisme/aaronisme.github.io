@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>图表君聊docker-Container</title>
+  <meta name="description" content="图表君聊Docker-Container上篇文章我们介绍了Docker三大概念中的Image，这篇我们来介绍Container，上篇文章中我们了解到了Image是运行在Container中的，实际上在容器里跑的指令都是在Container中run的。">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="图表君聊Docker-Container上篇文章我们介绍了Docker三大概念中的Image，这篇我们来介绍Container，上篇文章中我们了解到了Image是运行在Container中的，实际上在容器里跑的指令都是在Container中run的。" />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="图表君聊docker-Container" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="图表君聊docker-Container">
+  <meta name="twitter:description" content="图表君聊Docker-Container上篇文章我们介绍了Docker三大概念中的Image，这篇我们来介绍Container，上篇文章中我们了解到了Image是运行在Container中的，实际上在容器里跑的指令都是在Container中run的。">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2016/10/01/docker-basic-container.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">图表君聊docker-Container</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">October 1, 2016</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="docker-container">图表君聊Docker-Container</h1>
+<p>上篇文章我们介绍了Docker三大概念中的Image，这篇我们来介绍Container，上篇文章中我们了解到了Image是运行在Container中的，实际上在容器里跑的指令都是在Container中run的。</p>
+
+<h2 id="section">启动容器</h2>
+<p>启动容器的方法一般有两种：</p>
+
+<ul>
+  <li>基于一个Image重新启动一个新的容器</li>
+  <li>启动一个现在已经是在Stopped状态下的容器。
+来试着运行下边的这个命令：</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	docker run ubuntu /bin/echo 'Hello Docker'
+	Hello Docker
+</code></pre>
+</div>
+<p>有没有感觉和本地执行 echo ‘Hello Docker’ 的速度没什么差别？但是其实人家是在一个Container里运行的啊。想想之前用VM的情况，启动一个instance得2分钟，<strong><em>所要执行的Job只有几秒而已</em></strong>。如果同样的Job放到docker里跑，那会快多了，太爽快了。</p>
+
+<p>所以一般用户在使用容器的时候都是随时新建和删除容器的。</p>
+
+<p>上边那个例子是我们用docker 运行了一个输出语句，下面我们来看这样一个例子：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	docker run -t -i ubuntu /bin/bash
+	root@42099bcd8196:/# ls
+	bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+</code></pre>
+</div>
+<p>这样进入了一个docker container 并运行ls命令。-t让docker分配一个伪终端绑定到容器的标准输入上， -i让容器的标准输入一直打开。</p>
+
+<h2 id="section-1">容器的启动过程</h2>
+<p>那么一个容器的启动到底经历那些过程呢：</p>
+
+<ul>
+  <li>检查images如果本地不存在就是从远程仓库下载。</li>
+  <li>利用镜像创建并启动一个容器</li>
+  <li>分配一个文件系统，并在只读的镜像层外层挂接一个写读写层。</li>
+  <li>从宿主主机配置的网桥接口桥接一个虚拟接口到容器中</li>
+  <li>分配一个ip地址给容器</li>
+  <li>运行用户给定的应用程序</li>
+  <li>运行完毕，容器被终止。</li>
+</ul>
+
+<p>容器的启动过程，对于理解容器至关重要，需要深入的理解。</p>
+
+<p>使用<code class="highlighter-rouge">docker ps -al</code>查看所有的历史，使用<code class="highlighter-rouge">docker start</code>可以启动一个已经终止的容器。</p>
+
+<h2 id="section-2">后台运行</h2>
+
+<p>添加 <code class="highlighter-rouge">-d</code>参数可以后台运行docker container</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	docker run -d ubuntu  /bin/bash -c "while true; do echo hello docker; sleep 2; done"
+</code></pre>
+</div>
+
+<p>这样我们就看不到容器的输出信息了，可以通过docker logs来查看</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker logs [container ID or NAME]
+</code></pre>
+</div>
+<p>like this</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker logs 133e58dbdc78
+hello docker
+hello docker
+hello docker
+hello docker
+...
+</code></pre>
+</div>
+
+<h2 id="section-3">停止容器</h2>
+<p>要停止一个容器也是相当简单的，<code class="highlighter-rouge">docker stop</code>就能办到了。同时，对于终止状态的容器，我们可以采用<code class="highlighter-rouge">docker start</code>来启动。通过<code class="highlighter-rouge">docker restart</code>来重启这个容器。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker stop [CONTAINER ID OR NAME]
+</code></pre>
+</div>
+
+<h2 id="section-4">进入容器</h2>
+<p>当我们使用 -d参数运行了一个Container的时候，有时候我们需要进入这个容器进行一些操作。例如有这样的一个情况，我们运行了一个app在一个容器里，我们想进入容器看看，这个app运行的状态，查看log。那们如何进入呢？其实有很多种方法，这里介绍两种。
+第一：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	docker attach [CONTAINER ID OR NAME]
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ docker run -d --name topdemo ubuntu /usr/bin/top -b
+$ docker attach topdemo
+
+top - 02:05:52 up  3:05,  0 users,  load average: 0.01, 0.02, 0.05
+Tasks:   1 total,   1 running,   0 sleeping,   0 stopped,   0 zombie
+Cpu(s):  0.1%us,  0.2%sy,  0.0%ni, 99.7%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
+Mem:    373572k total,   355560k used,    18012k free,    27872k buffers
+Swap:   786428k total,        0k used,   786428k free,   221740k cached
+
+PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
+ 1 root      20   0 17200 1116  912 R    0  0.3   0:00.03 top
+
+</code></pre>
+</div>
+<p>这里我们使用了attach命令进入了容器，看到了top命令的输出。</p>
+
+<p>回到我刚才说的那个例子，如果有个Container后台里执行的是一个webapp，如何看到logs 或者是输出呢？接下来具体说说。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d --name webapp -p 5000:5000 training/webapp
+</code></pre>
+</div>
+<p>在执行了这个命令后，我们在后台run了一个images为training/webapp的Container（这是一个python的flask app）我们将本机的5000端口与Container的5000端口（flask的默认端口）进行了mapping。当我们从Browser访问的时候，我们就能访问到这个app。</p>
+
+<p>当我们在本地开发的时候，我们很容易的可以从console里看到，这个app的访问的记录，同时也能方便的查看log文件。那么这些在容器里怎么进行呢？当然我们可以使用上边介绍的attach命令。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker attach webapp
+</code></pre>
+</div>
+<p>当从浏览器访问这个app的时候，通过attach我们可以看到Container里的输出。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker attach webapp
+172.17.0.1 - - [04/Oct/2016 04:44:23] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [04/Oct/2016 04:44:24] "GET / HTTP/1.1" 200 -
+</code></pre>
+</div>
+<p>但是问题来了，如果我们要看log文件，或者想进入Container，看看其他的文件状态，该怎么办呢？那么这时候我们就会用到 <code class="highlighter-rouge">docker exec</code>了。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	docker exec -it webapp /bin/bash
+	root@e0cac87036f0:/opt/webapp# ls
+	Procfile  app.py  requirements.txt  tests.py
+	root@e0cac87036f0:/opt/webapp#
+</code></pre>
+</div>
+
+<p>通过docker exec我们就在这个Container里又运行了bash，这时候我们就能做其他我们想做的事情了。</p>
+
+<p>那么<code class="highlighter-rouge">docker attach</code> 和 <code class="highlighter-rouge">docker exec</code>有什么区别呢？</p>
+
+<p><strong><code class="highlighter-rouge">docker attach</code> 让用户可以进入Container查看输出等等操作，但是并不会另外启动一个进程!       如果你用<code class="highlighter-rouge">CTRL-c</code>来退出，同时这个信号会kill Container（默认情况）</strong></p>
+
+<p><strong><code class="highlighter-rouge">docker exec</code> 会启动另外一个进程来进入Container，这里的操作是在这个进程下的。如果你用<code class="highlighter-rouge">CTRL-c</code>来退出，不会kill 原来的Container</strong></p>
+
+<p>好了，对于Container今天就聊到这里，下片文章我们继续聊最后一个概念，Docker仓库。</p>
+
+<hr />
+
+<p>原创文章，欢迎转发，但请标明出处。欢迎关注图表君的公众号，一起成长。在微信中搜索 “多彩数据” 或者 “Data_Visualization”</p>
+
+<p><img src="/resources/img/wechat.jpg" alt="image" /></p>
+
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/docker">docker</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%E5%9B%BE%E8%A1%A8%E5%90%9B%E8%81%8Adocker-Container&url=http%3A%2F%2Faaronchen.cn%2F2016%2F10%2F01%2Fdocker-basic-container.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2016%2F10%2F01%2Fdocker-basic-container.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

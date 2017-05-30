@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Thinking In React Way - 有限状态机</title>
+  <meta name="description" content="Thinking In React Way - 有限状态机今天来聊聊前端，其实这个公众号刚开始写起来的时候，是想和大家分享数据可视化的一些知识的。这也是图表君名头的由来，后来慢慢就写进了些前端的东西，再后来，因为图表君工作的转换，现在更多的做一些后台的工作，那么讨论的问题就更杂了，现在看起来算是我的一些工作和学习...">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="Thinking In React Way - 有限状态机今天来聊聊前端，其实这个公众号刚开始写起来的时候，是想和大家分享数据可视化的一些知识的。这也是图表君名头的由来，后来慢慢就写进了些前端的东西，再后来，因为图表君工作的转换，现在更多的做一些后台的工作，那么讨论的问题就更杂了，现在看起来算是我的一些工作和学习..." />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="Thinking In React Way - 有限状态机" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Thinking In React Way - 有限状态机">
+  <meta name="twitter:description" content="Thinking In React Way - 有限状态机今天来聊聊前端，其实这个公众号刚开始写起来的时候，是想和大家分享数据可视化的一些知识的。这也是图表君名头的由来，后来慢慢就写进了些前端的东西，再后来，因为图表君工作的转换，现在更多的做一些后台的工作，那么讨论的问题就更杂了，现在看起来算是我的一些工作和学习...">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2016/12/10/react-01.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Thinking In React Way - 有限状态机</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">December 10, 2016</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="thinking-in-react-way---">Thinking In React Way - 有限状态机</h1>
+<p>今天来聊聊前端，其实这个公众号刚开始写起来的时候，是想和大家分享数据可视化的一些知识的。这也是图表君名头的由来，后来慢慢就写进了些前端的东西，再后来，因为图表君工作的转换，现在更多的做一些后台的工作，那么讨论的问题就更杂了，现在看起来算是我的一些工作和学习心得和感受吧。</p>
+
+<p>好了，说了这么多。今天聊点什么呢？聊聊React。其实这也并不是什么新东西了。2014年，图表君就知道有这么个东西，听着几位业界大牛聊，说这东西有多么多么的好，当时也不是特别的理解，跟了一遍官方的Tutorial，也没有特别的感受。应该是因为当时前端的经验特别的浅（虽然现在也不敢说深，捂脸），没有什么特别的感受吧。</p>
+
+<h2 id="angular">Angular的痛</h2>
+<p>后来做了几个项目，使用的是Angular，刚开始觉得双向数据绑定好牛逼啊，好好用，好好用。但是随着项目逐渐的一点点变大，感觉$scope上的东西是越来越多，各个controller里各有各的$scope,再加上$scope是继承的，当项目一复杂就越来越难以管理和控制。还有自己要封装一个组件在angular里得用directive吧，好吧看看directive的文档你就得晕了，link，compile，controller都是什么鬼。好了，今天不是吐槽angular的时间，但是angular得设计和使用的确是太复杂了。</p>
+
+<h2 id="section">前端到底是在干什么</h2>
+<p>好了，让我们先暂时跳出框架的讨论，来思考一下，前端的工作到底是干什么的？其实可以简单的说就是将数据到View的一个映射上，也就是说无论什么框架解决的基本问题就是讲数据展示到View上, 然后将讲用户的操作最后再反应到数据的变化上来。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+
+					Data --&gt; Whatever FrameWork --&gt; View
+					Data &lt;-- Whatever FrameWork &lt;-- View
+
+
+
+</code></pre>
+</div>
+
+<p>再想清楚这个问题之后，React是怎么做的呢？React并不是一个完整的前端框架，只是一个专注于渲染View的library，在看了React的文档之后，我们会发现他的api是很简单的。一个典型的react的组件</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class ShoppingList extends React.Component {
+  render() {
+    return (
+      &lt;div className="shopping-list"&gt;
+        &lt;h1&gt;Shopping List for {this.props.name}&lt;/h1&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Instagram&lt;/li&gt;
+          &lt;li&gt;WhatsApp&lt;/li&gt;
+          &lt;li&gt;Oculus&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+// Example usage: &lt;ShoppingList name="Mark" /&gt;
+</code></pre>
+</div>
+<p>即使你没有React的经验，看这样的代码也不会有什么特别的问题。好了，今天图表君不打算安利React，并不想写一个hello world出来。这样的文章太多，看看React的官方例子会比图表君写的好很多。那么今天说什么呢？</p>
+
+<h2 id="react-thinking---">React Thinking - 状态机</h2>
+<p>看这部分之前，图表君强烈建议你可以看一看React的官方tutorial<a href="https://facebook.github.io/react/tutorial/tutorial.html">tutorial</a>，很好的一个例子，也不长。一个小时就能看完，自己上手写一写，感受会更深。好了现在假设你看完了这个tutorial有什么感觉？</p>
+
+<p>图表君的最大的感受是，最后将State，function都定义到了Game的这个Root级别的Component上了，再把所有的数据和function都传进自己的子Component里，需要的地方直接调用就好了。这样就使得我们上边说把Data的操作逻辑都被提出来，并集中在一起了，一下就清晰了，明确了。App管理从此变得一下简单了。反复品味这样的设计，忽然有个东西，进入了我的思维里。这东西不就是一个有限状态机呀。</p>
+
+<h3 id="section-1">有限状态机</h3>
+<p>有限状态机是个十分有用的模型，可以用来模拟世界上大部分的事物，其有三个特征：</p>
+
+<ol>
+  <li>状态总数（state）是有限的。</li>
+  <li>任一时刻，只处在一种状态之中。</li>
+  <li>某种条件下，会从一种状态转变（transition）到另一种状态。</li>
+</ol>
+
+<p>我们再来看看例子中的代码</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Game extends React.Component {
+  constructor(){
+    super();
+    this.state={
+      history:[{
+        squares: Array(9).fill(null)
+      }],
+      stepNumber: 0,
+      xIsNext: true
+    }
+  }
+  
+  handleClick(i){
+    const history = this.state.history;
+    const stepNumber = this.state.stepNumber
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    squares[i] = this.state.xIsNext? 'X':'O';
+    this.setState(
+      {
+        history: history.concat([{
+      squares: squares   
+    }]),
+        stepNumber: stepNumber + 1,
+    xIsNext: !this.state.xIsNext,
+      }
+    )
+  }
+  
+  jumpTo(step){
+    const newHistory = this.state.history.slice(0,step+1)
+    console.log(newHistory);
+    this.setState({
+      history: newHistory,
+      stepNumber:step,
+      xIsNext: (step % 2) ? false: true, 
+    })
+  }
+  
+  render() {
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
+    const winner = calculateWinner(current.squares);
+    let status;
+    if(winner){
+       status = 'Winner Is :' + winner;
+    }else{
+       status = 'Next player: ' + (this.state.xIsNext ? 'X':'O');
+    }
+    const moves = history.map((step,move) =&gt; {
+       const desc = move ? 'Move #' + move : 'Game Start';
+       return(
+         &lt;li key={move}&gt;
+            &lt;a href="#" onClick={() =&gt; this.jumpTo(move)}&gt;{desc}&lt;/a&gt;
+         &lt;/li&gt; 
+       )
+    });
+    return (
+      &lt;div className="game"&gt;
+        &lt;div className="game-board"&gt;
+          &lt;Board squares={current.squares} onClick={(i) =&gt; this.handleClick(i)} /&gt;
+        &lt;/div&gt;
+        &lt;div className="game-info"&gt;
+          &lt;div&gt;{status}&lt;/div&gt;
+          &lt;ol&gt;{moves}&lt;/ol&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre>
+</div>
+
+<p>构造方法，constructor - 定义了APP的初始状态。</p>
+
+<p>handleClick - 定义了在棋盘里点击事件后的APP状态的变化。</p>
+
+<p>jumpTo - 定义点击历史记录中某一步后APP的状态变化。</p>
+
+<p>render- 描述如何在View上来展示当前的状态。</p>
+
+<p>这样精巧的设计，facebook果然聚集了当今世界一流的工程师。然后我看了阮一峰的<a href="http://www.ruanyifeng.com/blog/2013/09/finite-state_machine_for_javascript.html">这篇介绍有限状态机的文章</a>，看到这段代码。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var menu = {
+　　    
+　　　　// 当前状态
+　　　　currentState: 'hide',
+　　
+　　　　// 绑定事件
+　　　　initialize: function() {
+　　　　　　var self = this;
+　　　　　　self.on("hover", self.transition);
+　　　　},
+　　
+　　　　// 状态转换
+　　　　transition: function(event){
+　　　　　　switch(this.currentState) {
+　　　　　　　　case "hide":
+　　　　　　　　　　this.currentState = 'show';
+　　　　　　　　　　doSomething();
+　　　　　　　　　　break;
+　　　　　　　　case "show":
+　　　　　　　　　　this.currentState = 'hide';
+　　　　　　　　　　doSomething();
+　　　　　　　　　　break;
+　　　　　　　　default:
+　　　　　　　　　　console.log('Invalid State!');
+　　　　　　　　　　break;
+　　　　　　}
+　　　　}
+　　
+　　};
+　　
+</code></pre>
+</div>
+<p>有没有似曾相识的感觉，Redux里是不是就是这么干的？然后再想想Redux，到底干了一件什么事？帮我们做了这样的一个状态机啊，我们开发者只要定义Action，Reducer，他把我们的APP组织成了一个状态机。</p>
+
+<p>从这样的角度再来看React,Redux这个的技术栈，我觉得理解的更加的清楚了，当然这仅仅是我的一点点小小的思考，欢迎大家一起讨论拍砖，后边逐步的和大家分享我的心得体会。</p>
+
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/前端 React">前端 React</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=Thinking+In+React+Way+-+%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA&url=http%3A%2F%2Faaronchen.cn%2F2016%2F12%2F10%2Freact-01.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2016%2F12%2F10%2Freact-01.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

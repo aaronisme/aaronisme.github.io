@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>IOS-summary-CoreData&Notification</title>
+  <meta name="description" content="Question1:In method application:handleActionWithIdentifier:forLocalNotification:completionHandler:the completioHandler have to  be called in the end. but why...">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="Question1:In method application:handleActionWithIdentifier:forLocalNotification:completionHandler:the completioHandler have to  be called in the end. but why..." />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="IOS-summary-CoreData&Notification" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="IOS-summary-CoreData&Notification">
+  <meta name="twitter:description" content="Question1:In method application:handleActionWithIdentifier:forLocalNotification:completionHandler:the completioHandler have to  be called in the end. but why...">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2015/12/28/ios-summary-coredatanotification.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">IOS-summary-CoreData&Notification</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">December 28, 2015</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p><strong>Question1</strong>:
+In method application:handleActionWithIdentifier:forLocalNotification:completionHandler:
+the <strong>completioHandler</strong> have to  be called in the end. but why is that? what did it do?</p>
+
+<p>In the article it is said.It’s great that you’re provided this – it means that you can perform asynchronous operations without the system killing your process when you’re in the background.(当你的app在后台运行的时候，可以进行异步操作)。
+[link]https://www.shinobicontrols.com/blog/ios8-day-by-day-day-25-notification-actions</p>
+
+<h2 id="ios-coredata">IOS CoreData</h2>
+<p>IOS中内置了SQLite的数据库，进行数据的保存。同时提供了CoreData的ORM机制，使得可以不写任何的SQL语句，进行数据库操作。下面就是些总结内容：
+<img src="/img/in-post/ios/coreData.png" alt="CoreDataStack" />
+从上面的图可以看出，coreDataStack 分为三层，最底层用于定于model的关系，实际上是各个表的外键的关系，以及用SQLite实现了数据的保存。
+第二层用于保存数据与SQL语句的交互，最上一层用于与object进行交互。</p>
+
+<p>使用CoreData首先在创建工程的时候，选取使用coredata的选项，在自动生成的xxx.xcdatamodeld中进行定义。关于数据和表的对于关系可以参考下面的图：
+<img src="/img/in-post/ios/iosORM.png" alt="Alt text" />
+注意要定义好relationship，中的1对多和，1对1的关系。当做好这些定义之后，创建每个Entity的Class Name。点击Editor选择Create NSManageObject Subclass，这样Xcode 为你创建好了相应的Class。</p>
+
+<p>同时在AppDelegate中定义好了相应的方法。
+###如何使用？
+在AppDelegate中的- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions方法中：</p>
+
+<pre><code class="language-objectivec">  [self managedObjectModel];
+  [self persistentStoreCoordinator];
+  NSManagedObjectContext *moc = [self managedObjectContext];
+</code></pre>
+
+<p>对于与上面的三层构架，对应可三个方法，我们平时进行交互的就是moc 也就是NSManageObjectContent。同时可以定于相应的Object的Create方法例如：</p>
+
+<pre><code class="language-objectivec">  -(ChroeMO *) createChroeMO{
+      NSManagedObjectContext *moc = [self managedObjectContext];
+      ChroeMO * chroeMO = [NSEntityDescription insertNewObjectForEntityForName:@"Chroes" inManagedObjectContext:moc];
+      return chroeMO;
+  }
+
+</code></pre>
+
+<p>进行数据交互时候的步骤：</p>
+
+<pre><code class="language-objectivec">	-(void)updateLogList{
+	//create NSManagedObjectContext
+    NSManagedObjectContext *moc = self.appDelegate.managedObjectContext;
+    //create the request
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ChroeLog"];
+
+    NSError *error = nil;
+    //sent the request
+    NSArray *result = [moc executeFetchRequest:request error:&amp;error];
+    if(!result){
+        NSLog(@"Error fetching Person objects %@\n%@",[error localizedDescription], [error userInfo]);
+    }
+
+    NSMutableString *buffer = [NSMutableString stringWithString:@""];
+    for (ChroelogMO *c in result) {
+        [buffer appendFormat:@"%@ at%@ %@\n",c.person_who_did_it,c.when,c.chore_done,nil];
+
+    }
+    self.persistedData.text = buffer;
+
+}
+</code></pre>
+<p>有写操作的时候，完成后要保存。</p>
+
+<pre><code class="language-objectivec">	- (IBAction)deleteTaped:(id)sender {
+    NSManagedObjectContext *moc = self.appDelegate.managedObjectContext;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ChroeLog"];
+
+    NSError *error = nil;
+    NSArray *result = [moc executeFetchRequest:request error:&amp;error];
+    if(!result){
+        NSLog(@"Error fetching Person objects %@\n%@",[error localizedDescription], [error userInfo]);
+    }
+
+    for (ChroelogMO *c in result) {
+        [moc deleteObject:c];
+    }
+    //save after changed
+    [self.appDelegate saveContext];
+    [self updateLogList];
+
+}
+</code></pre>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/IOS">IOS</a>,&nbsp;<a href="/tag/Summary">Summary</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=IOS-summary-CoreData%26Notification&url=http%3A%2F%2Faaronchen.cn%2F2015%2F12%2F28%2Fios-summary-coredatanotification.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2015%2F12%2F28%2Fios-summary-coredatanotification.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

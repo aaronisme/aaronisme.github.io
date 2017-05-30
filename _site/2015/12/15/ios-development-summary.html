@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>IOS-Development-Summary</title>
+  <meta name="description" content="1 you should alloc init when using the object in OC,even when you are using the property. e.g:@property(nonatomic) BSRecord *record;you define the property i...">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="1 you should alloc init when using the object in OC,even when you are using the property. e.g:@property(nonatomic) BSRecord *record;you define the property i..." />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="IOS-Development-Summary" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="IOS-Development-Summary">
+  <meta name="twitter:description" content="1 you should alloc init when using the object in OC,even when you are using the property. e.g:@property(nonatomic) BSRecord *record;you define the property i...">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2015/12/15/ios-development-summary.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">IOS-Development-Summary</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">December 15, 2015</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>1 you should alloc init when using the object in OC,even when you are using the property. e.g:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">@property</span><span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">BSRecord</span> <span class="o">*</span><span class="n">record</span><span class="p">;</span>
+</code></pre>
+</div>
+<p>you define the property in the viewController h file.
+the record do exist when you init the viewController but it just an point which is point the record instance, so you should alloc init the instance when you using it. like:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>self.record = [[BSRecord alloc] init];
+</code></pre>
+</div>
+<p>otherwise you just all the point the actual instance doesn’t exist.</p>
+
+<p>2, Using the datasource which is an delegate the create the TableView.
+In IOS development, MVC pattern are using to create the app. so when create the tableview, there is two parts to consider,first is the tableview and second is the tableview controller, because the delegate pattern. after the tableview loaded to ask its delegator:viewController for the data. so in this case,you should implement these methods in the tableview controller to get the data for view, there are two methods to implement:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+    return 1;
+}
+// num of section in table view tell how many sections in the table view
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#warning Incomplete implementation, return the number of rows
+    return [self.allRecords count];
+}
+// how many rows in the one section
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecordsPrototypeCell" forIndexPath:indexPath];
+    return cell;
+}
+// implement each cell,if you using the prototype you should define the identifier in attribute of the cell.
+</code></pre>
+</div>
+
+<p>3,Define the unwind segue to get to the previous view,To create an unwind segue you should add the action method to the destination view controller(the view controller you would to go):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>-(IBAction)unwindToList:(UIStoryboardSegue*)segue;
+</code></pre>
+</div>
+<p>take the UIStoryboardSegue as the parameter;
+you can link the button to the exit and choose the defined the segue. P94 in the book start developing iOS today.
+using the segue to go to another view.</p>
+
+<p>4, Saving and Loading data to the file</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- (NSString *)documentsDirectory{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths firstObject];
+
+    return documentsDirectory;
+}
+
+// get the directory of the document
+
+- (NSString *)dataFilePath{
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"bsrecords.plist"];
+}
+// get the date file path
+- (void)saveRecords{
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver=[[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+
+    [archiver encodeObject:self.allRecords forKey:@"Records"];
+    [archiver finishEncoding];
+    [data writeToFile:[self dataFilePath] atomically:YES];
+
+}
+// create to the file;
+
+- (void)loadRecords{
+    NSString *path = [self dataFilePath];
+    if([[NSFileManager defaultManager] fileExistsAtPath:path]){
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        self.allRecords = [unarchiver decodeObjectForKey:@"Records"];
+        [unarchiver finishDecoding];
+
+    }else{
+        self.allRecords = [[NSMutableArray alloc] initWithCapacity:10];
+    }
+
+}
+// load from the file.
+</code></pre>
+</div>
+<p>Meanwhile you define the encode and second method or the object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@interface BSRecord : NSObject&lt;NSCoding&gt;
+- (id)initWithCoder:(NSCoder *)aDecoder{
+    if ((self = [super init])) {
+        self.recordDate = [aDecoder decodeObjectForKey:@"BSDate"];
+        self.recordValue = [aDecoder decodeObjectForKey:@"BSValue"];
+    }
+    return self;
+}
+// define the init method the decode the object
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:self.recordDate forKey:@"BSDate"];
+    [aCoder encodeObject:self.recordValue forKey:@"BSValue"];
+
+}
+
+// define the encode method to encode the object
+</code></pre>
+</div>
+<p>!!! implement to the view controller ’s initWithCoder method to let the view controller to get the data from file:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- (id)initWithCoder:(NSCoder *)aDecoder{
+
+    if ((self=[super initWithCoder:aDecoder])) {
+        [self loadRecords];
+    }
+    return self;
+
+}
+</code></pre>
+</div>
+<p>initWithCoder, for view controllers that are automatically loaded from a storyboard</p>
+
+<p>For refer: p124 in the IOS_apprentice_2_checklit.</p>
+
+<p>Create an Alert Action in IOS:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  -(void)showAlertMessage:(NSString *) myMessage{
+      UIAlertController *signInActionController = [UIAlertController alertControllerWithTitle:@"" message:myMessage preferredStyle:UIAlertControllerStyleAlert];
+       Create an AlertViewController first
+
+      UIAlertAction *canle = [UIAlertAction actionWithTitle:@"okay" style:UIAlertActionStyleDefault handler:nil];
+
+       //Create an Action then
+      [signInActionController addAction:canle];
+      //Add the Action
+      [self presentViewController:signInActionController animated:YES completion:nil];
+       //present that action in the view.
+  }
+
+  Make the Activity Share
+      UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.activityTextField.text] applicationActivities:nil];
+      [self presentViewController:activityVC animated:YES completion:nil];
+  // based on the acitivityitems type to decide which app to share, if I change to self.actitivyTextField. it is an object so no app can accept that share!
+  //根据items的类型来确定能share给的app
+</code></pre>
+</div>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/IOS">IOS</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=IOS-Development-Summary&url=http%3A%2F%2Faaronchen.cn%2F2015%2F12%2F15%2Fios-development-summary.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2015%2F12%2F15%2Fios-development-summary.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>图表君聊docker-Dockerfile</title>
+  <meta name="description" content="图表君聊docker-Dockerfile前边几篇文章给大家介绍了docker的三大基本概念。可能大家觉得概念的东西比较生涩，有没有更多实战的例子呢？好了，从这篇文章开始，我会给大家介绍更多实际的例子来帮助大家，那么就从dockerfile开始吧。">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="图表君聊docker-Dockerfile前边几篇文章给大家介绍了docker的三大基本概念。可能大家觉得概念的东西比较生涩，有没有更多实战的例子呢？好了，从这篇文章开始，我会给大家介绍更多实际的例子来帮助大家，那么就从dockerfile开始吧。" />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="图表君聊docker-Dockerfile" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="图表君聊docker-Dockerfile">
+  <meta name="twitter:description" content="图表君聊docker-Dockerfile前边几篇文章给大家介绍了docker的三大基本概念。可能大家觉得概念的东西比较生涩，有没有更多实战的例子呢？好了，从这篇文章开始，我会给大家介绍更多实际的例子来帮助大家，那么就从dockerfile开始吧。">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2016/10/15/docker-basic-dockerfile.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">图表君聊docker-Dockerfile</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">October 15, 2016</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="docker-dockerfile">图表君聊docker-Dockerfile</h1>
+<p>前边几篇文章给大家介绍了docker的三大基本概念。可能大家觉得概念的东西比较生涩，有没有更多实战的例子呢？好了，从这篇文章开始，我会给大家介绍更多实际的例子来帮助大家，那么就从dockerfile开始吧。</p>
+
+<p>在介绍docker image的时候，我给大家介绍了build image的两种方法，但是留了一个坑，就是DockerFile，那今天图表君就来把这个坑填了。</p>
+
+<h2 id="dockerfile">什么是Dockerfile</h2>
+<p>Dockerfile实际上是由一行行命令组成的,让用户可以方便的创建自定义镜像。下边就是一个Dockerfile的例子</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>FROM python:2.7
+MAINTAINER Aaron Chen "mail@aaronchen.cn"
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+EXPOSE 5000
+ENTRYPOINT ["python"]
+CMD ["app.py"]
+</code></pre>
+</div>
+<p>这个例子是启动一个python flask app的Dockerfile（flask是python的一个轻量的web框架）。下边我就来介绍下dockerfile里的指令。</p>
+
+<p>通常来说，Dockerfile的指令分为四类，基础镜像信息，维护者信息，镜像操作指令以及容器启动时执行的指令。常用的指令有如下：</p>
+
+<h3 id="from">FROM</h3>
+<p>用于指定基础的images</p>
+
+<p>格式为 <code class="highlighter-rouge">FROM &lt;image&gt; or FORM &lt;image&gt;:&lt;tag&gt;</code></p>
+
+<p>一个Dockerfile里的第一条指令必须为FORM指令。</p>
+
+<h3 id="maintainer">MAINTAINER</h3>
+<p>格式为 <code class="highlighter-rouge">MAINTAINER &lt;name&gt;</code> 用于指定维护者信息。</p>
+
+<h3 id="run">RUN</h3>
+<p>格式为 <code class="highlighter-rouge">RUN &lt;command&gt;</code> 
+RUN命令将在基础镜像上执行相应的指令，并提交为新的镜像。</p>
+
+<h3 id="cmd">CMD</h3>
+<p>启动Docker时运行的命令，一个dockerfile只有一个CMD起效，但是当用户在docker run 时提供了运行的命令时，CMD命令就会被覆盖。</p>
+
+<p>推荐的格式为为 <code class="highlighter-rouge">CMD["executable","param1","param2"]</code></p>
+
+<p>另外一种格式为 <code class="highlighter-rouge">CMD["param1","param2"]</code>,配合ENTRYPOINT同时使用，其中的两个参数会提供给ENTRYPOINT。</p>
+
+<h3 id="entrypoint">ENTRYPOINT</h3>
+<p>配置容器启动后执行的命令,并且不可被 docker run 提供的参数覆盖。每个 Dockerfile 中只能有一个 ENTRYPOINT ,当指定多个时,只有最后一个起 效。</p>
+
+<h3 id="copy">COPY</h3>
+<p>复制本地主机的<code class="highlighter-rouge">&lt;src&gt;</code>(Dockerfile所在目录的相对路径)到容器里<code class="highlighter-rouge">&lt;dest&gt;</code></p>
+
+<h3 id="workdir">WORKDIR</h3>
+<p>为后续的 RUN 、 CMD 、 ENTRYPOINT 指令配置工作目录。
+格式为 <code class="highlighter-rouge">WORKDIR /workdirPath</code></p>
+
+<p>上边就是一些基础的命令，还有其他一些命令，图表君就不一一介绍了，大家有兴趣了可以去docker官网上自己查询。
+我们再来看上边的Dockerfile的例子，现在应该能看懂了把。它定义就是：</p>
+
+<ol>
+  <li>从dockerhub上pull下python 2.7的基础镜像。</li>
+  <li>维护者的信息是图表君</li>
+  <li>copy当前目录到容器中的 /app目录下</li>
+  <li>指定工作路径为/app</li>
+  <li>安装依赖</li>
+  <li>暴露5000端口</li>
+  <li>启动app</li>
+</ol>
+
+<h2 id="section">创建镜像</h2>
+<p>编写好Dockerfile后，就可以使用docker build来build images了。其格式为：
+<code class="highlighter-rouge">docker build 选项 [路径]</code>，通常我们可以使用.dockerignore来定义docker build images的时候忽略的文件，通常项目的依赖我们一般会忽略（例如 npm install后的 node_modules）。我们可以使用 <code class="highlighter-rouge">docker build . -t pythonflasksample</code>来build image. 然后我们就可以使用docker run 来运行容器。</p>
+
+<h2 id="section-1">又一个栗子</h2>
+<p>上边是一个python app的栗子，我们再来看一个前端的栗子。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>├── .dockerignore
+├── .gitignore
+├── Dockerfile
+├── README.md
+├── app
+│   ├── directives
+│   ├── index.html
+│   └── index.js
+├── dist
+│   ├── bundle.js
+│   └── index.html
+├── node_modules
+├── karma.conf.js
+├── package.jsonimage
+└── webpack.config.js
+</code></pre>
+</div>
+<p>这是一个Angular的前端project的项目目录。我们用npm来管理和安装依赖的包，用webpack来构建项目。下来用Dockerfile来定义一个docker image，将其容器化。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	FROM node:4.6
+ 	MAINTAINER Aaron Chen&lt;mail@aaronchen.cn&gt;
+ 
+ 	RUN mkdir /app
+ 	WORKDIR /app
+ 	COPY . /app
+ 
+ 	RUN npm install
+ 	
+ 	EXPOSE 8080
+</code></pre>
+</div>
+
+<p>这里Dockerfile的定义，很简单，下载基础镜像node 4.6，安装依赖，暴露接口。</p>
+
+<p>下来我们用<code class="highlighter-rouge">docker build . -t webpackdemo</code>来build这个image，当image构建好后，简单的执行<code class="highlighter-rouge">docker run -it -p 3456:8080 webapackdemo2 npm run start</code>，好了一个前端的project就启动起来了。相当的轻松，让你访问<code class="highlighter-rouge">http://localhost:3456/</code>的时候就可以访问了。</p>
+
+<p>这里是这个project的github repo，大家可以来一看究竟。
+<a href="https://github.com/aaronisme/dockerSample">dockerSample</a></p>
+
+<h2 id="section-2">解决了什么问题呢？</h2>
+<p>如果你是个前端开发人员，看到这里的时候一定会觉得，这到底解决了什么问题呢？我本地启动也没有什么问题啊。的确图表君刚开始也有这样的疑问，但经过思考，我认为解决了这几个问题：</p>
+
+<ol>
+  <li>让开发的环境能更简单的搭建了。经常会有这样的场景，在别人机器上正常的开发环境，在自己的机器上为什么就是不行呢？研究了半天，发现人家用的是node 6.5，自己用的是node 0.11。在使用了docker以后就解决了这样的问题，只要pull下image就OK了，所有的版本和依赖都固定下来了。</li>
+  <li>现在业绩最流行的构架方式当属于微服务了，一个系统的正常启动依赖于多个服务，有可能对于其中的某些服务我们并不熟悉，那么如果将服务容器化了以后，就能有效的解决这样的问题了。另外对于团队里的其他非技术人员使得他们也能容易的在本地搭建起环境来。</li>
+</ol>
+
+<p><strong>其实，上边这个前端项目中的dockerfile有一个很大的问题，图表君给大家留个问题。如果大家看出来了，欢迎给我留言</strong></p>
+
+<p>好了，Dockerfile就介绍这么多，我们下期再见。</p>
+
+<hr />
+
+<p>原创文章，欢迎转发，但请标明出处。欢迎关注图表君的公众号，一起成长。在微信中搜索 “多彩数据” 或者 “Data_Visualization”</p>
+
+<p><img src="/resources/img/wechat.jpg" alt="image" /></p>
+
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/docker">docker</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%E5%9B%BE%E8%A1%A8%E5%90%9B%E8%81%8Adocker-Dockerfile&url=http%3A%2F%2Faaronchen.cn%2F2016%2F10%2F15%2Fdocker-basic-dockerfile.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2016%2F10%2F15%2Fdocker-basic-dockerfile.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

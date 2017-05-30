@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>来，给他点颜色看看-RAVE（4）</title>
+  <meta name="description" content="上一篇文章中给大家介绍了如何用RAVE画出一个栅格图来，但那个样子的栅格图实在太丑了，图表君表示无法忍受，那么今天就让我们一起给它点颜色看看，美化美化这个图来，让它看起来更漂亮点。">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="上一篇文章中给大家介绍了如何用RAVE画出一个栅格图来，但那个样子的栅格图实在太丑了，图表君表示无法忍受，那么今天就让我们一起给它点颜色看看，美化美化这个图来，让它看起来更漂亮点。" />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="来，给他点颜色看看-RAVE（4）" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="来，给他点颜色看看-RAVE（4）">
+  <meta name="twitter:description" content="上一篇文章中给大家介绍了如何用RAVE画出一个栅格图来，但那个样子的栅格图实在太丑了，图表君表示无法忍受，那么今天就让我们一起给它点颜色看看，美化美化这个图来，让它看起来更漂亮点。">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2015/02/09/Rave4.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">来，给他点颜色看看-RAVE（4）</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">February 9, 2015</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>上一篇文章中给大家介绍了如何用RAVE画出一个栅格图来，但那个样子的栅格图实在太丑了，图表君表示无法忍受，那么今天就让我们一起给它点颜色看看，美化美化这个图来，让它看起来更漂亮点。</p>
+
+<p>为了区分开各个对位，在栅格图中，我们将各个柱用不同的颜色进行区分来达到这样的效果。这个该怎么做呢，只要在element里边，对于interval的颜色属性进行修改就OK了。具体来说我们来看下面一段代码。</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">“color”:</span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"colorId"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"field"</span><span class="p">:{</span><span class="w">
+	  </span><span class="nt">"$ref"</span><span class="p">:</span><span class="s2">"categories"</span><span class="w">
+	  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"palette"</span><span class="err">:</span><span class="p">[</span><span class="w">
+    </span><span class="s2">"#1183ad"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"#39b2ac"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"#60942c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"#d4a600"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"#d15c00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"#b2293d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"#532f8c"</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span></code></pre></figure>
+
+<p>在上边的代码段落，定义了颜色的属性，并将颜色与data中的categories相关联。这样就给不同的栅格赋予了不同的颜色，在palette里就定义了各种颜色，按照先后属性给各个栅格改变颜色。得到图形就回变成这个样子。<img src="/resources/img/rave4-pic1.png" alt="图例1" /></p>
+
+<p>这样看是不是还有有点奇怪，这些栅格不应该靠在一起啊，那好我们现在让他们分开点，这个就更简单了，只要在elements里加一个style的属性控制一下它的宽度就ok了。来看代码。</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">“style”:</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"width"</span><span class="p">:</span><span class="s2">"80%"</span><span class="w">
+
+</span><span class="p">}</span></code></pre></figure>
+
+<p>完成后的图形就是这个样子的。width就变为原来的80%了。是不是很简单。
+<img src="/resources/img/rave4-pic2.png" alt="图例2" />
+这里是这个栅格图的源码，提供给大家进行参考。<a href="/resources/file/barchart_color.json">源码</a></p>
+
+<p>好了，颜色我们上完了，这篇文章就先写到这里吧，下面文章我们对它继续美化，让这个栅格图看起来更好一点。</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/前端开发">前端开发</a>,&nbsp;<a href="/tag/Visualization">Visualization</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%E6%9D%A5%EF%BC%8C%E7%BB%99%E4%BB%96%E7%82%B9%E9%A2%9C%E8%89%B2%E7%9C%8B%E7%9C%8B-RAVE%EF%BC%884%EF%BC%89&url=http%3A%2F%2Faaronchen.cn%2F2015%2F02%2F09%2FRave4.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2015%2F02%2F09%2FRave4.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[译]理解和掌握JavaScript中的this</title>
+  <meta name="description" content="西安天凉了，冬天要来了。最近在看javascript的书，之前没用系统的看过js方面的书，虽然也看了网上的不少教程，也一直在用，但是总没有体系的感觉，所以最近在补这方面的课程，下面就是看到的一篇关于this的文章，觉得讲的不错，翻译过来。">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="西安天凉了，冬天要来了。最近在看javascript的书，之前没用系统的看过js方面的书，虽然也看了网上的不少教程，也一直在用，但是总没有体系的感觉，所以最近在补这方面的课程，下面就是看到的一篇关于this的文章，觉得讲的不错，翻译过来。" />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="[译]理解和掌握JavaScript中的this" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[译]理解和掌握JavaScript中的this">
+  <meta name="twitter:description" content="西安天凉了，冬天要来了。最近在看javascript的书，之前没用系统的看过js方面的书，虽然也看了网上的不少教程，也一直在用，但是总没有体系的感觉，所以最近在补这方面的课程，下面就是看到的一篇关于this的文章，觉得讲的不错，翻译过来。">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2015/10/26/js-this.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">[译]理解和掌握JavaScript中的this</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">October 26, 2015</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>西安天凉了，冬天要来了。
+最近在看javascript的书，之前没用系统的看过js方面的书，虽然也看了网上的不少教程，也一直在用，但是总没有体系的感觉，所以最近在补这方面的课程，下面就是看到的一篇关于this的文章，觉得讲的不错，翻译过来。</p>
+
+<p>JavaScript中的this的keyword对于很多初学者，甚至是有经验的js开发人员来说，有时候会难以理解。这篇文章的目的就是解决这个问题，阅读完之后，妈妈再也不用担心我理解不了this了:) 这篇文章会讨论到this应用中的各种情况。</p>
+
+<p>编程语言是人与机器的交流语言，使其它的设计就是参考了我们人类的自然语言。this的使用与自然语言中代词（pronouns）的使用是类似的。但我们写下 John is running fast he is trying to catch the train。注意这里的人称代词 he的使用，当然上边的那句话我们也可以写成这样：John is running fast John is trying to catch the train.当然了，在现实中你并不会这么说，你的朋友会笑死你的。在Javascript中，我们使用this作为一个对象的简称，一个引用。来看下边的例子。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">firstName</span><span class="p">:</span> <span class="s2">"Penelope"</span><span class="p">,</span>
+    <span class="na">lastName</span><span class="p">:</span> <span class="s2">"Barrymore"</span><span class="p">,</span>
+    <span class="na">fullName</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="err">​</span><span class="c1">// 注意这里的this就类似上个例子中的he:​</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">);</span>
+    <span class="err">​</span><span class="c1">// 同样可以写成这样:​​</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="nx">person</span><span class="p">.</span><span class="nx">lastName</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>如果在上边的例子里用person.firstName 和person.lastName，我们的代码就变得有歧义了。如果有另外一个全局变量叫person。那么例子中的person.firstName会可能访问到那个全局变量中的属性。这将会导致你的程序难以调试。所以使用this关键字不仅仅是为了美观，同时也是为了准确。就像在自然语言中我们使用代词让句子变得更加的清晰和简洁。(在上文的例子中，使用he代表的就是前文的那个john，并不是其他的John)。</p>
+
+<p>就是代词he是用来指代前文的人称。this也是用于指向绑定函数中的一个对象。类似于人称代词，this可以认为是一个对象在相应的上下文（词法环境）中的简称。</p>
+
+<p>##Javascript中this关键字的基本用法
+首先，javascript中的所有的函数都有属性，就像对象一样。但一个function被执行的时候，它就会得到它的this属性——一个变量用于保存这个function被调用的环境。</p>
+
+<p>this总是指向一个对象，并经常在一个函数或者方法中进行使用，虽然它可以在函数外，在全局作用域中使用。注意在严格模式下，this在全局函数中的值为undefined，在匿名函数中不指向任何的对象。</p>
+
+<p>当this在函数中使用时（例如函数A）它包含了调用函数A的环境对象。我们需要this去获取调用函数A的那个对象的方法和属性。特别是，我们并不是总是知道调用函数A的那个对象的名字，有时候也可能是没有那个名字。所以this就是作为调用对象的一个简称。看下边的例子来说明javascript中this的使用。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">firstName</span>   <span class="p">:</span><span class="s2">"Penelope"</span><span class="p">,</span>
+    <span class="na">lastName</span>    <span class="p">:</span><span class="s2">"Barrymore"</span><span class="p">,</span>
+    <span class="c1">//由于this关键字是在showFullName方法中使用，同时showFullName方法在person对象中定义，this代表了person对象，因为person对象调用的showFullName方法。</span>
+    <span class="nx">invoke</span> <span class="nx">showFullName</span> <span class="p">()</span><span class="err">​</span>
+    <span class="na">showFullName</span><span class="p">:</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="err">​</span><span class="p">}</span>
+
+    <span class="nx">person</span><span class="p">.</span><span class="nx">showFullName</span> <span class="p">();</span> <span class="c1">// Penelope Barrymore</span></code></pre></figure>
+
+<p>再看一个jQuery中的this的例子。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="nx">$</span> <span class="p">(</span><span class="s2">"button"</span><span class="p">).</span><span class="nx">click</span> <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// $(this) will have the value of the button ($("button")) object​</span>
+<span class="err">​</span><span class="c1">// because the button object invokes the click () method​</span>
+
+	<span class="c1">//$(this)代表的是($("button"))那个button的对象，因为button对象调用的click()方法。</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="nx">$</span> <span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">prop</span> <span class="p">(</span><span class="s2">"name"</span><span class="p">));</span>
+    <span class="p">});</span></code></pre></figure>
+
+<p>对于这个jQuery的例子展开来讲讲。$(this)，jQuery中对this关键字的表示，在一个匿名函数中被使用，这个匿名函数在button的click方法中进行执行。$(this)绑定到button对象的原因是因为JQuery将$(this)绑定到了调用click方法的那个对象上。所以$(this)会取到jQuery button($(‘button’))对象的值，即便$(this)是定义在一个匿名函数中，其自身是无法获取到外层函数的this值的。</p>
+
+<p>##Javascript this关键字的核心是神马？
+JavaScript中this关键字的核心是：this是值是不确定的，只有当一个对象调用包含this定义的那个函数时，this的值才确定，我们称那个函数为this函数。</p>
+
+<p>虽然this看上去是指向包含其定义的那个对象，但是只有当this Function被调用的时候才能确定this的值。然而由于JavaScript的设计缺陷，this并不一定指向包含其定义的那个对象。后文会介绍这样的情况。</p>
+
+<p>##全局作用域下的this的使用
+在全局作用域下，当代码在浏览器中运行的时候，所有的全局对象和函数后定义在window对象上。所以在一个全局函数时，this会指向全局的window对象（在严格模式下，并非如此。）</p>
+
+<p>下面是一个例子：</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"> <span class="kd">var</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="s2">"Peter"</span><span class="p">,</span>
+    <span class="nx">lastName</span> <span class="o">=</span> <span class="s2">"Ally"</span><span class="p">;</span>
+<span class="err">​</span>
+    <span class="kd">function</span> <span class="nx">showFullName</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//这个函数中this指向是window object因为shouwFullName()是定义在全局作用域上，就像firstName 和lastName一样</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="err">​</span>
+    <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">firstName</span>   <span class="p">:</span><span class="s2">"Penelope"</span><span class="p">,</span>
+    <span class="na">lastName</span>    <span class="p">:</span><span class="s2">"Barrymore"</span><span class="p">,</span>
+    <span class="na">showFullName</span><span class="p">:</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//这里的this是指向 person 对象,因为 showFullName函数会被 person 对象所调用。</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="p">}</span>
+<span class="err">​</span>
+    <span class="nx">showFullName</span> <span class="p">();</span> <span class="c1">// Peter Ally​</span>
+<span class="err">​</span>
+    <span class="c1">// 所有的全局对象和函数都是定义在window对象下, 因此:​</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">showFullName</span> <span class="p">();</span> <span class="c1">// Peter Ally​</span>
+<span class="err">​</span>
+    <span class="c1">//定义在person 对象上的showFullname()方法中的this会指向person对象，因此：</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">showFullName</span> <span class="p">();</span> <span class="c1">// Penelope Barrymore</span></code></pre></figure>
+
+<p>##this中的坑
+this关键字在下边的情况下会有坑，在使用的时候，要注意一下。当我们借用了一个函数其中定义了this，当在回调函数中使用this的时候，当this在闭包时使用时，this在回调函数的时候。下边会对于这些情况一一分析，并给出解决方法。</p>
+
+<p>在继续之前，我们来看一点Context（上下文）的概念。
+JavaScript中的上下文与自然语言中的主语类似。”John is the winner who return the money” 这句话的的主语是John，那我可以说这句话的上下文是John，因为在这句话的整个的关注点在John上，所以who这个代词都是代表的John。同样就如同我们可以使用分号来切换句子的主语一样，我们可以通过用另外一个对象来调用一个函数来切换一个对象的现在的上下文环境（这句话翻译的确实有些问题，大家可以看原文。）来，还是看例子吧。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="na">firstName</span>   <span class="p">:</span><span class="s2">"Penelope"</span><span class="p">,</span>
+   <span class="na">lastName</span>    <span class="p">:</span><span class="s2">"Barrymore"</span><span class="p">,</span>
+   <span class="na">showFullName</span><span class="p">:</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="err">​</span><span class="c1">// The "context"​</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">);</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 当调用 showFUllname的时候，由于我们调用的是 person对象上的shownFullName方法。上下文是person对象</span>
+<span class="c1">// 在showFullName方法中的this就指向了person对象。</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">showFullName</span> <span class="p">();</span> <span class="c1">// Penelope Barrymore​</span>
+<span class="err">​</span>
+<span class="err">​</span><span class="c1">// If we invoke showFullName with a different object:​</span>
+<span class="err">​</span><span class="kd">var</span> <span class="nx">anotherPerson</span> <span class="o">=</span> <span class="p">{</span>
+<span class="na">firstName</span>   <span class="p">:</span><span class="s2">"Rohit"</span><span class="p">,</span>
+<span class="na">lastName</span>    <span class="p">:</span><span class="s2">"Khan"</span><span class="err">​</span>
+<span class="p">};</span>
+<span class="err">​</span>
+<span class="c1">//通过使用apply方法,this方法获得是调用的对象，因此：</span>
+<span class="c1">//通过使用apply方法，现在 上下文是 anotherPerson，因为是anotherPerson调用了 showFullName的方法。</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">showFullName</span><span class="p">.</span><span class="nx">apply</span> <span class="p">(</span><span class="nx">anotherPerson</span><span class="p">);</span> <span class="c1">// Rohit Khan​</span>
+<span class="err">​</span></code></pre></figure>
+
+<p>下面继续进入this关键字的坑阶段.</p>
+
+<p>###this在回调函数中的问题和解决
+当this是在回调函数中进行使用的时候，事情就变的有些奇怪了，看如下例子：</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="c1">//如下是一个简单的对象，他上边有个clickhandler方法，当我们点击一个button的时候，这个方法会被调用。</span>
+<span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">data</span><span class="p">:[</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"T. Woods"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">37</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"P. Mickelson"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">43</span><span class="p">}</span>
+    <span class="p">],</span>
+    <span class="na">clickHandler</span><span class="p">:</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">randomNum</span> <span class="o">=</span> <span class="p">((</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span> <span class="p">()</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">|</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// random number between 0 and 1​</span>
+<span class="err">​</span>
+    <span class="c1">//打印一个在data数组中随机一个人的名字和年龄。</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">randomNum</span><span class="p">].</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">randomNum</span><span class="p">].</span><span class="nx">age</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">//button是一个jquery对象吗，但是output是undefined因为在button对象上并没有data属相。</span>
+    <span class="nx">$</span> <span class="p">(</span><span class="s2">"button"</span><span class="p">).</span><span class="nx">click</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">clickHandler</span><span class="p">);</span> <span class="c1">// Cannot read property '0' of undefined</span></code></pre></figure>
+
+<p>在上文的例子中，由于button是一个对象，并且我们将user.clickhandler方法作为它click事件的回调函数中，在user.clickHandler方法中定义的this不在指向user对象。它会指向user.clickHandler执行时的那个对象，因为this是定义在user.clickhandler中的。由于调用user.click方法的是button对象，user.clickHandler会在button对象的click方法的中被执行。</p>
+
+<p>注意到一个点，是即使是我们使用了user.clickHanedlerhandler来调用这个方法（也没有其他什么方法能调用），clickHandler的方法的执行上下文是button对象，所以this现在是指向的button对象。</p>
+
+<p>在这里，我们可以注意到，当执行的上下文变化以后，我们执行了某些方法在其他的对象上而不是其本身定义时的那个对象上，this关键字就不指向原先的对象，而是指向调用这些方法的那个对象。
+如何解决能，其实方法也是很简单。我们可以使用bind(),apply(),call()等方法来确定this的值。
+为了解决上边的问题，进行如下的一些改变：</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"> <span class="nx">$</span><span class="p">(</span><span class="s2">"button"</span><span class="p">).</span><span class="nx">click</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">clickHandler</span><span class="p">.</span><span class="nx">bind</span> <span class="p">(</span><span class="nx">user</span><span class="p">));</span></code></pre></figure>
+
+<p>###闭包中的this问题
+另外一个使用this的问题是闭包中的问题。有一点很重要的需要说明的是闭包不能获取外层函数的this变量，这是因为this关键字只能被自己访问，不能被内层函数访问。可以看以下的例子：</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">tournament</span><span class="p">:</span><span class="s2">"The Masters"</span><span class="p">,</span>
+    <span class="na">data</span>      <span class="p">:[</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"T. Woods"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">37</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"P. Mickelson"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">43</span><span class="p">}</span>
+    <span class="p">],</span>
+<span class="err">​</span>
+    <span class="na">clickHandler</span><span class="p">:</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="err">​</span>    <span class="c1">//这里使用this.data是可以的，因为this指向user对象，并且data是user对象的一个属性。</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span> <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//但是匿名函数中的this就不是指向的user object了，因为内层函数的不是无法获得外层函数的this</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="s2">"What is This referring to? "</span> <span class="o">+</span> <span class="k">this</span><span class="p">);</span> <span class="c1">//[object Window]​</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">" is playing at "</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">tournament</span><span class="p">);</span>
+    <span class="c1">// T. Woods is playing at undefined​</span>
+    <span class="c1">// P. Mickelson is playing at undefined​</span>
+    <span class="p">})</span>
+    <span class="p">}</span>
+<span class="err">​</span>
+    <span class="p">}</span>
+<span class="err">​</span>
+    <span class="nx">user</span><span class="p">.</span><span class="nx">clickHandler</span><span class="p">();</span> <span class="c1">// What is "this" referring to? [object Window]</span></code></pre></figure>
+
+<p>在匿名函数内的this不能获取到外部函数的this，所以在非严格模式下，他被绑定到了window对象上。
+如何解决呢？
+答案很简单把外部函数的this赋给另外的一个变量。看例子：</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">tournament</span><span class="p">:</span><span class="s2">"The Masters"</span><span class="p">,</span>
+    <span class="na">data</span>      <span class="p">:[</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"T. Woods"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">37</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"P. Mickelson"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">43</span><span class="p">}</span>
+    <span class="p">],</span>
+<span class="err">​</span>
+    <span class="na">clickHandler</span><span class="p">:</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//在这里我们将this赋给另外的一个变量，以便我们后边使用。</span>
+    <span class="kd">var</span> <span class="nx">theUserObj</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span> <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Instead of using this.tournament, we now use theUserObj.tournament​</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">" is playing at "</span> <span class="o">+</span> <span class="nx">theUserObj</span><span class="p">.</span><span class="nx">tournament</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="p">}</span>
+<span class="err">​</span>
+    <span class="p">}</span>
+<span class="err">​</span>
+    <span class="nx">user</span><span class="p">.</span><span class="nx">clickHandler</span><span class="p">();</span>
+    <span class="c1">// T. Woods is playing at The Masters​</span>
+    <span class="c1">//  P. Mickelson is playing at The Masters</span></code></pre></figure>
+
+<p>###this方法被赋给一个变量
+当我们将一个使用了this的方法覆了一个变量的时候，this的值会变的与我们预想的不同。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">  <span class="c1">// 这里的data是一个全局变量</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"Samantha"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">12</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"Alexis"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">14</span><span class="p">}</span>
+    <span class="p">];</span>
+<span class="err">​</span>
+    <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// 这里的data是user对象的一个属性</span>
+    <span class="na">data</span>    <span class="p">:[</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"T. Woods"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">37</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"P. Mickelson"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">43</span><span class="p">}</span>
+    <span class="p">],</span>
+    <span class="na">showData</span><span class="p">:</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">randomNum</span> <span class="o">=</span> <span class="p">((</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span> <span class="p">()</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">|</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// random number between 0 and 1​</span>
+<span class="err">​</span>
+    <span class="c1">// This line is adding a random person from the data array to the text field​</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">randomNum</span><span class="p">].</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">randomNum</span><span class="p">].</span><span class="nx">age</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="err">​</span>
+    <span class="p">}</span>
+<span class="err">​</span>
+    <span class="c1">// 将 user.showData赋给一个变量</span>
+    <span class="kd">var</span> <span class="nx">showUserData</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">showData</span><span class="p">;</span>
+<span class="err">​</span>
+    <span class="c1">// 当执行showUserData函数的时候，this指向了全局的data数组，而不是user上定义的data数组。</span>
+    <span class="c1">//​</span>
+    <span class="nx">showUserData</span> <span class="p">();</span> <span class="c1">// Samantha 12 (from the global data array)​</span></code></pre></figure>
+
+<p>如何解决呢，也很简单，使用bind方法</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">var</span> <span class="nx">showUserData</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">showData</span><span class="p">.</span><span class="nx">bind</span> <span class="p">(</span><span class="nx">user</span><span class="p">);</span></code></pre></figure>
+
+<p>###借用方法中的this
+借用方法是JavaScript中的常见的实践方法，我们经常在实际的使用中应用这种方法。还是用一个看看在借用方法中this的问题。</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="c1">//这里有两个对象，一个里边有 avg()方法，另外一个没有，我们会借用这个 avg()方法。</span>
+<span class="kd">var</span> <span class="nx">gameController</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">scores</span>  <span class="p">:[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">77</span><span class="p">],</span>
+    <span class="na">avgScore</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+    <span class="na">players</span> <span class="p">:[</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"Tommy"</span><span class="p">,</span> <span class="na">playerID</span><span class="p">:</span><span class="mi">987</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">23</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s2">"Pau"</span><span class="p">,</span> <span class="na">playerID</span><span class="p">:</span><span class="mi">87</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">33</span><span class="p">}</span>
+    <span class="p">]</span>
+    <span class="p">}</span>
+<span class="err">​</span>
+    <span class="kd">var</span> <span class="nx">appController</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">scores</span>  <span class="p">:[</span><span class="mi">900</span><span class="p">,</span> <span class="mi">845</span><span class="p">,</span> <span class="mi">809</span><span class="p">,</span> <span class="mi">950</span><span class="p">],</span>
+    <span class="na">avgScore</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+    <span class="na">avg</span>     <span class="p">:</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="err">​</span>
+    <span class="kd">var</span> <span class="nx">sumOfScores</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">scores</span><span class="p">.</span><span class="nx">reduce</span> <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">cur</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">prev</span> <span class="o">+</span> <span class="nx">cur</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="err">​</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">avgScore</span> <span class="o">=</span> <span class="nx">sumOfScores</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">scores</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">//如果执行以下的代码 gameController.avgScore的属性会被设置成为appController对象的scores数组的平均值。</span>
+    <span class="nx">gameController</span><span class="p">.</span><span class="nx">avgScore</span> <span class="o">=</span> <span class="nx">appController</span><span class="p">.</span><span class="nx">avg</span><span class="p">();</span></code></pre></figure>
+
+<p>avg方法中的this关键字会不会指向gameController对象，它会只指向appController对象的，因为是appController对象啊调用了这个函数。</p>
+
+<p>如何解决呢？
+为解决这个问题我们要确定appController.avg()方法指向gameController，我们可以使用apply()方法：</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js">    <span class="c1">//利用apply方法将this指向了gameContrller对象，同时将gameController.scores作为参数传入。</span>
+    <span class="nx">appController</span><span class="p">.</span><span class="nx">avg</span><span class="p">.</span><span class="nx">apply</span> <span class="p">(</span><span class="nx">gameController</span><span class="p">,</span> <span class="nx">gameController</span><span class="p">.</span><span class="nx">scores</span><span class="p">);</span>
+<span class="err">​</span>
+    <span class="c1">//我们借用了appController对象上的avg()方法，并将gameController的avgScore设置成功了。</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="nx">gameController</span><span class="p">.</span><span class="nx">avgScore</span><span class="p">);</span> <span class="c1">// 46.4​</span>
+<span class="err">​</span>
+    <span class="c1">//注意appController的avgSocre还是null</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="p">(</span><span class="nx">appController</span><span class="p">.</span><span class="nx">avgScore</span><span class="p">);</span> <span class="c1">// null</span></code></pre></figure>
+
+<p>gameController借用了appController的avg()的方法，appController中的avg()方法中this会被指向到gameController中，因为我们使用了apply()方法，apply方法会根据参数准确的制定this的值。</p>
+
+<p>##结束语
+希望这篇文章可以帮助大家能够很多的理解JavaScript中的this关键字，以及this中各个坑和解决方法。</p>
+
+<p><a href="http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/">原文</a></p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/前端开发">前端开发</a>,&nbsp;<a href="/tag/翻译">翻译</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%5B%E8%AF%91%5D%E7%90%86%E8%A7%A3%E5%92%8C%E6%8E%8C%E6%8F%A1JavaScript%E4%B8%AD%E7%9A%84this&url=http%3A%2F%2Faaronchen.cn%2F2015%2F10%2F26%2Fjs-this.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2015%2F10%2F26%2Fjs-this.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

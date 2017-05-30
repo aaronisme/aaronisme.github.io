@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>糖记</title>
+  <meta name="description" content="糖记 - 为自己，为家人糖记是一款用于血糖数据记录的app，是我第一款个人app，2015年的目标就是要上线一款自己的app，终于赶在在农历新年之前实现了：）。">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="糖记 - 为自己，为家人糖记是一款用于血糖数据记录的app，是我第一款个人app，2015年的目标就是要上线一款自己的app，终于赶在在农历新年之前实现了：）。" />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="糖记" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="糖记">
+  <meta name="twitter:description" content="糖记 - 为自己，为家人糖记是一款用于血糖数据记录的app，是我第一款个人app，2015年的目标就是要上线一款自己的app，终于赶在在农历新年之前实现了：）。">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2016/01/24/tangji.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">糖记</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">January 24, 2016</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <h1 id="section">糖记 - 为自己，为家人</h1>
+<p>糖记是一款用于血糖数据记录的app，是我第一款个人app，2015年的目标就是要上线一款自己的app，终于赶在在农历新年之前实现了：）。</p>
+
+<h2 id="section-1">糖记的由来</h2>
+<p>为什么要做糖记这么一个app呢？2015年对于我来说是很特殊的一年，因为这年我当父亲了，都说不当爹不知父母恩。的确，自有自己有了亲身的体会才知道父母的养育是多么的辛苦。虽然父母之恩无以为报，但是如何孝敬父母呢？可能最好的方式是多点陪伴吧，多点关注吧。父亲血糖有问题，算是轻度的糖尿病。通过饮食和运动的控制，基本还是可以的。但是还是需要定时的进行体检。以前知道有这么个事，因为没什么表现和症状，所以我没太在意。今年陪着父亲去体检了几次，才了解到了对于糖尿病并不能轻视。它的并发症十分的可怕。目前中国18岁以上的成年人有10%是糖尿病的患者，什么概念？就是有1个亿。如果我们把按照年龄来划分，这个比例会更高。谁都不想得病，但是真是有病了，还是要正确对待。虽然糖尿病还没有根治的方法，但是只要能有效的控制，糖尿病人还是可以幸福的生活的。糖尿病的治疗中，血糖的检测是十分的重要。看到父亲还是靠手抄来记录血糖的，就觉得在这个时代应该是有更好的办法。在appstore上也找了不少app，研究了一番，有个是要注册的，上来就问手机号。呵呵，鬼知道你把我信息会怎么卖了。还有就是各种推送的，不胜其烦，就是简单的记录一下，没有必要有那么多功能吧。那就自己造一个吧，送给父亲当做礼物。</p>
+
+<h2 id="section-2">糖记的功能</h2>
+<p>这是糖记的第一个版本，功能还是很简单的。就是记录血糖，血压和体重的测量值，还有血糖测量的提醒。
+<img src="/resources/img/tj-1.PNG" alt="糖记-1" />
+<img src="/resources/img/tj-4.PNG" alt="糖记-2" />
+张小龙说,好的app就是应该让用户用完就走的app，糖记希望能做到这一点。</p>
+
+<h2 id="section-3">糖记的未来</h2>
+<p>未来的糖记会逐步的添加一些靠谱的功能，例如一些靠谱的科普信息（例如说丁香园，老人的手机里各种养生的“秘方”满天飞，给父母推荐了丁香园的公众号，能得到点靠谱的信息）。还有一个重要的功能，我会着手完成的是，监护者模式。现在越来越多的年轻人与父母不在一起，都在外打拼。每回给家里打电话，父母都说好着呢，让你不要操心。但是事实可能并不是那样。所以糖记未来的一个重要功能就是监护者模式，让在外打拼，放心不下的年轻人能看到父母的血糖情况。</p>
+
+<h2 id="section-4">问与答</h2>
+<p>问：为什么选择糖记？
+答：第一，糖记简单，好用。第二，用户所有的数据都在自己的手机上存储，糖记没有数据的占有欲。第三，糖记是个人开发，不作恶是我的信条。</p>
+
+<p>问：有没有Android版？
+答：这个目前还没有，个人比较喜欢Apple的平台，所以只做了IOS版本，当然如果，有小伙伴觉得糖记是个有意思的事情，欢迎联系我，帮助我开发出糖记的Android版。另外个人觉得，IOS的平台还是安全一点，对于科技知识不是那么足的父母那一辈人来说，IOS平台是个相对较好的选择。</p>
+
+<h2 id="section-5">最后的话</h2>
+<p>糖记是我在业余时间做一款app。如果你的家人如果有血糖的问题，希望糖记能帮助到他们。当然，糖记现在还很年轻，还有很多能改进的地方，例如糖记的图标我就不是很满意（因为我不会设计，图标是稍微自学了Sketch，简单画出来的）。如何你觉得糖记做的是一件有意思，有意义的事情，并且和我一样业余的时间喜欢写代码玩，欢迎和我联系，我们一起把糖记做好。</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/IOS">IOS</a>,&nbsp;<a href="/tag/生活">生活</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%E7%B3%96%E8%AE%B0&url=http%3A%2F%2Faaronchen.cn%2F2016%2F01%2F24%2Ftangji.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2016%2F01%2F24%2Ftangji.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

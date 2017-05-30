@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>AARONISME</title>
+  <meta name="description" content="This is Aaron Chen's personal blog,welcome.
+">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="This is Aaron Chen's personal blog,welcome.
+" />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="AARONISME" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AARONISME">
+  <meta name="twitter:description" content="This is Aaron Chen's personal blog,welcome.
+">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/page7/">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="home">
+
+<div class="site-header-container has-cover" style="background-image: url(/assets/header_image.jpg);">
+  <div class="scrim has-cover">
+    <header class="site-header">
+      <h1 class="title">AARONISME</h1>
+      <p class="subtitle">Do One Thing and Do it well</p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+<ul class="post-list">
+  
+  <li>
+    <h2>
+      <a class="post-link" href="/jekyll/update/2015/08/13/project-summary-01.html">Ionic 项目总结与分享</a>
+    </h2>
+    <section class="post-excerpt" itemprop="description">
+      <p>IONIC 是较为红火的mobile app 开发框架，所以花了点时间研究了一下，一下就是对于具体实施的一些项目中的总结和分享。
+
+app的设计思想
+
+与web不同的是，在app中的设计的思想是要注意数据的cache的，从本质上来讲，app就是原来的desktop上的软件，但是在目前的情况下，...</p>
+    </section>
+    <section class="post-meta">
+      <div class="post-date">August 13, 2015</div>
+      <div class="post-categories">
+      in 
+        
+        <a href="/category/jekyll">Jekyll</a>, 
+        
+      
+        
+        <a href="/category/update">Update</a>
+        
+      
+      </div>
+    </section>
+  </li>
+  
+  <hr>
+  
+  
+  <li>
+    <h2>
+      <a class="post-link" href="/2015/08/03/CSS-tricks-video-explain.html">CSStricks Time-让video响应式原理分析</a>
+    </h2>
+    <section class="post-excerpt" itemprop="description">
+      <p>上一篇分享到了如何让video可以做的响应式，那么今天我们具体来分析一下到底是如何做到的。首先现在的目前的video都是有固定的比例的，一如4:3，一如16:9。无论我们如何缩放，我们也要保证这个比例是不会变化的。所以这是视频缩放的前提。
+
+首先给介绍一个css tricks 那就是paddi...</p>
+    </section>
+    <section class="post-meta">
+      <div class="post-date">August 3, 2015</div>
+      <div class="post-categories">
+      
+      </div>
+    </section>
+  </li>
+  
+  <hr>
+  
+  
+  <li>
+    <h2>
+      <a class="post-link" href="/2015/07/31/CSS-tricks-video.html">CSStricks Time-如何让你的video响应式</a>
+    </h2>
+    <section class="post-excerpt" itemprop="description">
+      <p>做前端的同学不知道对于CSS感觉怎么样，反正我的感觉是挺酸爽的。尤其是mobile first后，一个页面要适应多种客户端。虽然已经有想bootstrap.fundation之类的东西可以帮助我们，但是在一些时候要做到响应式还是挺麻烦的事情，有时候还有一些tricks的东西。最近在玩一些东西的...</p>
+    </section>
+    <section class="post-meta">
+      <div class="post-date">July 31, 2015</div>
+      <div class="post-categories">
+      
+      </div>
+    </section>
+  </li>
+  
+  <hr>
+  
+  
+  <li>
+    <h2>
+      <a class="post-link" href="/2015/03/23/talk1.html">开放的技术才有未来</a>
+    </h2>
+    <section class="post-excerpt" itemprop="description">
+      <p>大家好，好久时间没有更新了，大家也许会问，图表君干嘛去了，是不是不打算做了呢？当然不是了，图表君最近很忙，参与了一个高大上的项目，看过以前文章的同学可能知道了，对就是防治大气污染的一个项目中。也算是为了我国的环保行业做出一点贡献了吧。
+
+说起这个项目，具体的细节，这里就不多介绍了。图表君在这里...</p>
+    </section>
+    <section class="post-meta">
+      <div class="post-date">March 23, 2015</div>
+      <div class="post-categories">
+      
+      </div>
+    </section>
+  </li>
+  
+  <hr>
+  
+  
+  <li>
+    <h2>
+      <a class="post-link" href="/2015/03/17/RAVE6.html">RAVE中的自定义axis的方法</a>
+    </h2>
+    <section class="post-excerpt" itemprop="description">
+      <p>在图表中往往有很纠结的地方，比如我们既想方便的做出一个图形，同时也想让图形具有很强的灵活性。所以要满足这样的需求也是挺难的。打个比方说在以往的图库的图形引擎中要更改一个自定义一些图，确实也是很挺困难的。但是RAVE提供的VizJSon的语法描述语言，所以它的灵活性就有相应的提升，那么如何表现呢...</p>
+    </section>
+    <section class="post-meta">
+      <div class="post-date">March 17, 2015</div>
+      <div class="post-categories">
+      
+      </div>
+    </section>
+  </li>
+  
+  
+</ul>
+
+<nav class="pagination" role="navigation">
+	<p>
+    
+			
+			<a class="newer-posts" href="/page6">
+				<span class="fa-stack fa-lg">
+					<i class="fa fa-square fa-stack-2x"></i>
+					<i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
+				</span>
+			</a>
+			
+		
+		<span class="page-number">Page 7 of 9</span>
+		
+		<a class="newer-posts" href="/page8">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-square fa-stack-2x"></i>
+        <i class="fa fa-angle-double-right fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+		
+	</p>
+</nav>
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

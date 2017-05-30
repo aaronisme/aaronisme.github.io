@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CSStricks Time-如何让你的video响应式</title>
+  <meta name="description" content="做前端的同学不知道对于CSS感觉怎么样，反正我的感觉是挺酸爽的。尤其是mobile first后，一个页面要适应多种客户端。虽然已经有想bootstrap.fundation之类的东西可以帮助我们，但是在一些时候要做到响应式还是挺麻烦的事情，有时候还有一些tricks的东西。最近在玩一些东西的时候，发现了一些，记...">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="做前端的同学不知道对于CSS感觉怎么样，反正我的感觉是挺酸爽的。尤其是mobile first后，一个页面要适应多种客户端。虽然已经有想bootstrap.fundation之类的东西可以帮助我们，但是在一些时候要做到响应式还是挺麻烦的事情，有时候还有一些tricks的东西。最近在玩一些东西的时候，发现了一些，记..." />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="CSStricks Time-如何让你的video响应式" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CSStricks Time-如何让你的video响应式">
+  <meta name="twitter:description" content="做前端的同学不知道对于CSS感觉怎么样，反正我的感觉是挺酸爽的。尤其是mobile first后，一个页面要适应多种客户端。虽然已经有想bootstrap.fundation之类的东西可以帮助我们，但是在一些时候要做到响应式还是挺麻烦的事情，有时候还有一些tricks的东西。最近在玩一些东西的时候，发现了一些，记...">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2015/07/31/CSS-tricks-video.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">CSStricks Time-如何让你的video响应式</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">July 31, 2015</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>做前端的同学不知道对于CSS感觉怎么样，反正我的感觉是挺酸爽的。尤其是mobile first后，一个页面要适应多种客户端。虽然已经有想bootstrap.fundation之类的东西可以帮助我们，但是在一些时候要做到响应式还是挺麻烦的事情，有时候还有一些tricks的东西。最近在玩一些东西的时候，发现了一些，记录在这里。</p>
+
+<p>当我们在web page里要嵌入一个video的时候，如何做到让他能做到响应式呢，当页面的窗口大小变化的时候，video的大小也会发生相应的变化。如何做到呢？分以下的几种情况：
+当使用video tag的时候最简单的方法是使用以下的CSS:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">video</span><span class="p">{</span>
+	<span class="nl">max-width</span><span class="p">:</span><span class="m">100%</span><span class="p">;</span>
+	<span class="nl">height</span><span class="p">:</span><span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>如此的简单暴力，直接设置了max-width，以及height就ok了。当时这种方式有个问题，就是当使用iframe或者object tag的时候，这样的方法就是不行了。因为当嵌入很多视频网站的video的时候，上述方法就不行了。那如何解决这样的问题呢？
+其实也是很简单的。就是将iframe 或者 object tag 用一个div标签包起来。设置这个div的padding-bottom为50% - 60%，postion 为relative。然后将iframe or tag 标签的width 和height标签设为100%，postion设为 absolute。这就迫使iframe or object 标签占据div的全尺寸。上代码：
+CSS:</p>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.video-container</span><span class="p">{</span>
+	<span class="py">postion</span><span class="p">:</span><span class="nb">relative</span><span class="p">;</span>
+	<span class="nl">padding-top</span><span class="p">:</span><span class="m">30px</span><span class="p">;</span>
+	<span class="nl">padding-bottom</span><span class="p">:</span><span class="m">56%</span><span class="p">;</span>
+	<span class="nl">height</span><span class="p">:</span><span class="m">0</span><span class="p">;</span>
+	<span class="nl">overflow</span><span class="p">:</span><span class="nb">hidden</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.vide-container</span> <span class="nt">iframe</span><span class="o">,</span>
+<span class="nc">.vide-container</span> <span class="nt">object</span><span class="o">,</span>
+<span class="nc">.vide-container</span> <span class="nt">embeded</span><span class="p">{</span>
+	<span class="py">postion</span><span class="p">:</span><span class="nb">absolute</span><span class="p">;</span>
+	<span class="nl">top</span><span class="p">:</span><span class="m">0</span><span class="p">;</span>
+	<span class="nl">left</span><span class="p">:</span><span class="m">0</span><span class="p">;</span>
+	<span class="nl">width</span><span class="p">:</span><span class="m">100%</span><span class="p">;</span>
+	<span class="nl">height</span><span class="p">:</span><span class="m">100%</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>html:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"video-container"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;iframe</span> <span class="na">src=</span><span class="s">"http://player.vimeo.com/video/6284199?title=0&amp;byline=0&amp;portrait=0"</span> <span class="na">width=</span><span class="s">"800"</span> <span class="na">height=</span><span class="s">"450"</span> <span class="na">frameborder=</span><span class="s">"0"</span><span class="nt">&gt;&lt;/iframe&gt;</span>			
+		<span class="nt">&lt;/iframe&gt;</span>
+	<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+
+<p>我是看到这篇文章的发现这些tricks的。大家可以参考<a href="http://avexdesigns.com/responsive-youtube-embed/">一下</a>。</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/前端开发">前端开发</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=CSStricks+Time-%E5%A6%82%E4%BD%95%E8%AE%A9%E4%BD%A0%E7%9A%84video%E5%93%8D%E5%BA%94%E5%BC%8F&url=http%3A%2F%2Faaronchen.cn%2F2015%2F07%2F31%2FCSS-tricks-video.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2015%2F07%2F31%2FCSS-tricks-video.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

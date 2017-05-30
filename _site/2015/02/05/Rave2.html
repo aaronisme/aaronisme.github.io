@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>工欲善其事，必先利其器 -  RAVE(2)</title>
+  <meta name="description" content="这是RAVE系列文章的第二篇，你可以在微信公众号：多彩数据（微信号：Data_Visualization)后台回复”数据”查看此系列的其他文章。">
+  
+  <meta name="author" content="Aaron Chen">
+  <meta name="copyright" content="&copy; Aaron Chen 2017">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="这是RAVE系列文章的第二篇，你可以在微信公众号：多彩数据（微信号：Data_Visualization)后台回复”数据”查看此系列的其他文章。" />
+  <meta property="og:url" content="http://aaronchen.cn" />
+  <meta property="og:site_name" content="AARONISME" />
+  <meta property="og:title" content="工欲善其事，必先利其器 -  RAVE(2)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://aaronchen.cn/assets/avatar.jpeg" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="工欲善其事，必先利其器 -  RAVE(2)">
+  <meta name="twitter:description" content="这是RAVE系列文章的第二篇，你可以在微信公众号：多彩数据（微信号：Data_Visualization)后台回复”数据”查看此系列的其他文章。">
+  <meta name="twitter:image" content="http://aaronchen.cn/assets/logo.png">
+  <meta name="twitter:url" content="http://aaronchen.cn">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://aaronchen.cn/2015/02/05/Rave2.html">
+  <link rel="alternate" type="application/rss+xml" title="AARONISME" href="http://aaronchen.cn/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <span>AARONISME</span>
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+          <li class="nav-link"><a href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">工欲善其事，必先利其器 -  RAVE(2)</h1>
+      <p class="info">by <strong>aaronisme</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">February 5, 2015</div>
+  <div class="post-categories">
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>这是RAVE系列文章的第二篇，你可以在微信公众号：多彩数据（微信号：Data_Visualization)后台回复”数据”查看此系列的其他文章。</p>
+
+<p>上文书咱们简单介绍了下RAVE的特点，从这篇文章开始我们就一步步的介绍RAVE的知识，先从环境搭建开始。第一步需要获得RAVE的SDK，这个可以从RAVE的官网：<a href="http://rave.mybluemix.net/downloads.jsp">link</a> 上下载 。当然了，要使用SDK得确保你的机器上正确安装了JAVA 1.6 以上的版本。（对于非程序员的看官，这一节应该是有些难度，对于这个问题，图表君有两个建议。第一，找个附近的程序猿，帮你安装一下。第二个方法是图表君后边会搭建一个在线平台帮助大家学习使用RAVE，当然这个还需要一些时间，哪位土豪朋友，能资助台服务器给图表君那就极好了。）</p>
+
+<p>当下载好了RAVE的SDK以后，进入Bin 目录，点击 visboard.bat(Windows 平台下,在linux or Mac 平台下，运行 visboard.sh)就可以启动 RAVE的SDK了，如下图所示。<img src="/resources/img/rave2-pic4.png" alt="图形" /></p>
+
+<p>这就是RAVE的IDE的窗口了，Windows上的界面与这个稍有不同。将编辑好的vizJson输入在左边的输入框中，点击submit。那相应的图形就能再右边的窗口上显示出来了。是不是很简单？</p>
+
+<p>在 SDK的菜单栏中，选择file - open，选择SDK目录下的Scenes文件夹，再选择里边的gallery文件夹，在这个文件夹里边有很多已经写好的VizJson的文件，打开这些文件，在右边的图形框里我们就能看到对应的图形。下图我们看到的就是一个<img src="/resources/img/rave2-pic1.png" alt="航班情况图" />。</p>
+
+<p>来个入门例子
+配置好了RAVE的SDK，下边我们看一个简单的例子，来体会下RAVE的图形能力。
+在上文提到的gallery 文件夹中，找到SimpleScatter.Json这个文件，我们可以在右边的图形区看到这个一个<img src="/resources/img/rave2-pic2.png" alt="散点图" />。</p>
+
+<p>如果现在我想在这个图形上加一条线把所有的点都连接起来，该怎么做呢？在RAVE中，这个很简单，只要将线加上去就好了啊。现在我们来实现它，在左边的编辑区，找到element的代码段，在 “type: point”的大括号前边，加上这么一段：</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="w">     </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="p">{</span><span class="nt">"field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m1"</span><span class="p">}},</span><span class="w">
+         </span><span class="p">{</span><span class="nt">"field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m2"</span><span class="p">}}</span><span class="w">
+       </span><span class="p">]</span><span class="w">
+     </span><span class="p">}</span><span class="err">,</span></code></pre></figure>
+
+<p>点击 submit，是不是所有的点都被一条线连接起来了？<img src="/resources/img/rave2-pic3.png" alt="图形" /></p>
+
+<p>这就RAVE的强大之处，简单地修改vizJson的定义文件，那么就能获得想要的图形。大家可以自己的试一试，任何问题都可以和图表君进行交流。</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/前端开发">前端开发</a>,&nbsp;<a href="/tag/Visualization">Visualization</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=%E5%B7%A5%E6%AC%B2%E5%96%84%E5%85%B6%E4%BA%8B%EF%BC%8C%E5%BF%85%E5%85%88%E5%88%A9%E5%85%B6%E5%99%A8+-++RAVE%282%29&url=http%3A%2F%2Faaronchen.cn%2F2015%2F02%2F05%2FRave2.html&via=aaronisme"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Faaronchen.cn%2F2015%2F02%2F05%2FRave2.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">AARONISME</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+          <li class="nav-link"><a href="/projects/">Projects</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mail@aaronchen.cn">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mail@aaronchen.cn</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/aaron1sme" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/aaronisme" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">aaronisme</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://www.linkedin.com/in/dongaaronchen/" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Dong Chen</span>
+            </a>
+          </li>
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">This is Aaron Chen's personal blog,welcome.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>
