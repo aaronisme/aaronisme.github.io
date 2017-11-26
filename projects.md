@@ -14,5 +14,5 @@ Game 中记录我写的一些有意思的小游戏，其中一些是我自己的
 
 [maze](http://aaronchen.cn/game/maze)
 
-## Dolores
+## [Dolores](https://ac-dolores.github.io/dolores-frontend/#/topics)
 Dolores 是目前正在进行的一个小小的个人side Projects。希望用于作为我的个人助手。
