@@ -206,4 +206,4 @@ render(<DogMouse/>, document.getElementById('app'))
 
 3. 命名冲突。利用render props是没有Component wrapp的，所以除非定义Component时候自己命名重复，否则不会有命名冲突的问题。
 
-从上面的例子上看，render props可以再大多数情况下替代HOC。react的官方文档上，目前也正式的介绍了[render props](https://reactjs.org/docs/render-props.html),下次让你想用HOC的时候，来是试一试Render props把。
+从上面的例子上看，render props可以再大多数情况下替代HOC。react的官方文档上，目前也正式的介绍了[render props](https://reactjs.org/docs/render-props.html),下次让你想用HOC的时候，来试一试Render props把。
