@@ -1,4 +1,4 @@
-_site
+_site/
 node_modules
 .DS_Store
 */.DS_Store
@@ -7,4 +7,3 @@ node_modules
 .idea/
 .bundle
 .sass-cache
-_site/
