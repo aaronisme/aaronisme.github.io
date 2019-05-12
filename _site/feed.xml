@@ -6,9 +6,559 @@
 </description>
     <link>http://aaronchen.cn/</link>
     <atom:link href="http://aaronchen.cn/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 30 May 2017 13:31:24 +0800</pubDate>
-    <lastBuildDate>Tue, 30 May 2017 13:31:24 +0800</lastBuildDate>
+    <pubDate>Sat, 11 May 2019 19:14:01 +0800</pubDate>
+    <lastBuildDate>Sat, 11 May 2019 19:14:01 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Cobo 一周年</title>
+        <description>&lt;p&gt;转眼间加入Cobo已经过了一年了，从作为一名工程师加入Cobo，到如今负责Cobo Wallet和Cobo Vault两条产品的Engineering Manager，一年的时间发生了太多的事情，就像圈内人的一句老话，币圈一天，人间一年。加入Cobo的这一年确实发生了太多的故事。&lt;/p&gt;
+
+&lt;h2 id=&quot;dive-into-blockchain&quot;&gt;Dive into BlockChain&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/resources/img/transactioncycle.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;年纪越大，我越相信一句话叫顺势而为，或者说选择比努力更重要。如果回退到08年一个工程师选择互谅网还是IT外企，10年以后今天可能有翻天覆地的差别。我认为生在这个时代，作为一个技术人可以说是幸福的，因为你有机会见证并参与历史的发生。但是首先你得做出自己的选择。人工智能，区块链，VR&amp;amp;AR,可能都是大势，也可能不是。至少在深入了解了比特币和以太坊之后，我觉得区块链是个势。那么后边的问题就简单多了，既然相信那么把自己放进去。Dive into it！&lt;/p&gt;
+
+&lt;h2 id=&quot;cobo---first-meet&quot;&gt;初识Cobo - first meet&lt;/h2&gt;
+&lt;p&gt;初识Cobo是在朋友圈中，一个朋友转发了Cobo Wallet 1.0上线的News，点开一看不错啊。再一看还在招人，于是乎就聊了一下，最后经过各种故事，结论是：一个30多岁的老男人，背上包，进京务工了。依然记得那是清明假期的最后一天，进了办公室放下包，当天就开始拉代码，大环境。第二天就开始提交代码了。这个创业公司的节奏还真是不一样。进入Cobo的一个project就是开发HD Wallet。一大波新鲜的名词铺面二来，什么是椭圆曲线，什么是BIP44，什么是助记词，什么是Seed，什么是Path。一些都陌生而新鲜。真是有意思。跟随着团队的努力，我们上线了HD Wallet，支持了ETH的Dapp，钱包开发生涯就此展开。&lt;/p&gt;
+
+&lt;h2 id=&quot;vault---working-togetherbuild-something-out&quot;&gt;Vault诞生记 - Working Together，Build Something Out&lt;/h2&gt;
+&lt;p&gt;HD Wallet开发暂告一段落，我们几个刚入职的同事组成了新的项目组，来开发我们的硬件产品Cobo Vault。那近半年的开发中，我们从零到一的把一个新的产品Build出来了。每次的方案设计，技术讨论，动态二维码的头脑风暴，多签方案的激烈讨论，数据层的架构设计。各种种种，现在想来都历历在目。记得某个周末，我们要catch一个时间节点，大家吃完火锅又继续修bug，最后保证一个节点的达成，现在想想还是很有意思。终于2018年11月，Vault上线了，Cobo的第一代硬件钱包在我们手中诞生。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/img/vault.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;be-a-world-champion-this-time&quot;&gt;这次，我们做一次世界第一 - Be a World Champion this Time&lt;/h2&gt;
+&lt;p&gt;很难想象在其他领域，有机会做到世界第一。2018年11月Cobo Wallet成为首家支持Tron Dapp的移动钱包。作为这个feature的主要开发者，还是挺自豪自己可以有机会当一次世界第一的。2个礼拜的全力开发中，可以参考的方案基本没有，读文档，读源码，定方案，修改开源的library，这种开发的体验之前很少有过。当最后终于完成以后，那种成就感也是之前不曾有过的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/resources/img/tronDapp2.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;refactoring-wallet---have-balls-and-take-action&quot;&gt;Refactoring Wallet - Have Balls and Take Action&lt;/h2&gt;
+&lt;p&gt;Have Balls and Take Action 一直是我们鼓励的sprint，作为工程师对于你的最好定义就是你做的产品，当发现代码有问题了，乱了，怎么办？是内心骂一句：这是什么shit，然后继续这么写？还是大声的Say NO，我们应该fix it。我认为的好的工程师当然是后一种，在一段长时间的feature开发后，我们发现代码中有不少问题，新的功能越来越难添加，老的代码维护起来难度也有所增强。我们开始的一段对于老代码的手术，将私钥管理更加模块化，根据业务建立起Data Model，将数据层和展示层分离的更加清楚。经过这些过程也让我对于React中的高阶用法例如HOC，Render Props的这些特性理解的更加的深入了。&lt;/p&gt;
+
+&lt;h2 id=&quot;to-be-continue&quot;&gt;To Be Continue&lt;/h2&gt;
+&lt;p&gt;2019年初币价跌的一地鸡毛，但是我反而觉得这确实是最好的时代，闪电网络的逐渐稳定和逐步运行，Cosmos的主链上线。区块链的技术一片蓬勃。与时代一起成长，未来可期。&lt;/p&gt;
+
+&lt;p&gt;最后，打个广告，我们北京，西安的办公室都在招聘技术岗位，具体的岗位信息可以点击阅读原文查看。有意愿者可以直接发简历到我的邮箱：chend@cobo.com，我们会优先处理。&lt;/p&gt;
+</description>
+        <pubDate>Fri, 10 May 2019 19:15:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2019/05/10/cobo-one-year.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2019/05/10/cobo-one-year.html</guid>
+        
+        <category>BlockChain</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Why BlockChain Matters</title>
+        <description>&lt;p&gt;2018年已经过去了4分之三，要是今年什么技术名词最为热门，那一定是BlockChain了，年初BitCoin逼近2W刀，吸引了大多数人的眼光，到目前跌回6千刀左右，让出入币圈的同学们感受到了币圈的疯狂。去年爱西欧一飞冲天，各种项目层出不穷，到现在各种凉凉。区块链，爱他的人说他是天使，恨他的人说他是魔鬼。从去年11月开始，我关注和学习blockchain也已经快一年了。那么到底什么是blockchain？这是每次和朋友聊天的时候，朋友们最爱问的问题。这一系列文章，就尝试着一探究竟。&lt;/p&gt;
+
+&lt;h1 id=&quot;bitcoin---blockchain-10&quot;&gt;BitCoin - BlockChain 1.0&lt;/h1&gt;
+&lt;p&gt;说起区块链，那么就不得不提比特币。2008年中本聪的一片白皮书横空出世，把BitCoin带到了人间。BlockChain技术也相应诞生。那么什么是BitCoin呢？从白皮书的名字上定义清楚了。他是一个点对点的电子货币系统。可以说它是第一个可用的去中心化的数字货币系统。任何数字货币都要回答3个问题：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;如何保证数字货币的真实性和不可伪造性？&lt;/li&gt;
+  &lt;li&gt;如何避免双花问题？&lt;/li&gt;
+  &lt;li&gt;如何保证数字货币的产权？（我是拥有这笔钱的唯一用户）
+如果我们看传统的货币，这些问题是怎么解决的。1，是国家机构保证的，货币发行机构使用各种技术保证了纸币的防伪性。2，是纸币的本身的特点保证的，同样一块钱，不可能我同时给A也给B。至于3，如果我拥有这块钱，那么它的产权就在我。如果我们把银行账户中的钱认为是数字化。那么以上的三点是由一个中心化的机构来保证的。中心化有什么问题吗？这个不在这篇文章的讨论范围内。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;那么能不能在一个去中心的系统中解决这些问题？BitCoin给出一个答案，BitCoin不是一个简单的技术，而是融合密码学，计算机科学，已经经济学的一个系统。他包含以下几个部分：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;一个点对点的分布式网络&lt;/li&gt;
+  &lt;li&gt;一个公开的交易账本&lt;/li&gt;
+  &lt;li&gt;一系列交易验证以及货币发行的规则（共识规则）&lt;/li&gt;
+  &lt;li&gt;在区块链上达到最终分布一致性的算法（POW 算法）
+BitCoin系统是由这四部分组成的。也是因为上边的4部分，构成第一个可用的点对点数字货币系统。可以说区块链1.0也由此展开。比特币的出现也带领了其他数字货币的兴起，例如LiteCoin，DogCoin。这些altCoin可以是基于BitCoin的变种。BlockChain 1.0的主角就是这些数字货币体系。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;eth---blockchain-20&quot;&gt;ETH - BlockChain 2.0&lt;/h1&gt;
+&lt;p&gt;2013年V神（Vitalik Buterin）提出Ethereum，一个基于区块链技术的分布式计算平台。实际上BitCoin上是可以执行Script，但是它支持的操作符相当有限。能不能创造一个更加强大的分布式计算平台呢？ETH就是为了实现目标而开发的。ETH实现了EVM一个图灵完备的虚拟机，可以执行用户定义好的智能合约。这样用户可以定义自己的智能合约。从目前来看，基于ETH的最为成功的应用是去年如火如荼的爱西欧了。那么这样的BlockChain到底能有什么作用呢？比较大的改变可以说是一种生产关系上的变化。举个例子，滴滴公司作为一家发展迅速的企业，作为员工也许你可以通过期权的方式来共享企业的发展。但是作为滴滴公司的早期用户和服务提供商司机来说，其实他们并没有分享到企业发展的利益。如何通过Token的方式，这些用户和司机同样也可以有机会获取到企业发展的红利。这可以说就是改变生成关系的一个例子，其他还有例如使得网络社会的价值流转成为可能。这些就是Blockchain带来的变化。&lt;/p&gt;
+
+&lt;p&gt;ETH上第一款有影响力的应用应该说是CryptoKitties。这款养猫应用，今年年初风靡一时。同时也造成了以太坊网络的拥堵。同时也体现出现有区块链系统的上问题，如何支持大规模的应用？如何到达高的TPS？&lt;/p&gt;
+
+&lt;h1 id=&quot;blockchain-30&quot;&gt;BlockChain 3.0&lt;/h1&gt;
+&lt;p&gt;什么是BlockChain 3.0的代表？目前这个问题见仁见智？有人认为是EOS？有人认为是其他Chain。但是目标都是一致的，让BlockChain真正可用，可以支持大规模的应用。目前来说谁能胜出，这个问题还不明朗。所有人都在做探索。&lt;/p&gt;
+
+&lt;h1 id=&quot;why-blockchain-matters&quot;&gt;Why BlockChain Matters？&lt;/h1&gt;
+&lt;p&gt;这篇文章是BlockChain系列的开篇，后续文章会展开介绍其中各种精彩的技术细节。BlockChain你可以恨它，你可以爱它，但是你去不能忽视它。作为技术人员，这是一片尚待开发的新大陆。等待着你开开垦。怎么样？是否激动人心，让我们来一起见证。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 14 Oct 2018 19:15:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2018/10/14/why-blockchain-matter.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2018/10/14/why-blockchain-matter.html</guid>
+        
+        <category>BlockChain</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>当React Native 遇到了Google reCAPTCHA</title>
+        <description>&lt;p&gt;做客户端开发久了，总有一些烦心事来扰乱你，其中一个就是机器人注册。当然大部分App目前注册的时候都要提供短信验证码。但是这还是防不住一些专业的羊毛党，各种短信验证码平台用的飞起。那该怎么办呢？上验证码吧。验证码大家都熟悉从不可描述的12306到Google的reCAPTCHA，作用只有一个验证你是人，不是机器人。今天的主角就是Google reCAPTCHA。&lt;/p&gt;
+
+&lt;h2 id=&quot;google-recaptcha&quot;&gt;Google reCAPTCHA&lt;/h2&gt;
+&lt;p&gt;Google reCAPTCHA是Google 提供的一系列好用的服务中的一个，提供完善的人机验证方法。目前有V3和V2两个版本。V3还在Beta阶段，这样我们主要介绍V2。当然同时Google reCAPTCHA也是google用来做数据标记的方法，每天成千上万的图片被人工标记，为Google的Machine Learning系统提供好的帮助。经典的双赢策略。如果还没有体会过Google reCAPTCHA这里链接&lt;a href=&quot;https://developers.google.com/recaptcha/&quot;&gt;reCAPTCHA&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;google-recaptcha-1&quot;&gt;如何使用Google reCAPTCHA&lt;/h2&gt;
+&lt;p&gt;Google reCAPTCHA的使用十分简单，文档中描述的清楚。下边简单的介绍一些。最简单的方法就是自动的Render Google reCAPTCHA Wideget&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;reCAPTCHA demo: Simple page&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+     &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://www.google.com/recaptcha/api.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defer&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;form&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;?&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;method=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;POST&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;g-recaptcha&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-sitekey=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;your_site_key&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-callback=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;yourCallbackFunction&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;submit&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Submit&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;上面是个简单的html就实现了如何使用Google reCAPTCHA. 具体来说就是加载了google reCAPTCHA的JavaScript,然后定义一个class name是g-recaptcha div，这样以后reCAPTCHA的widget就会Render到它下边。当然你要在google reCAPTCHA上申请一个相应的site_key。so easy。好了当你用浏览器打开这个html的时候就可以看到Google reCAPTCHA widget被render出来了。同时定义了CallBallFunction，当验证成功时候，Google reCAPTCHA会调用这个callback，把取得的token告诉Application，那么Application就可以去进行验证了。&lt;/p&gt;
+
+&lt;p&gt;好了，Google reCAPTCHA如此好用的服务，在移动端可不可以使用呢？当然Google reCAPTCHA提供Android的API。但是如果我们Application是用React Native来写，是不是就不能使用了呢？当然我们有办法让它可以使用。&lt;/p&gt;
+
+&lt;p&gt;在React Native中是有Webview组件的，同时WebView组件和React Native之间可以通过postMessage来进行数据通信。那么已然这样，就可以通过WebView来加载一个HTML来Render Google reCAPTCHA Widget。同时通过PostMessage将 Google reCAPTCHA 返回的token，送给React Native。好了从原理上来讲是可以的，那么如何实现呢？还是看代码吧。&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;WebView&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react-native'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;generateTheWebViewContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;siteKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;htmlMarkup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'&amp;lt;script src=&quot;https://recaptcha.google.cn/recaptcha/api.js&quot;&amp;gt;&amp;lt;/script&amp;gt;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'var onDataCallback = function(response) { console.log(response); window.postMessage(response);  }; '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'&amp;lt;div style=&quot;text-align: center&quot;&amp;gt;&amp;lt;div class=&quot;g-recaptcha&quot; style=&quot;display: inline-block&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'data-sitekey=&quot;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;siteKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot; data-callback=&quot;onDataCallback&quot; '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;htmlMarkup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+  &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;RNReCaptcha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;siteKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;WebView&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;originWhitelist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'*'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]}&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;mixedContentMode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'always'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;onMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;javaScriptEnabled&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;injectedJavaScript&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;patchPostMessageJsCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;automaticallyAdjustContentInsets&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{[{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;backgroundColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'transparent'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'100%'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]}&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;generateTheWebViewContent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;siteKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;baseUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+    &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;上边这段代码就是一个最简单的实现，定义了一个&lt;code class=&quot;highlighter-rouge&quot;&gt;RNReCaptcha&lt;/code&gt;的Component，其实就是一个WebView，在source里我们直接给出一段html，其实就是上边那个例子的html，这样一来render这个html就是把Google reCAPTCHA widget render了出来，同时通过postMessage将reCAPTCHA放回的结果送给React Native。好了，就是如此简单。&lt;/p&gt;
+
+&lt;p&gt;当然，为了方便其他人的使用，我已经publish一个&lt;a href=&quot;https://www.npmjs.com/package/rn-recaptcha&quot;&gt;npm package&lt;/a&gt;提供给大家使用。只要简单的&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  yarn add rn-recaptcha
+  npm install rn-recaptcha
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;就ok了。这里是link &lt;a href=&quot;https://www.npmjs.com/package/rn-recaptcha&quot;&gt;rn-recaptcha&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下边是具体的一个demo gif。 Happy Hacking :) &lt;img src=&quot;/resources/img/rn-1.gif&quot; alt=&quot;demo&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 08 Sep 2018 19:15:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2018/09/08/recaptcha.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2018/09/08/recaptcha.html</guid>
+        
+        <category>前端</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Rxjs 一二三</title>
+        <description>&lt;p&gt;在前端开发领域，Application的状态管理可以说是最重要的问题了。如果你使用了React做为表现层的框架，那么一般来说你都会选择例如Redux 或者Mobx这样的数据状态管理框架一同使用。Rxjs同样也是数据状态管理的一种方法。&lt;/p&gt;
+
+&lt;p&gt;RxJs 是 Reactive Programming 的JS实现。以Stream的方式来看待数据的变化，这样的思路天生特别适合解决异步的数据状态和基于事件的状态管理。举个例子来说，如果你使用过Redux，那么你就会知道Redux天生很难处理异步的Action。当然为了解决这个问题，出现了很多框架和工具。例如Redux-thunk， Redux-Saga，Redux-thunk可以在一点程度上解决这个问题。但是它的功能还是相当有限，当处理复杂场景的时候，就捉襟见肘了。例如如何撤销一个Api Request ？ 例如如何debounce一个Api Request ？ 这些问题如果放到Rxjs的context里边就会发现解决起来相当的easy和优雅。但是Rxjs使用和理解起来还是有些learning cruve的，这篇文章也不准备一次就把所有RxJs都介绍到。这里只分享一些在学习和使用Rxjs的点，希望能让你感性的体会到Rxjs的强大和优雅。&lt;/p&gt;
+
+&lt;p&gt;首先来看RxJS的几个核心概念。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Observable (可观察对象): 表示一个概念，这个概念是一个可调用的未来值或事件的集合。&lt;/li&gt;
+  &lt;li&gt;Observer (观察者): 一个回调函数的集合，它知道如何去监听由 Observable 提供的值。&lt;/li&gt;
+  &lt;li&gt;Subscription (订阅): 表示 Observable 的执行，主要用于取消 Observable 的执行。&lt;/li&gt;
+  &lt;li&gt;Operators (操作符): 采用函数式编程风格的纯函数 (pure function)，使用像 map、filter、concat、flatMap 等这样的操作符来处理集合。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下来我们看看例子体会一下：&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;第一例子&lt;/h2&gt;
+&lt;p&gt;第一个例子十分的简单，是如何一个Button 的click event变成一个stream。就是一个Observable.
+常规的事件监听我们一般会这么写&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    const button = document.querySelector('button’);
+    button.addEventListener('click', () =&amp;gt; console.log('Clicked!'));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果我们使用Rxjs的话，他就变成这样了&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    const button = document.querySelector(‘button’)
+    Rx.Observable.fromEvent(button, ‘click’).subscribe(() =&amp;gt; console.log(‘clicked'))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;简单的两行就将button 的click变成了Observable这样，其他的Observer就可以订阅到这个Observable进行相应的操作。
+如果只是简单的似乎也是没什么特别的，那么到底有什么用处呢？&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;第二例子&lt;/h2&gt;
+&lt;p&gt;如果要实现一个click button的事件的，但是为了防止机器人点击，1S才会有效一次该怎么实现呢？
+如何不用Rxjs 怎么实现呢？&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    const rate = 1000
+    Let lastClick = Date.now() - rate
+    const button = document.querySelector(‘button’)
+    Button.addEventListener(‘click’, () =&amp;gt; {
+     If(Date.now - lastClick &amp;gt; rate) {
+        console.log(‘clicked!’)
+        lastClick = Date.now()
+    }
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;上边的这段代码就是我们一般的实现方式，在这里我们引入了一个全局的状态变量 lastClick用来记录上次的点击时间，并在我们click callback去修改它，这样的实现显然不是一个好的实现方式。第一有全局的状态变量，第二函数不纯。再看看如果用Rxjs怎么实现呢？&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    const button = document.querySelector(‘button’)
+    Rx.Observable.fromEvent(button, ‘click’)
+    .throttleTime(1000)
+    .subscribe(() =&amp;gt; console.log(‘clicked’))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;是不是相当的简单，如果把click事件看成一个水流，那么throttleTime就像是一个控制阀，他控制着多长时间开一次像下游放一次水。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;第三例子&lt;/h2&gt;
+&lt;p&gt;上边还只是一些简单的小例子，我们来看一个更加复杂一点的user case，第三个例子。
+假设我们有个search box 当用户输入的时候，会想后台api 发request， seach 对应的字段。这个需求听起来不难，每次发一个 request，然后拿后台返回的数据 render 一个list 就ok了，但是这里有一个问题。例如，&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    // A request for rx
+    // B request for rxjs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;实际上是发出了两个request，所以我们会得到2个response，但是如果 request B 的response 比 request A 先回来，那么最后render出的结果就是Request A，但是这不是我们想想要的。如何解决这个问题呢，当然我们可以在sort 一下 response，当然如果用Rxjs那么会更简单，就是用SwitchMap，简单来说SwitchMap会订阅最后一个Observable给下游，所以无论你发了几个request，下游拿到的一定是最后一个reqeust的。代码例如这样&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    inputValueObserverable
+    .switchMap(query =&amp;gt; Rx.Observerable.fromProise(fetch(query)))
+    .subscribe(value =&amp;gt; renderList(value))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;以上是Rxjs的三个小例子，当然RxjS的强大不止于此，如果你刚兴趣，推荐一个书《深入浅出Rxjs》，这是目前看到了把Rxjs讲的比较明白的一本书了。当然我认为要真正的掌握Rxjs还要从思维上转变成为以数据流的方式来思考和设计Application。好了，希望这几个小例子能吸引你对于Rxjs的兴趣，一起学习。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 01 Sep 2018 19:15:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2018/09/01/rxjs123.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2018/09/01/rxjs123.html</guid>
+        
+        <category>前端</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>React in Depth - Compound Component</title>
+        <description>&lt;p&gt;使用React也有一段时间了，前边写了一些React基本概念的文章。今天开始写React in Depth这个系列文章。在这一系列文章中，我会总结和分享下React中的开发经验，希望能和大家一起分享，共同提高。今天是第一篇Compound Component。&lt;/p&gt;
+
+&lt;p&gt;React本质来讲是只做View的Framework，所以Component是React核心和最基本的组成部分，使用React开发出来的application本质来讲就是把一个个组件拼接起来。因此深入理解Component，并且如何在项目上开发出一个合适Component，是一个需要深入理解的问题。&lt;/p&gt;
+
+&lt;p&gt;让我们从一个现实中的例子开始，下面是两个风扇。&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;img src=&quot;/resources/img/fan-1.jpg&quot; style=&quot;display:inline-block; width:250px; height:250px&quot; /&gt;
+    &lt;img src=&quot;/resources/img/fan-3.jpg&quot; style=&quot;display:inline-block; width:250px; height:250px&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;一个是我们日常生活中的风扇，它有一个按键，当按键按下的时候，风扇就转了。另外一个是arduino风扇，同样接通电源后风扇就转了。但是如果那天用户希望风扇反转，那么这两个产品能满足需求吗？对于第一个风扇我们得把它拆开，然后修改电机的接线，这样才能满足反转的需求，但是对于第二个我们只要简单的&lt;/p&gt;
+</description>
+        <pubDate>Tue, 27 Feb 2018 19:15:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2018/02/27/react-compound-component.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2018/02/27/react-compound-component.html</guid>
+        
+        <category>前端</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Render Props - New pattern in React</title>
+        <description>&lt;h1 id=&quot;render-props---new-pattern-in-react&quot;&gt;Render Props - New pattern in React&lt;/h1&gt;
+&lt;p&gt;在软件开发的过程中Code Reuse和可读性一直是开发人员致力于解决的问题，在React社区中，以往出现了很多的Pattern来解决这个问题，例如Mixin，HOC等等。&lt;a href=&quot;https://reactjs.org/docs/render-props.html&quot;&gt;Render Props&lt;/a&gt;是React社区中里提出的另外的一种Pattern。由React Router的Co-author Michael Jackson 提出，它与HOC等有什么区别呢？又解决了什么问题呢？在这篇文章来一探究竟。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;问题的引出&lt;/h2&gt;
+&lt;p&gt;所有的Pattern或者solution都是为了解决问题而提出的，那么render props到底是为了解决什么问题呢？我们先来看一个例子。例如在我们的App里我们实现了这样一个component&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientY&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onMouseMove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;The&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/p&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://codesandbox.io/s/nw394jwro4&quot;&gt;Code Sandbox&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;熟悉React的同学都知道这是一个很简单的App，他可以追踪鼠标位置给到自己。但是问题来了，万一哪天你的朋友看到这个component，说这个feature很Cool，他的app里能不能用上呢？那么该怎么解决这个问题呢？&lt;/p&gt;
+
+&lt;h2 id=&quot;code-repeat&quot;&gt;Code Repeat&lt;/h2&gt;
+&lt;p&gt;首先第一种想法很直接，可以把这个component做为一个父Component，另外一个Component作为一个子Component。来看代码。&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Dog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MouseDog&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientY&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onMouseMove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;The&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Dog&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/p&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;现在我们有了两个Component, Dog 和 DogWithMouse,其实Dog作为DogWithMouse的子Component，那么DogWithMouse Component就能利用鼠标位置。好像这样是把问题解决了，但是如果我们有另外一个Component也想要trace mouse这个feature怎么办呢？难道再重新这样写一个Component吗？显然这种方式是不可取的。&lt;/p&gt;
+
+&lt;h2 id=&quot;hoc&quot;&gt;HOC&lt;/h2&gt;
+&lt;p&gt;如果熟悉react的同学，可能会想到，这很简单呀，我们写一个High order Component（HOC）就行了，的确HOC可以解决这个问题，我们来看看HOC的代码是怎么样的。&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;withMouse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientY&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onMouseMove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{...&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;      &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Dog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;EnhancedDog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;withMouse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Dog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在上面的代码里，我们创建了一个withMouse的HOC, 这样就把这部分逻辑抽象了出来。其他的Component想要使用我们mouse tracking的feature。只要将Component传入HOC就能得到一个enhance过的Component。pretty cool， right？如果对于HOC不太了解，可以参考react 的官方文档进行了解。 &lt;a href=&quot;https://reactjs.org/docs/higher-order-components.html&quot;&gt;HOC&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;HOC似乎已经完美的解决了问题，但是这种方式有没有什么缺点呢？似乎是有下面的一些缺点。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;间接的props传入。
+让我们重新看一看Dog Component，他的props传入了mouse，但是在使用这个Component的时候，并没有地方传入了mouse。这是因为mouse是在HOC里传入的。你大概会纳闷这个Mouse是从那来的。如果维护一个大项目的时候，有时候你就会发现这种间接的props传入，是有多么坑了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;命名冲突的问题。
+用过react的同学不知道有没有经历过大量使用HOC的场景，笔者是见过多层HOC嵌套使用的项目代码。就像这样： &lt;code class=&quot;highlighter-rouge&quot;&gt;const NewComponent = withA(withB(withC(...(Component))))&lt;/code&gt; 
+  如果你用过这样的多层嵌套的HOC，那么就可能会发生命名冲突的问题。来看代码：&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;withB&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'hehe'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{...&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;      &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;EnhancedDog&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;withB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;withMouse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Dog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;在这里定义另外的一个HOC withB。它也给props上传了一个同样的mouse， 如果再用它来wrap &lt;code class=&quot;highlighter-rouge&quot;&gt;withMouse(Dog)&lt;/code&gt; 时，你会发现mouse tracking的feature就不work，但是React不会有任何提示，这是命名冲突的问题。如果你有一个七八层的wrapp到一起的Component，如果出现这样的命名冲突的问题，那么就有的debug了。&lt;/p&gt;
+
+&lt;h2 id=&quot;render-props&quot;&gt;Render props&lt;/h2&gt;
+&lt;p&gt;好了，既然HOC有这样的问题，那有没有什么方式既可以做到code reuse，同时也可以避免HOC的这些问题呢？答案就是Render Props。Render Props是React Traning团队提出的一种新的React中组织Component的方式，同时也是十分的简单，我们来看上边的例子中，如果用render props如何解决code reuse的问题。&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'react'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;react-dom&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Mouse&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientY&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;onMouseMove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;handleMouseMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)}&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DogMouse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Mouse&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouose&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/div&amp;gt;}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DogMouse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'app'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://codesandbox.io/s/vyjqyyl1o3&quot;&gt;CodeSandBox&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;上边就是render props的一个简单例子，我们看完会发现特别的简单，没什么特别的。Mouse就是一个普通的Component，唯一不同的是这个Component上定义了一个叫render的prop，是一个函数。在Mouse中会将state作为参数调用这个函数。而创建的DogMouse同样也是一个普通的Component，其中定义render的方法，用于定义要render什么Component。我们看看render props和HOC相比解决了什么问题：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;code reuse。和HOC一样的，render props同样解决了code reuse的问题。把mouse tracking的feature抽象成为一个Mouse的Component，如果有另外一个Component像复用这个feature的时候，简单的定义另外一个Component定义相应的render props就好了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;间接的props传入，render props 没有这个问题，可以清楚的看到props(x, y)是从什么地方出入的.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;命名冲突。利用render props是没有Component wrapp的，所以除非定义Component时候自己命名重复，否则不会有命名冲突的问题。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;从上面的例子上看，render props可以再大多数情况下替代HOC。react的官方文档上，目前也正式的介绍了&lt;a href=&quot;https://reactjs.org/docs/render-props.html&quot;&gt;render props&lt;/a&gt;,下次让你想用HOC的时候，来试一试Render props把。&lt;/p&gt;
+</description>
+        <pubDate>Tue, 27 Feb 2018 19:15:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2018/02/27/react-render-props.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2018/02/27/react-render-props.html</guid>
+        
+        <category>前端</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>图表君读书-智能时代</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;智能时代–我们的未来与现在&lt;/h1&gt;
+&lt;p&gt;2017年人人都在谈AI，如果你还是再科技行业里，那必然是早都听的不能再多了。智能时代已经悄然到来，到底什么是智能时代？在这个时代到底能给我们带来什么？2018年的第一周，图表君就阅读了吴军老师的《智能时代》一书。看看吴军老师是如何和我们描述这个已来的未来。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;智能时代的基石–数据&lt;/h2&gt;
+&lt;p&gt;数据，有人认为是未来的战略资源，尤其是这个时代。每天都有大量的数据由我们产生，并被记录下来。今天我们能很方便记录下我们明天的各种数据，我们的心跳，我们的运动，我们的行程，我们的饮食。而所有的这些数据别记录，分析，又反过来影响这我们的日常的生活。同样与煤炭是蒸汽时代的燃料，石油是电气时代的动力。所有的这些数据成为了智能时代的基石。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;大数据与机器智能&lt;/h2&gt;
+&lt;p&gt;在有了计算机之后，人类一直想让机器能有人的思考和创造的能力。计算机学家也提出了图灵测试来验证机器是否具有人的智能，具体来说如果计算机有可以完成以下的事情我们就说它具有了一定意义上的智能：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;语言识别&lt;/li&gt;
+  &lt;li&gt;机器翻译&lt;/li&gt;
+  &lt;li&gt;文本翻译&lt;/li&gt;
+  &lt;li&gt;在棋类游戏上战胜人类&lt;/li&gt;
+  &lt;li&gt;自动回答问题
+目前机器已经可以完成以上的一些事情了。当然这后边所依靠的正是人工智能。
+人工智能的发展有快60多年的历史了。在早期，人们的思路是试图让计算机可以按照人的思路来解决问题。但是很快，人们就发现这样的方法并不能让计算机拥有像人类的一样的智能。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;人工智能的柳暗花明– 统计 + 数据&lt;/h3&gt;
+&lt;p&gt;在人们发现传统的方法此路不通时，于是就开始尝试采用另一种方式，利用数据驱动和数据计算的方法。这个领域的先驱就是贾里尼克，当时他在IBM开发语音识别系统的时候，从通信的角度思考这个问题，他认为语音识别的问题就是一个编码 - 传输 - 解码的问题，于是他从用数字通信的各种技术来实现语音识别，彻底抛开了原有的人工智能方法。在找到合适的数学模型后，通过大量的数据训练出模型的参数。通过这样的方法他讲语音识别的识别率从70%提高到了90%。从此开启了人工智能领域的一个新的方向，通过统计和数据的方法来解决人工智能问题。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;大数据的特征&lt;/h3&gt;
+&lt;p&gt;大数据的智能时代的另一个属性，它并不仅仅指的是数据的量大，而且还有其他的属性，其中包括多维度，全面性。因为互联网的特征我们可以从多个维度来获取描述一种数据。例如在描述一件衣服的时候，不仅能从衣服的材料，颜色，设计等显性的方式来获得数据，同样我们也可以等待，例如评论者的地点，用的手机还是PC，时间，天气，如果他还是之前的客户，那么还能得到检索的历史，购买的历史，这样多维度的数据来描述这个产品。这样的数据维度是之前不可能到达的。&lt;/p&gt;
+
+&lt;p&gt;大数据的第三的特点就是完备性，之前做统计得抽样，用小样本来进行统计分析，但是大数据时代，你的数据集就是完备的。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;智能时代的思维方式&lt;/h2&gt;
+&lt;p&gt;在智能时代之前，人们的科学的思维方式是-机械思维，世界的运动的有规律的，这些规律是可以被发现并可以用简单的数据公式来进行总结的。这样的思维方式的核心思想就是确定性和因果关系，这是因为这样的思想才使得我们的文明不断的进步和发展到了今天。&lt;/p&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;世界的不确定性&lt;/h3&gt;
+&lt;p&gt;机械思维能很好解决确定性的问题，但是我们的世界同时也是不确定的。针对这样的问题，我们就应该采用新的思维方式来解决问题，那就是采用信息论的思维方式。其核心的思想就是为了消除不确定性，我们应该引入信息。不确定性越大，引入的信息就越多。这部分吴军老师用了大量的例子来说明这个问题。同时在智能时候我们的思维方式，也应该从因果思维向相关性思维进行转变。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;智能时代的技术变革&lt;/h2&gt;
+&lt;p&gt;在书的后半部分，吴军老师介绍了智能时代的各种技术变革，和对商业上的影响。以及告诉大家如何做那2%的人，即利用这个时代的最近技术来解决自己行业和领域的问题。&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 05 Jan 2018 19:15:00 +0800</pubDate>
+        <link>http://aaronchen.cn/2018/01/05/intel-age.html</link>
+        <guid isPermaLink="true">http://aaronchen.cn/2018/01/05/intel-age.html</guid>
+        
+        <category>读书记</category>
+        
+        
+      </item>
     
       <item>
         <title>ES6新特性 iterators and Generators</title>
@@ -521,863 +1071,6 @@ console里的output为：&lt;/p&gt;
         <guid isPermaLink="true">http://aaronchen.cn/2017/01/09/react-event-2.html</guid>
         
         <category>react</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>浅析React之事件系统（一）</title>
-        <description>&lt;h1 id=&quot;react&quot;&gt;浅析React之事件系统（一）&lt;/h1&gt;
-
-&lt;p&gt;大家周末好，2016年的最后几篇文章开始写到了React的一些东西，那么最近就来一些图表君对于React的简单总结和理解，那么今天就开始第一篇，说一说React的事件系统。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;总览&lt;/h2&gt;
-&lt;p&gt;简单来说React实现了一个SyntheticEvent层，所有定义的事件处理器都可以接受到一个SyntheticEvent对象的实例，他是一个跨浏览器的对于原生事件的包装，和原生事件一样有同样的接口，包括stopPropagation()和preventDefault()。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;合成事件的使用方式&lt;/h2&gt;
-&lt;p&gt;在React中不会把所有的事件处理器绑定到相应的真实的DOM节点上，而是使用一个统一的事件监听器，把所有的事件绑定在最外层。当事件发生的时候，首先被这个统一的事件监听器处理，随后找到真正的事件处理函数进行调用，这样是为了提高效率，这是因为在UI系统中，事件处理器越多，那么占据的内存就越大，React的做法是将其简化为一个，这样就大大提高了效率。在之前开发者需要为了优化性能需要自己来优化自己的事件处理器的代码，现在React帮助你完成了这些工作。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;合成事件的绑定方式&lt;/h3&gt;
-&lt;p&gt;说了这么许多理论上的知识，我们来看看合成事件是怎么使用的。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;bind方法。&lt;/p&gt;
-
-    &lt;p&gt;我们来直接看代码&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	
-import React, {Component} from 'react';
-		
-class EventApp extends Component {
-		
-	handleClick(e,args){
-		console.log('this is the react event',e)
-		console.log('this is the args', args)
-	}
-		
-		
-	render(){
-		return &amp;lt;button onClick={this.handleClick.bind(this,'test')}&amp;gt;Test&amp;lt;/button&amp;gt;
-	}
-		
-}
-		
-	
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;构造器内声明&lt;/p&gt;
-
-    &lt;p&gt;再来看代码&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-import React, {Component} from 'react';
-		
-	class EventApp extends Component {
-		
-		constructor(props){
-				super(props);
-				
-				this.handleClick = this.handleClick.bind(this);
-		}
-		
-		handleClick(e){
-				console.log('this is the react event',e)
-		}
-		
-		
-		render(){
-				return &amp;lt;button onClick={this.handleClick}&amp;gt;Test&amp;lt;/button&amp;gt;
-		}
-		
- }
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;使用构造器内声明的方法，仅仅要绑定一次而不需要每次使用的时候都绑定一次。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;箭头函数&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class ButtonApp extends React.Component {
-
-	handleClick (e) {
-    	console.log(e.target.value)
-  	}
- 
- 	render(){
-    	return &amp;lt;button onClick={(e) =&amp;gt; this.handleClick(e)}&amp;gt;Test&amp;lt;/button&amp;gt;;
-  		}
-	}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;从上边的使用方式我们可以看出React来使用合成事假还是很简单的，但是现实的世界总是更加的复杂的。那么在React中我们可以使用原始事件吗？当然是可以的。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;使用原生事件&lt;/h2&gt;
-&lt;p&gt;在React中我们也可以使用原生事件，那么如何进行绑定呢，因为React提供了ComponentDidMount这样的API让我们可以调用，那么要使用原生事件我们就可以在DidMount后进行绑定。例如上边的那个例子中如果我们想把click事件绑定在原生button上该怎么做呢？我们来看代码：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class ButtonApp extends React.Component {
-	
-	componentDidMount(){
-		this.refs.button.addEventListener('click'  e =&amp;gt; {
-			console.log(e);
-		})
-	}
-	
-	componentWillUnmount(){
-		this.refs.button.removeEventListener('click')
-	}
-
-	render(){
-		return &amp;lt;button ref=&quot;button&quot;&amp;gt;Test&amp;lt;/button&amp;gt;
-	}
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;在这里例子中我们使用原生事件的方法绑到了button上，注意一点的是在DidMount上add了这个listener在willUnmont上remove这个listener。一定要手动的记住移除，不然可能会出现内存泄漏问题。如果我们使用React合成事件，这些事React已经帮你做好了。但是现实的情况下我们有一些场景是不得不用到原生的事件的那么该怎么做呢？&lt;/p&gt;
-
-&lt;p&gt;我们来看下边的一个例子。例如我们要实现这样的一个功能，在页面上有个button，当点击它会出现一个图片。当点击页面的其他部分的时候，这个图片会自动的消失，那么这样的需求我们就不得不使用原生的事件了。话不多说我们来看代码实现。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import React from 'react';
-
-class App extends React.Component {
-
-  constructor(props){
-    super(props);
-    
-    this.state = {
-      show: false
-    }
-    
-    this.handleClick = this.handleClick.bind(this)
-    this.handleClickImage = this.handleClickImage.bind(this);
-  }
-  
-  handleClick(){
-   this.setState({
-     show: true
-   })
-  }
-  
-  componentDidMount(){
-    document.body.addEventListener('click', e=&amp;gt; {
-      this.setState({
-        show: false
-      })
-    })
-  }
-  
-  componentWillUnmount(){
-    document.body.removeEventListener('click');
-  }
-    
-  render(){
-    return (
-      &amp;lt;div className=&quot;container&quot;&amp;gt;
-        &amp;lt;button onClick={this.handleClick}&amp;gt;Open Image&amp;lt;/button&amp;gt;
-          &amp;lt;div className=&quot;img-container&quot; style= &amp;gt;
-            &amp;lt;img src=&quot;http://blog.addthiscdn.com/wp-content/uploads/2014/11/addthis-react-flux-javascript-scaling.png&quot; /&amp;gt;
-          &amp;lt;/div&amp;gt;
-      &amp;lt;/div&amp;gt;
-    )
-  }
-}
-ReactDOM.render(&amp;lt;App /&amp;gt;, document.getElementById('root'));
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;http://codepen.io/aaronisme/pen/jyPRPJ?editors=0010&quot;&gt;Open In CodePen&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;上边一个例子中，我们实现了组件APP，他里边有一个button，它上边有一个handleClick的事件处理器，当触发时会把app的state里show制成true，这样图片就显示了出来。同时在body上使用了原生事件，当发生点击事件的时候，就会被收起，这样就简单实现了需求的功能，那是看似这样好像就没有问题的，但是这其中有个bug，到底是什么问题呢，我们下篇文章继续。看看原生事件和合成事件混用的那些事。&lt;/p&gt;
-
-&lt;p&gt;参考文献：
-深入react技术栈&lt;/p&gt;
-</description>
-        <pubDate>Sun, 08 Jan 2017 08:01:00 +0800</pubDate>
-        <link>http://aaronchen.cn/2017/01/08/react-event.html</link>
-        <guid isPermaLink="true">http://aaronchen.cn/2017/01/08/react-event.html</guid>
-        
-        <category>react</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>再见2016，你好2017</title>
-        <description>&lt;h1 id=&quot;section&quot;&gt;再见2016，你好2017&lt;/h1&gt;
-&lt;p&gt;今天是2016年的最后一天，时间过的好快，一转眼一年又过去了，这一年做了不少事情了，年底的最后一天，转头回来看看吧。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;糖记发布&lt;/h2&gt;
-&lt;p&gt;2016年初发布了糖记，自己学习IOS开发的一个小小的作品，本想今年能继续开发出Android版本，看来是现在是没有机会了。看2017年有没有时间用React Native写一个Android版本吧。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;博文更新&lt;/h2&gt;
-&lt;p&gt;说来惭愧，2016年一共也写了20篇文章，有技术，有非技术的。完成一个小小的专题“图表君聊docker”，其实docker还有很多可以写，看2017年继续这个系列的第二季了。2017年继续把成长的点滴记录下。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;工作变化&lt;/h2&gt;
-&lt;p&gt;2016年最大的变化可以说是换了一家公司，如果对图表君熟虑的朋友，应该知道我现在去到了ThoughtWorks，终于可以愉快的写代码了。至于在ThoughtWorks工作的体验，前几天写了篇文章发表在了公司的微信公号上，有兴趣的同学可以点击下边的阅读原文，读一读。在这快一年的时间内，认识了许多新的伙伴，看到了许多新的风景。感谢各位对我的各种帮助，很高兴能和大家战斗在一个集体里。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-4&quot;&gt;生活点滴&lt;/h2&gt;
-&lt;p&gt;感谢家人一年的支持和照顾，有了你们的支持，才有可能完成今年的所有成绩。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-5&quot;&gt;你好2017&lt;/h2&gt;
-&lt;p&gt;2016年底看到了Zuckerberg写的JARVIS，牛人就是牛，还能抽出时间来写个挺有意思的东西。图表君也有点类似的想法，看看2017年能不能写点东西，完成这个小愿望。2017年希望能见识更多人，走过更多的地方。&lt;/p&gt;
-
-&lt;p&gt;新年快乐！祝好。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 31 Dec 2016 08:01:00 +0800</pubDate>
-        <link>http://aaronchen.cn/2016/12/31/2016-Summary.html</link>
-        <guid isPermaLink="true">http://aaronchen.cn/2016/12/31/2016-Summary.html</guid>
-        
-        <category>Summary</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>骚窝点滴，一个新人的年终感悟</title>
-        <description>&lt;h1 id=&quot;section&quot;&gt;骚窝点滴，一个新人的年终感悟&lt;/h1&gt;
-
-&lt;p&gt;又到了2016年的年末，感觉时间过得真快，一年的时间又匆匆的流过。但是这一年的工作经历，应该说比以往几年都要来的丰富，原因很简单，因为换工作了。2016年的三月份正式的加入了ThoughtWorks，到现在已经有9个月的时间，回想起来还是有所感悟。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;初识骚窝&lt;/h2&gt;
-&lt;p&gt;虽然是今年才正式加入ThoughtWorks，但是听说和了解这家公司也是很早之前的事了。在西安，ThoughtWorks可以说是社区活动的引领者，每个技术领域的社区活动，都有ThoughtWorks的身影。比如前端圈的UI Super Day，测试圈的BQConf, 运维圈的Devops MeetUp，BA圈的DnA Workshop，还有Code Retreat等等，在西安只要是你对于技术感兴趣，应该多多少少都参加过ThoughtWorks的活动。所以之前我也参加了不少活动，在Code Retreat上见识到了ThoughtWorks同学对于代码的热情和信仰。觉得这是一家不同的公司，再加上不少好友已经加入了ThoughtWorks, 现在看来我加入骚窝也是一件自热而然的事情。现在深切的记得3月份入职的时候是那满怀期待的心情。&lt;/p&gt;
-
-&lt;p&gt;入职的第一天的最大感受就是，真是太快了。上午办完入职手续，下午就是进了项目组。以我之前的经验，入职第一天一般来说多是熟悉公司，应该没什么特别的事情。但是下午两点我刚做的工位上的时候，组里的同事已经开始给我讲项目的业务了。这速度是我完全没有预料到的。而后下来的几天，最大的感受就是快。同事打字的速度快，快捷键之熟练，写代码之快，让我大开眼界。讨论问题，一旦问题清楚，马上解决。而同样的问题，在以前的公司，必定是一场邮件大战，到真正解决怕也得好几天的时间。速度快是我加入初识骚窝的第一感触。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;敏捷之旅&lt;/h2&gt;
-&lt;p&gt;在度过了几天是适应期后，真正的就开始上手工作了，各种新鲜的感受也是接踵而至，首先就是团队构成的让我耳目一新。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;全功能团队&lt;/h3&gt;
-&lt;p&gt;之前的公司，基本上团队都是长这个样子的，有专门开发团队，专门的测试团队，专门的运维和支持团队。然后问题就来了，基本上各个团队都是相互仇恨的，开发团队仇恨测试团队报的Bug多，测试团队嫌开发团队的质量差。如果一个bug出现了，开发团队里的前后台还得吵半天。但是，ThoughtWorks的团队是另外一个样子，一个团队里有PM，BA，DEV，QA。所有的人员是一个团队，大家的目标是统一的，为了让项目高效，高质量的交付出去。看不到相互的仇恨和推诿，更多的是相互的支撑和支持。这种体验让经历过传统团队的我，确实感觉倍加舒服。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;那面看板墙&lt;/h3&gt;
-&lt;p&gt;以前的工作中，我一直好奇的一个问题就是我的老板是怎么掌握项目的进度的。虽然我们也使用scrum的实践，虽然我们每天也站会，但是我作为一个团队成员，总是感觉我并不清楚，现在项目到底是一个什么状态，而我仅仅是完成每天分给我的一个个task。我隐约的觉得之并不是一个正常的状态。而我加入ThoughtWorks在看到那面看板墙后，我心中的困惑一下解开了。
-&lt;img src=&quot;/resources/img/kanban.png&quot; alt=&quot;image&quot; /&gt;
-我们一直使用看板来管理我们的项目，有了看板，让所有的团队成员对于项目的进度一目了然。每个story的情况所有人都很清楚，而在站会的时候所有人过一下板子，对于项目的运行情况，对于遇到的问题一清二楚了。现在我在做自己的side project的时候也会首先建起一面看板墙。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-5&quot;&gt;结对编程&lt;/h3&gt;
-&lt;p&gt;在ThoughtWorks的工作方式，一般来说都是结对编程，对此不同人有不同的看法，我也并不想说结对编程到底好不好，仅说说我自己感受的好处吧。
-&lt;img src=&quot;/resources/img/pairprogram.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;结对的第一点好处是能让新人快速进入上下文。不知道有多少同学在拿到一个老的代码库，那种无从下嘴的感觉。通过结对的方式，一个老人带着一个新人，能很快的带新人进入上下文，而且是因为是结对完成一个story，这样就有特定的目标，能给快速的得到反馈，这样新人的学习速度是会大幅度提高的。&lt;/p&gt;
-
-&lt;p&gt;结对的第二点好处是能较高的保证质量，结对的过程实际上就是一个相互review的过程，两个人通过思维上的交锋和讨论，能避免不少问题的出现，这样使得代码的质量能够得到较高的提升。&lt;/p&gt;
-
-&lt;p&gt;结对的第三点好处是在结对的过程中，会有大量时间有互相的交流和讨论。你会感受到不同人的不同工作方式，这是一个很好的学习过程。另外结对的过程实际上这就是一个设计的过程，通过表述可以让设计的过程更加的完善，从而减少bug的产生。&lt;/p&gt;
-
-&lt;p&gt;结对无论好与不好，1000个人有1000个看法，仅就对我而言，这样的工作方式对我帮助很大。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-6&quot;&gt;团队之感&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-7&quot;&gt;年轻的团队，战斗的团队，成长的团队&lt;/h3&gt;
-&lt;p&gt;ThoughtWorks是家年轻的公司，大部分的人都是年轻人，这样的团队战斗力是很强悍的，记得上半年的一个夜晚，突然发生了一个线上的事故，大家立马解决。虽然家里的网络各种的不给力，但是最终还是解决了这个问题，那时已是凌晨4点左右。没有人有半点不满，我之前是无法想象的。之后的Retro中，大家一起分析这个问题的根本原因，并制定了相应的action避免类似的问题再次发生。在实践中学习，从问题中总结，在总结中成长。少有抱怨，更多是怎么办，怎么改变，这样的团队是推进人成长的良好环境。&lt;/p&gt;
-
-&lt;h3 id=&quot;session&quot;&gt;Session文化&lt;/h3&gt;
-&lt;p&gt;Session文化是我加入以来感受最深的一个方面，在Thoughtworks你会看到人人都在讲Session，人人都在听Session。在团队中有讲，在公司中有讲，在社区内有讲。你会感觉到人人都在学习，人人都在进步，你要是不学点什么，就会落后在别人后边，这也就是公司讲的同僚压力吧。&lt;/p&gt;
-
-&lt;h2 id=&quot;p3&quot;&gt;P3之行&lt;/h2&gt;
-&lt;p&gt;将社会的公平公正作为公司Mission的，我听说也就是Thoughtworks一家了，P3的精神和文化可以说是融入在ThoughtWorks的每个人中的，ThoughtWorks的诸多P3项目，从非洲的儿童走失，到医疗公平公正，从关注渔业安全，到帮助慈善组织完善IT系统。公司的确实打实的地在做事情来实践自己的P3 Mission。可以说是所有看到的，听到的，这一切的一起影响，也促使我们做出了全民救援这样的P3产品。这在之前可能是我不层想到，也不会做的事情。&lt;/p&gt;
-
-&lt;p&gt;加入Thoughtworks在快一年的时间，看到很多，见识了不少，以上只是记忆比较深的小片段。套用我们伟大领袖的一句话，加入骚窝，广阔天地，大有可为。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 24 Dec 2016 08:01:00 +0800</pubDate>
-        <link>http://aaronchen.cn/2016/12/24/year-summray.html</link>
-        <guid isPermaLink="true">http://aaronchen.cn/2016/12/24/year-summray.html</guid>
-        
-        <category>Summary</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Thinking In React Way - 有限状态机</title>
-        <description>&lt;h1 id=&quot;thinking-in-react-way---&quot;&gt;Thinking In React Way - 有限状态机&lt;/h1&gt;
-&lt;p&gt;今天来聊聊前端，其实这个公众号刚开始写起来的时候，是想和大家分享数据可视化的一些知识的。这也是图表君名头的由来，后来慢慢就写进了些前端的东西，再后来，因为图表君工作的转换，现在更多的做一些后台的工作，那么讨论的问题就更杂了，现在看起来算是我的一些工作和学习心得和感受吧。&lt;/p&gt;
-
-&lt;p&gt;好了，说了这么多。今天聊点什么呢？聊聊React。其实这也并不是什么新东西了。2014年，图表君就知道有这么个东西，听着几位业界大牛聊，说这东西有多么多么的好，当时也不是特别的理解，跟了一遍官方的Tutorial，也没有特别的感受。应该是因为当时前端的经验特别的浅（虽然现在也不敢说深，捂脸），没有什么特别的感受吧。&lt;/p&gt;
-
-&lt;h2 id=&quot;angular&quot;&gt;Angular的痛&lt;/h2&gt;
-&lt;p&gt;后来做了几个项目，使用的是Angular，刚开始觉得双向数据绑定好牛逼啊，好好用，好好用。但是随着项目逐渐的一点点变大，感觉$scope上的东西是越来越多，各个controller里各有各的$scope,再加上$scope是继承的，当项目一复杂就越来越难以管理和控制。还有自己要封装一个组件在angular里得用directive吧，好吧看看directive的文档你就得晕了，link，compile，controller都是什么鬼。好了，今天不是吐槽angular的时间，但是angular得设计和使用的确是太复杂了。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;前端到底是在干什么&lt;/h2&gt;
-&lt;p&gt;好了，让我们先暂时跳出框架的讨论，来思考一下，前端的工作到底是干什么的？其实可以简单的说就是将数据到View的一个映射上，也就是说无论什么框架解决的基本问题就是讲数据展示到View上, 然后将讲用户的操作最后再反应到数据的变化上来。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-
-					Data --&amp;gt; Whatever FrameWork --&amp;gt; View
-					Data &amp;lt;-- Whatever FrameWork &amp;lt;-- View
-
-
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;再想清楚这个问题之后，React是怎么做的呢？React并不是一个完整的前端框架，只是一个专注于渲染View的library，在看了React的文档之后，我们会发现他的api是很简单的。一个典型的react的组件&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class ShoppingList extends React.Component {
-  render() {
-    return (
-      &amp;lt;div className=&quot;shopping-list&quot;&amp;gt;
-        &amp;lt;h1&amp;gt;Shopping List for {this.props.name}&amp;lt;/h1&amp;gt;
-        &amp;lt;ul&amp;gt;
-          &amp;lt;li&amp;gt;Instagram&amp;lt;/li&amp;gt;
-          &amp;lt;li&amp;gt;WhatsApp&amp;lt;/li&amp;gt;
-          &amp;lt;li&amp;gt;Oculus&amp;lt;/li&amp;gt;
-        &amp;lt;/ul&amp;gt;
-      &amp;lt;/div&amp;gt;
-    );
-  }
-}
-
-// Example usage: &amp;lt;ShoppingList name=&quot;Mark&quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;即使你没有React的经验，看这样的代码也不会有什么特别的问题。好了，今天图表君不打算安利React，并不想写一个hello world出来。这样的文章太多，看看React的官方例子会比图表君写的好很多。那么今天说什么呢？&lt;/p&gt;
-
-&lt;h2 id=&quot;react-thinking---&quot;&gt;React Thinking - 状态机&lt;/h2&gt;
-&lt;p&gt;看这部分之前，图表君强烈建议你可以看一看React的官方tutorial&lt;a href=&quot;https://facebook.github.io/react/tutorial/tutorial.html&quot;&gt;tutorial&lt;/a&gt;，很好的一个例子，也不长。一个小时就能看完，自己上手写一写，感受会更深。好了现在假设你看完了这个tutorial有什么感觉？&lt;/p&gt;
-
-&lt;p&gt;图表君的最大的感受是，最后将State，function都定义到了Game的这个Root级别的Component上了，再把所有的数据和function都传进自己的子Component里，需要的地方直接调用就好了。这样就使得我们上边说把Data的操作逻辑都被提出来，并集中在一起了，一下就清晰了，明确了。App管理从此变得一下简单了。反复品味这样的设计，忽然有个东西，进入了我的思维里。这东西不就是一个有限状态机呀。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;有限状态机&lt;/h3&gt;
-&lt;p&gt;有限状态机是个十分有用的模型，可以用来模拟世界上大部分的事物，其有三个特征：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;状态总数（state）是有限的。&lt;/li&gt;
-  &lt;li&gt;任一时刻，只处在一种状态之中。&lt;/li&gt;
-  &lt;li&gt;某种条件下，会从一种状态转变（transition）到另一种状态。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;我们再来看看例子中的代码&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Game extends React.Component {
-  constructor(){
-    super();
-    this.state={
-      history:[{
-        squares: Array(9).fill(null)
-      }],
-      stepNumber: 0,
-      xIsNext: true
-    }
-  }
-  
-  handleClick(i){
-    const history = this.state.history;
-    const stepNumber = this.state.stepNumber
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext? 'X':'O';
-    this.setState(
-      {
-        history: history.concat([{
-      squares: squares   
-    }]),
-        stepNumber: stepNumber + 1,
-    xIsNext: !this.state.xIsNext,
-      }
-    )
-  }
-  
-  jumpTo(step){
-    const newHistory = this.state.history.slice(0,step+1)
-    console.log(newHistory);
-    this.setState({
-      history: newHistory,
-      stepNumber:step,
-      xIsNext: (step % 2) ? false: true, 
-    })
-  }
-  
-  render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
-    let status;
-    if(winner){
-       status = 'Winner Is :' + winner;
-    }else{
-       status = 'Next player: ' + (this.state.xIsNext ? 'X':'O');
-    }
-    const moves = history.map((step,move) =&amp;gt; {
-       const desc = move ? 'Move #' + move : 'Game Start';
-       return(
-         &amp;lt;li key={move}&amp;gt;
-            &amp;lt;a href=&quot;#&quot; onClick={() =&amp;gt; this.jumpTo(move)}&amp;gt;{desc}&amp;lt;/a&amp;gt;
-         &amp;lt;/li&amp;gt; 
-       )
-    });
-    return (
-      &amp;lt;div className=&quot;game&quot;&amp;gt;
-        &amp;lt;div className=&quot;game-board&quot;&amp;gt;
-          &amp;lt;Board squares={current.squares} onClick={(i) =&amp;gt; this.handleClick(i)} /&amp;gt;
-        &amp;lt;/div&amp;gt;
-        &amp;lt;div className=&quot;game-info&quot;&amp;gt;
-          &amp;lt;div&amp;gt;{status}&amp;lt;/div&amp;gt;
-          &amp;lt;ol&amp;gt;{moves}&amp;lt;/ol&amp;gt;
-        &amp;lt;/div&amp;gt;
-      &amp;lt;/div&amp;gt;
-    );
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;构造方法，constructor - 定义了APP的初始状态。&lt;/p&gt;
-
-&lt;p&gt;handleClick - 定义了在棋盘里点击事件后的APP状态的变化。&lt;/p&gt;
-
-&lt;p&gt;jumpTo - 定义点击历史记录中某一步后APP的状态变化。&lt;/p&gt;
-
-&lt;p&gt;render- 描述如何在View上来展示当前的状态。&lt;/p&gt;
-
-&lt;p&gt;这样精巧的设计，facebook果然聚集了当今世界一流的工程师。然后我看了阮一峰的&lt;a href=&quot;http://www.ruanyifeng.com/blog/2013/09/finite-state_machine_for_javascript.html&quot;&gt;这篇介绍有限状态机的文章&lt;/a&gt;，看到这段代码。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var menu = {
-　　    
-　　　　// 当前状态
-　　　　currentState: 'hide',
-　　
-　　　　// 绑定事件
-　　　　initialize: function() {
-　　　　　　var self = this;
-　　　　　　self.on(&quot;hover&quot;, self.transition);
-　　　　},
-　　
-　　　　// 状态转换
-　　　　transition: function(event){
-　　　　　　switch(this.currentState) {
-　　　　　　　　case &quot;hide&quot;:
-　　　　　　　　　　this.currentState = 'show';
-　　　　　　　　　　doSomething();
-　　　　　　　　　　break;
-　　　　　　　　case &quot;show&quot;:
-　　　　　　　　　　this.currentState = 'hide';
-　　　　　　　　　　doSomething();
-　　　　　　　　　　break;
-　　　　　　　　default:
-　　　　　　　　　　console.log('Invalid State!');
-　　　　　　　　　　break;
-　　　　　　}
-　　　　}
-　　
-　　};
-　　
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;有没有似曾相识的感觉，Redux里是不是就是这么干的？然后再想想Redux，到底干了一件什么事？帮我们做了这样的一个状态机啊，我们开发者只要定义Action，Reducer，他把我们的APP组织成了一个状态机。&lt;/p&gt;
-
-&lt;p&gt;从这样的角度再来看React,Redux这个的技术栈，我觉得理解的更加的清楚了，当然这仅仅是我的一点点小小的思考，欢迎大家一起讨论拍砖，后边逐步的和大家分享我的心得体会。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 10 Dec 2016 08:01:00 +0800</pubDate>
-        <link>http://aaronchen.cn/2016/12/10/react-01.html</link>
-        <guid isPermaLink="true">http://aaronchen.cn/2016/12/10/react-01.html</guid>
-        
-        <category>前端 React</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>我们在ThoughtWorks打造一款P3产品</title>
-        <description>&lt;h1 id=&quot;thoughtworksp3&quot;&gt;我们在ThoughtWorks打造一款P3产品&lt;/h1&gt;
-&lt;p&gt;从今年3月份加入ThoughtWorks以来，已经过去了8个月的时间，从刚开始的激动，新奇，到逐渐的适应。虽然8个月的时间不长，但是有些新奇的感悟，并且还是特别强烈。&lt;/p&gt;
-
-&lt;h2 id=&quot;p3&quot;&gt;初识P3&lt;/h2&gt;
-&lt;p&gt;在New Hire Orientation上，公司的HR介绍了ThoughtWorks的3个Pillar。也就是：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;可持续化的业务（Run a sustainable business）&lt;/li&gt;
-  &lt;li&gt;追求软件和技术卓越（Champion software excellence and revolutionize the IT industry）&lt;/li&gt;
-  &lt;li&gt;引导社会和经济公平（Advocate passionately for social and economic justice）&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;ThoughtWorks所做的每一件事，每一个决定都是基于这个三个Pillar。
-&lt;img src=&quot;/resources/img/TW-3Pillars.png&quot; alt=&quot;image&quot; /&gt;
-当然每个公司都有自己的Mission和Vision。例如Google的Mission是整合世界的信息，让其可以更有效的被人类利用。（Google’s mission is to organize the world’s information and make it universally accessible and useful. ）Facebook的mission是让人们可以更加有效的分享和联结（ Facebook’s mission is to give people the power to share and make the world more open and connected.）每个公司无论大小，无论是否被总结写下来，都有自己的Mission，只不过有大小之分罢了。&lt;/p&gt;
-
-&lt;p&gt;ThoughtWorks的Mission，前两条都很好理解，我们追求可持续化的业务，我们追求软件技术的卓越。例如我们定期的会发布技术雷达，为行业提供技术选型的指导，我们为客户提供敏捷软件工程方法，提高客户的软件工程质量。但是ThoughtWorks将追求社会和经济公正，作为自己的Mission之一，而且写出来说出去，在之前我并不是十分的理解。追求社会和经济公正，在一个国家来说，不应该是政府应该做的事情吗？如果提高到一个人类的角度上来说，那不应该是联合国应该做的事情吗？会不会是仅仅说说而已？&lt;/p&gt;
-
-&lt;p&gt;其实很多大公司也做慈善，比如说可能会捐献一些善款，组织一些公益活动。当然这些都是很好的回馈社会的方法。但ThoughtWorks的做法的确不同，公司更多的是利用自己的技术，来推动和影响社会和经济公正。ThoughtWorks与很多NGO组织合作，利用技术的手段来帮助他们提高IT能力，让他们能更高效的完成工作。ThoughtWorks组建的思沃学院，为在校的学生提供更多技术指导和培训，帮助学生成长。当看到了这些以后，我慢慢的觉得，公司的P3好像并不是仅仅的说说而已，而是尽自己的能力，来改变一些事情。实话实说，这种冲击对我来说还是挺大的，但更大的冲击，是来自于我看到了“心声”这个APP。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;缘起&lt;/h2&gt;
-&lt;p&gt;“心声”是Thoughtworks西安Office的开发人员，利用自己的业余时间，做出一款帮助聋哑人与正常人交流的APP，可以让正常人的语音转换为文字，帮助与聋哑人交流。这是我之前根本不会想到的事情，当我看到身边的同事，花费自己的时间，利用自己的技术，在确实帮助聋哑人的时候，感受到了P3已经确实融到了TWer的DNA里。在这家公司做这样的事情，是一种自然而然的事情。那么我又能做点什么呢？&lt;/p&gt;
-
-&lt;p&gt;直到有一天看到一篇报道文学，讲述是中国人口老龄化，农村和城镇的空心化，产生了大量的留守老人，有一些因为无人照顾，突发疾病，发生一桩桩人间悲剧，具体的我就不详细描述了，因为是实在是太过悲惨。感慨万千一番，我想，自己能做些什么，哪怕能带来一丝丝的改变？当然我改变不了，中国城市化的进程，让大城市的年轻人能回乡照顾自己的亲人；当然我改变不了，国家的户籍政策，让这些留守老人，能在大城市与自己的子女团聚。当然我也改变不了，现在的养老行业，让留守老人可以都住在养老院里，得到基本的照顾。&lt;strong&gt;但是我可以做的是，利用自己的技术，帮助他们在生命紧急的关头，发出求救的信号。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;开始&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;产品梳理&lt;/h3&gt;
-&lt;p&gt;有了这样的想法，与身边的小伙伴一起商议，得出了一个成型的方案，简单来说就是开发一个APP，搭建一个平台。在一个城市，一个社区，或者村桩里，招募志愿者。同时开发老人端的APP，和一些硬件设备，比如说手环，手表等等。当老人发生危险或者需求救助的时候，他可以按下这些设备上的救助按键。那么这个救助信息就会在平台上看到，附近的志愿者就能看到，从而在最短的时间内能提供救助，避免悲剧发生。当然这只是一个初始的想法。紧接着我们就做了一次User journey，梳理了对于我们最为关键的需求点。
-&lt;img src=&quot;/resources/img/ag-user-journey.jpeg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;理清楚需求后，安装优先级划分好task，并建起了我们的项目看板，追踪项目的运行情况。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;技术选型&lt;/h3&gt;
-&lt;p&gt;产品需求梳理好了以后，下面的问题就是如何进行技术选型了。第一个问题就是因为我们都缺乏硬件的知识，考察了市面上现有的手环，没有发现提供SDK可以让我们直接利用的。又想到了Apple Watch，但是想到高昂的价格并不是一个最好的选择。于是乎还是决定再做一个针对老人的手机APP。
-&lt;img src=&quot;/resources/img/aidsgo-elder-app.png&quot; alt=&quot;image&quot; /&gt;
-&lt;img src=&quot;/resources/img/aidsgo-elder-app-2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;同样因为我们的Mobile开发经验，并不是特别的丰富，于是选择了React Native。并设计出了我们的系统构架图。
-&lt;img src=&quot;/resources/img/ag-tech-artch.jpeg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;但是迟迟没有找到一个合适硬件产品，来触发求救信息始终让我们觉得这还不是一个真正可用的产品。终于有天，公司广发英雄帖，召开技术大赛。并在邮件中介绍了一款AWS刚出的硬件设备AWS IOT Button。这让我们都眼前一亮，这不就是我们要找的东西吗。简单来说IOT Button的按键可以trigger AWS上的一个lambda。有了这个，后边的事情就是我们的强项了，于是乎立马报名参赛，并购入了IOT Button。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;产品实现&lt;/h3&gt;
-&lt;p&gt;下面就进入到了具体开发的阶段，充分的发挥每个人的特长，虽然大家都是开发，但是有人有UX的特长，有人有mobile的特长，大家各尽所能，发挥自己的特长，让这个产品越来越好，首先就是UI设计。
-&lt;img src=&quot;/resources/img/aidsgo-app.png&quot; alt=&quot;image&quot; /&gt;
-&lt;img src=&quot;/resources/img/aidsgo-app-2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;React-Native可以说是给传统的APP开发带来了新的方式，可以让传统的web开发人员可以快速的实现产品。但是同样也是因为它在快速的发展中，也带了不少问题，例如API的变化，第三方组件的支持，但是好在我们的产品场景相对的简单，所以使用ReactNative还是一个比较好的选择。&lt;/p&gt;
-
-&lt;p&gt;同时救助者的实时位置同步也是一个比较大的挑战，我们可以在自己的后台的实现一套消息队列的服务，来做位置同步。但是最终我们使用了市面上成熟的实时数据同步服务，来快速的实现产品。&lt;/p&gt;
-
-&lt;p&gt;目前产品已经进入了后期开发的阶段，小伙伴们在进行最后的优化，期待能在最后技术大赛的showcase里拿出一个能够成行的，可以真正帮助到老年人的产品出来。&lt;/p&gt;
-
-&lt;h2 id=&quot;why&quot;&gt;Why&lt;/h2&gt;
-&lt;p&gt;从初始想法的生成到现在产品的逐渐成行，花费了我们不少的业务时间，有朋友问做这些事为了什么？其实我现在也说不好，在加入TW之前，遇见一些社会事件，可能最多也就是捐点钱，在网上转发转发，评论评论。加入了TW后，看到了这么多之后，自己也想真正做些事情，可以让这个社会能变得稍微美好一点。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 26 Nov 2016 08:01:00 +0800</pubDate>
-        <link>http://aaronchen.cn/2016/11/26/tw-p3.html</link>
-        <guid isPermaLink="true">http://aaronchen.cn/2016/11/26/tw-p3.html</guid>
-        
-        <category>Summary</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>图表君碎碎念</title>
-        <description>&lt;p&gt;大家周末好，天气这是越来越冷了，冬季到来了。西安冬日的传统雾霾又上演了，不过最近又限行了，希望能有点用处吧。好了今天不说什么新的东西，把之前的坑给填一填吧。&lt;/p&gt;
-
-&lt;p&gt;上篇文章的最后给大家留了一个问题，如果顺序的执行多个promise，已经有同学答对了，就是用链式调用。的确答案就是如此，那么具体一点怎么做链式调用呢？那么我们来看一个例子吧。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var guid = 0;
-function run() {
-  guid++;
-  var id = guid;
-  return new Promise(resolve =&amp;gt; {
-    setTimeout(function () {
-      console.log(id);
-      resolve(id);
-    }, (Math.random() * 1.5 | 0) * 1000);
-  });
-}
-
-var promises = Array.from({ length: 10 }, run);
-Promise.all(promises)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;上篇文章（上边的例子）中我们看到了 使用promise.all可以把几个promise组合起来使用，那么如果我们想让这些promise顺序执行改怎么办呢？来看答案。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var guid = 0;
-function run() {
-  guid++;
-  var id = guid;
-  return new Promise(resolve =&amp;gt; {
-    // resolve in a random amount of time
-    setTimeout(function () {
-      console.log(id);
-      resolve(id);
-    }, (Math.random() * 1.5 | 0) * 1000);
-  });
-}
-
-var promises = Array.from({ length: 10 }).reduce(function (acc) {
-  return acc.then(function (res) {
-    console.log(res)
-    return run().then(function (result) {
-      res.push(result);
-      return res;
-    });
-  });
-}, Promise.resolve([]));
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;这里有点很有意思，我们先创建了一个创建一个长度为10的Array出来，然后呢，调用了其上的reduce方法，关键是这个reduce方法有意思了，传入的初始值是个resolved的promise，然后传入了一个function，其作用就是将这些promise都chain了起来。这样达到了顺序调用的目的，当然可以用其他写法达到目的，但是使用reduce还是有点意思的。大家有兴趣了可以自己来试试。&lt;/p&gt;
-
-&lt;p&gt;OK，之前在介绍DockerFile的时候图表君还是留了问题。下边的DockerFile其实定义的是有问题的。&lt;/p&gt;
-
-&lt;blockquote&gt;
-
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	FROM node:4.6
- 	MAINTAINER Aaron Chen&amp;lt;mail@aaronchen.cn&amp;gt;
- 
- 	RUN mkdir /app
- 	WORKDIR /app
- 	COPY . /app
- 
- 	RUN npm install
- 	
- 	EXPOSE 8080
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;那么问题在哪呢？问题就是这样的DockerFile我们就不能利用webpack-dev-server的hot reload的特性了。这对于开发阶段是相当大的效率影响的，那么如何解决呢，也是比较容易的，我们将代码做成一个volume挂到容器里就解决问题了。&lt;/p&gt;
-
-&lt;p&gt;下边说几句非技术的话题，技术的道路做久了，都会考虑到技术路线的问题，作为一个年轻人图表君并没有太多的经验，但是上周看到了池建强老师的一篇文章，说的挺好，在这里分享给大家。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;技术发展（这里只谈我了解的软件）不外乎三条路：算法、底层和业务。能在一条路上精通，就很不错了。而厉害的人可以同时兼顾两条路。三条都牛的人，蛮罕见的。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;技术1：算法路线 &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;走算法路线，对智商的要求是高于其它路线的。但也不能说高到哪里去了。毕竟在企业里做算法工作，更多的是应用成熟算法，而不是自己设计算法。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;算法路线比较适合耐得住寂寞的人，因为做算法常常是站在产品的幕后，好的结果又往往需要慢慢「熬」出来。算法往高走，对基础的要求就比较高了。不是博士出身，没在顶尖研究机构混过，在企业里也很难做出特别牛的成果。所以一般本科生不太建议走这个方向（当然，本科生也不用太难过，毕竟没退学生也做出过一些惊人的成就，池建强注）。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;技术2：底层路线&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;底层路线，是围绕着操作系统、编译原理、分布式系统、数据库、软件工程这些理论，用各种工具搭建出酷酷的应用开发、运行环境。把各种复杂的工具跑起来，不仅和谐共处，还能发挥各自的长处，弥补各自的短处，并不是个简单工作。如果能再自己开发一些好用工具，就更不简单了。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;极客、黑客范儿的人，是最适合走这条路线的。爱折腾，爱尝鲜，崇尚开源文化，细致缜密，是做好这一行的标签。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;运维、DevOp、云计算、大数据、架构师，这些岗位或领域的人，多是能呼云唤雨的底层高手。 &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;技术3：业务路线&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;大多数技术都是在业务线生存和创造价值的。如果论技术光环，这条线是比不过前两条的，容易产生「对技术能力要求不高」的感觉。从某些角度看，确实如此，但这条线也有自己独步天下的技术，那就是复杂业务建模能力。
-修炼这项能力，除了技术的通用要求外，还需要比其它路线更强的沟通能力和抽象能力。或者说，对情商的要求最高。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;适合自己的才是最好的，到底走那条路线是一个选择问题，做出自己的选择，并坚持的走下去。这可能是漫长和痛苦的过程。好了，唠唠叨叨了这么多，今天就写到这吧，我们下周见。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;原创文章，欢迎转发，但请标明出处。欢迎关注图表君的公众号，一起成长。在微信中搜索 “多彩数据” 或者 “Data_Visualization”&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/resources/img/wechat.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 06 Nov 2016 09:25:00 +0800</pubDate>
-        <link>http://aaronchen.cn/2016/11/06/Summary01.html</link>
-        <guid isPermaLink="true">http://aaronchen.cn/2016/11/06/Summary01.html</guid>
-        
-        <category>summary</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>只为那句承诺-大话Promise</title>
-        <description>&lt;h1 id=&quot;promise&quot;&gt;只为那句承诺-大话Promise&lt;/h1&gt;
-
-&lt;p&gt;大家周末好，要说最近几年什么语言大红大紫，当属JavaScript了。话说虽然是10天就创造出的语言，但是人家能文能武。web前端自然不必多说了，各种框架你方登罢我上场，前两年还是Angular一统天下，这两年React又是大红大紫，还有Vue最近异军突起，好不红火。要是仅仅是前端也就算了，但是由于Node.js人家在后台也能写，React Native的出现让人家移动端也能做。好吧，还有硬件上也出现Ruff方案，好像硬件上也能写了。真是让人感觉挺有意思的事情。&lt;/p&gt;
-
-&lt;p&gt;图表君上边叨叨了这么多，难道是为JavaScript唱赞歌的吗？呵呵，其实并不是。只是最近因为在用上篇文章介绍的AWS Lambda。Lambda现在只支持Java，Node.js,Python。最终选择了Node.js进行开发，不可避免的要牵扯到异步操作的问题。那么今天就来聊聊JavaScript中的Promise。&lt;/p&gt;
-
-&lt;h2 id=&quot;promise-1&quot;&gt;什么是Promise&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了Promise对象。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise是一个对象，从它可以获取异步操作的消息。Promise提供统一的API，各种异步操作都可以用同样的方法进行处理。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;上面是Promise的一个定义，引自阮一峰的ES6标准入门一书。&lt;a href=&quot;http://es6.ruanyifeng.com/&quot;&gt;S6标准入门&lt;/a&gt;。多说一句，目前的JavaScript项目无论是前台或者是后台，都应该采用ES6的标准语法来写，ES6让JavaScript的书写更加的清晰和规范。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;基本用法&lt;/h2&gt;
-&lt;p&gt;如何来构造一个promise对象呢？ES6中提供了原生Promise可以使用。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var promise = new Promise(function(resolve, reject) {
-  // ... here is some code
-
-  if (/* 异步操作成功 */){
-    resolve(value);
-  } else {
-    reject(error);
-  }
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;上面的例子给出了new一个promise对象的方法，Promise的构造函数接受一个函数作为参数传入，这个函数的两个参数，reject和resolve是JavaScript本身提供的两个函数。
-一个promise对象有三个状态分别是，pending，resolved，rejected。resolve函数可以将pending状态转变为resolved状态。reject函数可以讲pending状态转变了rejected状态。对象的状态不受外界的影响，同样也是promise名字的由来。外部你拿着我的一个承诺，一会我会告诉你我的状态。&lt;/p&gt;
-
-&lt;p&gt;promise对象通过then方法来添加回调函数。例如这样&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;promise.then(data=&amp;gt; console.log(data), err=&amp;gt; console.log(err));
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;当promise被resolved的时候，就会把data log出来。当promise被rejected的时候，err就会被log出来。
-看上去好像是挺简单的，的确Promise的应用使得异步的操作，以同步的形式表现出来。当发生错误的时候可以通过catch方法，来定义回调函数。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;怎么用&lt;/h2&gt;
-&lt;p&gt;上边都是一些干巴巴的定义，那么到底该怎么用呢？Promise又怎么样的解决了问题呢，下边我们看一个例子。假设下边一个场景，我们一个服务，从一个外边service获取数据，然后写到一个db里，或者一个存储里，最后在把存储的状态龙出来，那么如果没有promise是怎么写的呢？可能会是这样。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;getData(function (value1) {
-  storeToDb(value1, function(value2) {
-    logStore(value2, function(value3) {
-      //...
-    });
-  });
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;传统的回调的写法，这样使得代码逻辑混乱在一起。再想想如果再加上错误处理的情况，更是酸爽。那么用promise来写会怎么样呢？看下边这样的代码&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function getData(){
-	return new Promise((resolve,reject) =&amp;gt;{
-		// ... send request to get data
-		
-		if(/* get successfully*/){
-			resolve(data)
-		}else{
-			reject(err)
-		}
-	})
-}
-
-function storeData(data){
-	return new Promise((resolve,reject)=&amp;gt;{
-		// ... store the data
-		
-		if(/*store successfully*/){
-			resolve(data)
-		}else{
-			reject(err)
-		}
-	})
-}
-
-
-getData()
-	.then(data =&amp;gt; storeData(data))
-	.then(data =&amp;gt; console.log('the process is done',data));
-	.catch(err =&amp;gt; console.error('there is the err',err));
-
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;这样写是不是就是很清楚了，先getData，然后再storeData，最后将这次运行的情况log了出来，其中有任何的问题，在catch中都可以Catch出来。代码的逻辑以同步的方式得到了体现。我们来看看如果是其他语言会怎么写，下边是个ruby的语言的例子&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def get_data 
-	// ...send request
-	
-	if /*get successfully */
-		return data
-	else
-		raise GetDataError
-	end
-end
-
-
-def store_data
-	// ...save to db
-	
-	if /*save successfully */
-		return data
-	else
-		raise StoreDataError
-	end
-end
-
-
-/*Main Logic*/
-begin
-	request_data = get_data
-	db_data = store_data request_data
-	p &quot;here is the store data #{db_data}&quot;
-rescue e
-	p &quot;here is some errors #{e}&quot;
-end
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;我们对比两个例子，可以看到在使用的Promise后让JavaScript的异步方式的编程模式更将清楚，也更加让人容易理解。&lt;/p&gt;
-
-&lt;p&gt;由于JavaScript的执行环境是单线程的，所以大量采用了异步的方式来进行编程，这使得我们写起代码并不十分符合我们一般的习惯。但是Promise的出现让这种问题能得到一定程度的缓解。&lt;/p&gt;
-
-&lt;p&gt;但是异步操作异步操作的好处，比如上边的那个例子，如果我们想要做的同时并发10个操作，那个在ruby或者其他语言中中就要启多个线程来进行。但是JavaScript就完全没有这个问题。只要简单的loop下就行了。&lt;/p&gt;
-
-&lt;p&gt;但是如果我们想要在这10个操作完成后根据返回的状态做点其他操作该怎么做呢？这时候用Promise.all就是最好的了。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;let p = Promise.all([p1, p2, p3]);
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Promise.all接受数组作为参数传入，每个元素都是一个promise对象。只要所有子promise都resolved以后，p才会被resolved。只要有一个被rejected，这个p就会被rejected。但是有一点是这些子promise之间并不会有顺序的关系。再来看一个例子：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var guid = 0;
-function run() {
-  guid++;
-  var id = guid;
-  return new Promise(resolve =&amp;gt; {
-    setTimeout(function () {
-      console.log(id);
-      resolve(id);
-    }, (Math.random() * 1.5 | 0) * 1000);
-  });
-}
-
-var promises = Array.from({ length: 10 }, run);
-Promise.all(promises)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;OUTPUT:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2
-3
-5
-6
-7
-8
-10
-1
-4
-9
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;从这次的output可以看到，promise之间并没有顺序执行，实际上是并发的。那么如何让这些promise是顺序执行呢？留个大家自己思考下，下篇文章，我们揭晓。或者可以联系图表君，私下告诉你答案哦。 										
-ps，当然也可以用一些第三方的库和方案，例如（async）来实现顺序操作，但是代码的乐趣不就是做些思维挑战吗:)&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;原创文章，欢迎转发，但请标明出处。欢迎关注图表君的公众号，一起成长。在微信中搜索 “多彩数据” 或者 “Data_Visualization”&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/resources/img/wechat.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 23 Oct 2016 08:01:00 +0800</pubDate>
-        <link>http://aaronchen.cn/2016/10/23/promise.html</link>
-        <guid isPermaLink="true">http://aaronchen.cn/2016/10/23/promise.html</guid>
-        
-        <category>Summary</category>
         
         
       </item>
