@@ -26,8 +26,6 @@ tags:
 
 还有, 密码学中的密钥在很多场景地下都是通过例如password, passphrases通过私钥衍生函数衍生而来的例如(PBKDF2 and Scrypt)
 
- Most digital signature algorithms (like DSA, ECDSA and EdDSA) use asymmetric key pair (private and public key): the message is signed by the private key and the signature is verified by the corresponding public key. In the bank systems digital signatures are used to sign and approve payments. In blockchain signed transactions allow users to transfer a blockchain asset from one address to another.
-
 ### 数字签名和消息验证
 现代密码学的另一大应用领域就是数字签名和消息验证.大多数的数字签名算法例如(DSA, ECDSA 和 EdSDA)使用的是非对称加密算法来进行签名, 使用私钥对消息进行签名, 使用公钥验证签名. 在银行系统中, 数字签名被用于签署和批准交易. 在区块链系统中, 数字签名用于转移数字资产从一个地址到另外一个地址.
 
