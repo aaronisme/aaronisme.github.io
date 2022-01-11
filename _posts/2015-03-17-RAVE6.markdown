@@ -76,7 +76,6 @@ For example:
 下边写一个例子能更好的说明这个问题。还有一点即使在RAVE 5.0 以后才支持这个属性。
 ![图例2]({{url}}/resources/img/rave6-pic1.png)
 
-这里是源码[源码]({{url}}/resources/file/customlabel.json)
 
 思考题1：
 如果有缺项怎么呢办，意思是要显示的label不是和原始数据一一对应的，中间有空项？
