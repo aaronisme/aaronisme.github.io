@@ -1,0 +1,45 @@
+---
+layout: post
+title:  "来，给他点颜色看看-RAVE（4）"
+date:   2015-02-09 11:15:00
+categories: Learning
+tags:
+    - 前端
+    - visualization
+---
+上一篇文章中给大家介绍了如何用RAVE画出一个栅格图来，但那个样子的栅格图实在太丑了，图表君表示无法忍受，那么今天就让我们一起给它点颜色看看，美化美化这个图来，让它看起来更漂亮点。
+
+为了区分开各个对位，在栅格图中，我们将各个柱用不同的颜色进行区分来达到这样的效果。这个该怎么做呢，只要在element里边，对于interval的颜色属性进行修改就OK了。具体来说我们来看下面一段代码。
+{% highlight JSON%}
+“color”:[
+  {
+    "id":"colorId",
+    "field":{
+	  "$ref":"categories"
+	  }
+  "palette":[
+    "#1183ad",
+    "#39b2ac",
+    "#60942c",
+    "#d4a600",
+    "#d15c00",
+    "#b2293d",
+    "#532f8c"
+   ]
+  }
+]
+{% endhighlight %}
+在上边的代码段落，定义了颜色的属性，并将颜色与data中的categories相关联。这样就给不同的栅格赋予了不同的颜色，在palette里就定义了各种颜色，按照先后属性给各个栅格改变颜色。得到图形就回变成这个样子。![图例1]({{ url }}/resources/img/rave4-pic1.png)
+
+这样看是不是还有有点奇怪，这些栅格不应该靠在一起啊，那好我们现在让他们分开点，这个就更简单了，只要在elements里加一个style的属性控制一下它的宽度就ok了。来看代码。
+{% highlight JSON%}
+“style”:{
+  "width":"80%"
+
+}
+{% endhighlight %}
+完成后的图形就是这个样子的。width就变为原来的80%了。是不是很简单。
+![图例2]({{url}}/resources/img/rave4-pic2.png)
+这里是这个栅格图的源码，提供给大家进行参考。[源码]({{url}}/resources/file/barchart_color.json)
+
+好了，颜色我们上完了，这篇文章就先写到这里吧，下面文章我们对它继续美化，让这个栅格图看起来更好一点。

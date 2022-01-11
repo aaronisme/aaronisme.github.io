@@ -1,0 +1,29 @@
+---
+layout: post
+title:  "数据可视化工具巡礼-RAVE(1)"
+date:   2015-02-02 11:15:00
+categories: Learning
+tags:
+    - 前端
+    - visualization
+---
+今天开始分享更多干货。从什么开始呢？那就从RAVE开始吧，因为图表君对它最为熟悉了。
+
+好吧，第一个问题来了？什么是RAVE。
+RAVE 是 Rapidly Adaptive Visualization Engine 的简称。是IBM最新提出新一代的数据可视化图形引擎。IBM在其很多最新的产品上已经应用了RAVE作为图形引擎，例如IBM Cognos BI， IBM Watson 以及 BlueMix 等等。
+
+RAVE初探：
+与以往的数据可视化方案不同的是，以往数据可视化解决方案中总有图库的概念，在这些图库中预先定义了很多的图形，例如栅格图，线图，饼图，散点图，气泡图等等。从图库中选择需要的图形，用于展示想要的数据。那么就存在了一个问题了，如果要重新定义在图库中没有的一个图形，那么就得让开放人员重新开发，更新图库。这样是不是很麻烦？
+RAVE的概念完全不同，它最大的特点就是定义了一种描述图形的语言对图形进行描述。说的通俗点，就是RAVE提供了一门编程语言，用于实现图形。这样就提供了更大的定制性，只要熟悉RAVE，那就可以自己创造出符合要求的图形。
+除此之外，RAVE提供各种平台的各种SDK，支持Desktop(JAVA)，Web(Javascript)，IOS，Android，实现了对Desktop,web,Mobile的支持。
+
+RAVE的描述语言：
+上文书说到了，RAVE定义一种描述语言来描述图形。那么现在就来简单说道说道。RAVE利用Json的数据格式来说描述图形，RAVE将其称为VizJson。在VizJSon主要包含两个部分data和grammar。 data里定义了要展示的数据，Grammar里定义了图形的描述。定义好VizJson，调用RAVE的图形引擎，就能将图形展示出来了。今天我们开个头，具体的东西，以后慢慢给大家分享。下边看看用RAVE制作的一些图形。
+![图例1]({{url}}/resources/img/rave1-pic1.png)
+![图例2]({{url}}/resources/img/rave1-pic2.png)
+![图例3]({{url}}/resources/img/rave1-pic3.png)
+![图例4]({{url}}/resources/img/rave1-pic4.png)
+
+
+
+RAVE现在已经作为bluemix的图形引擎开放出来。好了，今天就写到这里，下一篇我们会继续探讨下RAVE的vizJSon,如何用这样的描述语言定义出一个图形。

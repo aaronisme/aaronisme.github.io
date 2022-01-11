@@ -1,0 +1,166 @@
+{
+  "data": [
+    {
+      "id": "data",
+      "fields": [
+        {
+          "id": "name",
+          "label": "Teams"
+        },
+        {
+          "id": "wins",
+          "label": "Game Wins"
+        },
+        {
+          "id":"labels",
+          "categories":[
+              "abc1",
+              "abc2",
+              "abc3",
+              "abc4",
+              "abc5"
+          ]
+        }
+
+      ],
+      "rows": [
+        [
+          0,
+          29,
+          0
+        ],
+        [
+          1,
+          29,
+          1
+        ],
+        [
+          2,
+          22,
+          2
+        ],
+        [
+          3,
+          20,
+          3
+        ],
+        [
+          4,
+          19,
+          4
+        ]
+      ]
+    }
+  ],
+  "grammar": [
+    {
+      "coordinates": {
+        "dimensions": [
+          {
+            "axis": {
+              "lineStyle": {
+                "fill": "black"
+              },
+              "markStyle": {
+                "fill": "white"
+              },
+              "title": [
+                "Win Games"
+              ]
+            }
+          },
+          {
+            "scale":{
+                "spans":[
+                    {
+                      "tickLabel":[
+                        {
+                          "$ref":"labels",
+                          "style":{
+                            "fill":"red"
+                          },
+                          "method":"data"
+                        },
+                      ]
+                    }
+                ]
+              },
+            "axis": {
+              "lineStyle": {
+                "fill": "sliver"
+              },
+              "markStyle": {
+                "fill": "white"
+              },
+              "title": [
+                "Teams"
+              ]
+            }
+          }
+        ],
+        "style": {
+          "fill": "gray"
+        }
+      },
+      "elements": [
+        {
+          "type": "interval",
+          "position": [
+            {
+              "field": {
+                "$ref": "wins"
+              }
+            },
+            {
+              "field": {
+                "$ref": "name"
+              }
+            }
+          ],
+          "color": [
+            {
+              "id": "colorId",
+              "field": {
+                "$ref": "name"
+              },
+              "palette": [
+                "#1183ad",
+                "#39b2ac",
+                "#60942c",
+                "#d4a600",
+                "#d15c00",
+                "#b2293d",
+                "#532f8c"
+              ]
+            }
+          ],
+          "style": {
+            "width": "9"
+          }
+        }
+      ]
+    }
+  ],
+  "legends": [
+    {}
+  ],
+  "size": {
+    "width": 500,
+    "height": 400
+  },
+  "titles": [
+    {
+      "type": "title",
+      "content": [
+        "English premier league Top 5 2012-2013"
+      ],
+      "style": {
+        "fill": "black"
+      }
+    }
+  ],
+  "version": "5.0",
+  "style": {
+    "fill": "transparent"
+  }
+}

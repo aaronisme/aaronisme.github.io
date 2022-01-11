@@ -10,7 +10,7 @@ baseurl: ''
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
 # otherwise, the layout language will use the default value of 'en'.
-lang: zh-cn
+lang: en
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
 timezone: Asia/Shanghai
@@ -20,7 +20,7 @@ timezone: Asia/Shanghai
 
 title: AARONCHEN                          # the main title
 
-tagline:    # it will display as the sub-title
+tagline: Learning, Thinking, Building    # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   Aaron chen's blog,
@@ -30,36 +30,30 @@ description: >-                        # used by seo meta and the atom feed
 url: 'https://aaronchen.me'
 
 github:
-  username: github_username             # change to your github username
+  username: aaronisme             # change to your github username
 
 twitter:
-  username: twitter_username            # change to your twitter username
+  username: aaron1sme            # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@doamin.com             # change to your email address
+  name: Aaron Chen
+  email: aarondongchen@gmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
+    - https://twitter.com/aaron1sme      # change to your twitter homepage
+    - https://github.com/aaronisme       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://www.linkedin.com/in/aarondongchen
 
-google_site_verification: google_meta_tag_verification # change to your verification string
 
 # ↑ --------------------------
 
 
 google_analytics:
-  id: ''              # fill in your Google Analytics ID
-  # Google Analytics pageviews report settings
-  pv:
-    proxy_endpoint:   # fill in the Google Analytics superProxy endpoint of Google App Engine
-    cache_path:       # the local PV cache data, friendly to visitors from GFW region
-
+  id: 'UA-216676446-1'              # fill in your Google Analytics ID
 # Prefer color scheme setting.
 #
 # Note: Keep empty will follow the system prefer color by default,
@@ -81,7 +75,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: '/assets/img/favicons/avatar-ac.png'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
@@ -170,6 +164,3 @@ jekyll-archives:
     tag: /tags/:name/
     category: /categories/:name/
 
-
-plugins:
-  - jekyll-spaceship

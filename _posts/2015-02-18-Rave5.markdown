@@ -1,0 +1,76 @@
+---
+layout: post
+title:  "今天，我们完成这个栅格图-RAVE（5）"
+date:   2015-02-18 14:15:00
+categories: Learning
+tags:
+    - 前端
+    - visualization
+---
+今天是大年三十，图表君祝大家羊年大吉，新年快乐。今天我们完成这个栅格图,也是我们RAVE 第一季 的最后一篇文章。在上一篇文章中给大家介绍了如何用美化栅格图。这篇文章我们再为这个图形再增加点其他元素。
+
+## 添加两个轴的信息
+对于一个完整的图形来说一般是需要有，坐标轴来表示其中的信息的，在RAVE中如何来添加这些信息呢？其实如果看看我们之前的代码片段，已经有这样的定义了。
+{% highlight JSON%}
+"coordinates": {
+  "dimensions": [
+          {
+            "axis": {}
+          },
+          {
+            "axis": {}
+          }
+  ],
+  "style": {
+          "fill": "white"
+  }
+}
+{% endhighlight %}
+在上边的代码段落中就定义了图表的轴的信息，例如，它有两个axis也就是说有两个轴，只不过现在我们并没有定义轴上的样式，所以axis里是一个空的object。现在我们来做些修改。
+我们需要两个轴有title,y轴上的坐标为黑色，X轴的坐标为银色。
+下边呢，就是我们的实现代码段。
+{% highlight JSON%}
+     "coordinates": {
+          "dimensions": [
+            {
+              "axis": {
+                "lineStyle": {"fill": "black"},
+                "markStyle": {"fill": "white"},
+                "title": [ "Win Games" ]
+              }
+            },
+            {
+              "axis": {
+                "lineStyle": {"fill": "sliver"},
+                "markStyle": {"fill": "white"},
+                "title": [ "Teams" ]
+              }
+            }
+          ],
+          "style": {"fill": "gray"}
+        }
+{% endhighlight %}
+在这里lineStyle属性定义了坐标轴的颜色，title属性定义的x,y两个轴的名字。来看看图是什么样的。![图例1]({{url}}/resources/img/rave5-pic1.png)
+##添加图例和名字，
+作为一张图一定要有自己的名字，并且一张完整的图，一定有合适的图例来表达自己。那么如何添加呢？下边就是
+{% highlight JSON%}
+  "legends": [
+    {}
+  ],
+  "titles": [
+    {
+      "type": "title",
+      "content": [
+        "English premier league Top 5 2012-2013"
+      ],
+      "style": {
+        "fill": "black"
+      }
+    }
+  ],
+{% endhighlight %}
+在这里我们将图例以及图的名字添加好了。titles属性是对图的名字的描述，在它的content里是title的内容，style定义了它的颜色。同样增加了legends属性来表示图例，这里我使用的是默认的配置。所以给个空的object就ok了。
+![图例2]({{url}}/resources/img/rave5-pic2.png)
+这里是这个栅格图的源码，提供给大家进行参考。[源码]({{url}}/resources/file/barchart_color_5.json)
+
+感谢大家对于多彩数据的支持，图表君在这里给大家拜年了，祝大家羊年工作进步，身体健康，万事如意。图表君在新的一年里，会尽力把多彩数据做好，给大家分享更多的内容，也欢迎大家把好的文章分享给图表君，大家学习交流。
