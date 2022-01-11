@@ -1,0 +1,89 @@
+---
+layout: post
+title:  "RAVE中的自定义axis的方法"
+date:   2015-03-17 11:15:00
+tags:
+    - 前端开发
+    - visualization
+---
+在图表中往往有很纠结的地方，比如我们既想方便的做出一个图形，同时也想让图形具有很强的灵活性。所以要满足这样的需求也是挺难的。打个比方说在以往的图库的图形引擎中要更改一个自定义一些图，确实也是很挺困难的。但是RAVE提供的VizJSon的语法描述语言，所以它的灵活性就有相应的提升，那么如何表现呢？下面就是个很好的例子。在现实的需求中我们往往需要自定义一些轴上的信息，但是在data里又不方便直接的对于这样的信息进行定义，所以就存在了一个转化的问题。那么如何进行转换呢？以下就是一个很好的事件例子。
+
+在VizJson Reference Doc 中对于axis的描述中有这样的一段：
+
+tickLabel
+
+Type: content
+
+Defines the formatting for the axis tick label.
+
+The label will be constructed by appending these parts together. References to fields will be translated to the name of the field. This content array is similar to axis title or element label. The only different is that it will have a placeholder to insert the tick actual value. This placeholder is an entity with an argument and value such as
+{% highlight JSON%}
+{"args": "tick"}
+{% endhighlight %}
+
+For example if the attribute is defined as follows:
+{% highlight JSON%}
+"tickLabel": ["Price: ", {"args": "tick"}]
+{% endhighlight %}
+than a tick value of 1000 will become "Price: 1000" Images can be added to tick label by providing a image referance in content array. This is as described in content attribute of label. Different image for each category can be added by providing a field referance with method as image as shown below. This field will contain referance to image resources as categories.
+{% highlight JSON%}
+"tickLabel": [
+	{"$ref": "imgField","method": "image"},
+	" ",
+    {"args": "tick"}
+]
+{% endhighlight %}
+Note: For numeric scale the tick value may not exactly match the value of data field so image defined at nearest matching data row index is used for the tick.
+Tick label actual values can be styled by defining the style along with argument. Rules for specifying style are same as for any other content part as described in content attribute of label.
+
+For example:
+{% highlight JSON%}
+"tickLabel": [
+    {"args": "tick"},
+    "style": {
+    	"fill": "blue",
+        "font": {
+        	"size": 18,
+            "style": "italic",
+            "weight": "bold"
+       }
+   }
+]
+{% endhighlight %}
+
+大致的意思就是说tickLabel这个属性对于axis中的label提供一些自定义的方式。只要插入一个placeholder{“args”：“tick”}中就可以将原有的lable引入进来。在这样的表述中提到了三种方式:
+1. 在现有的label统一加一个前缀字段。实现的方法就是在这个array里加一个字符串["Price: ", {"args": "tick"}]
+2. 利用image加入到现有的label中。实现的方式是在这个array中加入对于image的引用[{"$ref":"image","method":"image"}, " ",{"args":"tick"}]
+3. 同样可以对于tickLabel 改变它的style，通过改变其style property来到达。
+
+这里是官方的文档的描述。那么问题来了，如果我的目的不是要引入image，而是要做一个mapping的变换该如何操作呢。具体来说就是要讲：
+1 - abc1
+2 - abc2
+3 - abc3
+4 - abc4
+5 - abc5
+这样一一对应的方式进行对应。该如何定义？？
+
+要达到这样的目的我们就可以参考VizJson的ticklael image的定义方法。假如新定义的categories 的名字叫 reallabel。那么我们就是可以这样的定义ticklabel。
+{% highlight JSON%}
+"tickLabel": [
+	{"$ref": "reallabel","method": "data"}
+]
+{% endhighlight %}
+
+这样就利用自定义的label代替了原有的label。
+下边写一个例子能更好的说明这个问题。还有一点即使在RAVE 5.0 以后才支持这个属性。
+![图例2]({{url}}/resources/img/rave6-pic1.png)
+
+这里是源码[源码]({{url}}/resources/file/customlabel.json)
+
+思考题1：
+如果有缺项怎么呢办，意思是要显示的label不是和原始数据一一对应的，中间有空项？
+
+答案：
+在对应的data rows里补null 同时改变原始的tickstyle 为透明色。这是一点tricks。
+
+思考题2：
+如何创建有null项的图，有空点，不连续的图。
+答案：
+只要在对应项中补null就可以了，例如 [[1,2],[2,null],[3,8] ...]

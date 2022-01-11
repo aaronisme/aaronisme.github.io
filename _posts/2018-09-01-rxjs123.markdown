@@ -1,0 +1,82 @@
+---
+layout: post
+title:  "Rxjs 一二三"
+date:   2018-09-01 11:15:00
+tags:
+    - 前端
+---
+
+在前端开发领域，Application的状态管理可以说是最重要的问题了。如果你使用了React做为表现层的框架，那么一般来说你都会选择例如Redux 或者Mobx这样的数据状态管理框架一同使用。Rxjs同样也是数据状态管理的一种方法。
+
+RxJs 是 Reactive Programming 的JS实现。以Stream的方式来看待数据的变化，这样的思路天生特别适合解决异步的数据状态和基于事件的状态管理。举个例子来说，如果你使用过Redux，那么你就会知道Redux天生很难处理异步的Action。当然为了解决这个问题，出现了很多框架和工具。例如Redux-thunk， Redux-Saga，Redux-thunk可以在一点程度上解决这个问题。但是它的功能还是相当有限，当处理复杂场景的时候，就捉襟见肘了。例如如何撤销一个Api Request ？ 例如如何debounce一个Api Request ？ 这些问题如果放到Rxjs的context里边就会发现解决起来相当的easy和优雅。但是Rxjs使用和理解起来还是有些learning cruve的，这篇文章也不准备一次就把所有RxJs都介绍到。这里只分享一些在学习和使用Rxjs的点，希望能让你感性的体会到Rxjs的强大和优雅。
+
+首先来看RxJS的几个核心概念。
+- Observable (可观察对象): 表示一个概念，这个概念是一个可调用的未来值或事件的集合。
+- Observer (观察者): 一个回调函数的集合，它知道如何去监听由 Observable 提供的值。
+- Subscription (订阅): 表示 Observable 的执行，主要用于取消 Observable 的执行。
+- Operators (操作符): 采用函数式编程风格的纯函数 (pure function)，使用像 map、filter、concat、flatMap 等这样的操作符来处理集合。
+
+下来我们看看例子体会一下：
+
+## 第一例子
+第一个例子十分的简单，是如何一个Button 的click event变成一个stream。就是一个Observable.
+常规的事件监听我们一般会这么写
+
+```
+    const button = document.querySelector('button’);
+    button.addEventListener('click', () => console.log('Clicked!'));
+```
+
+如果我们使用Rxjs的话，他就变成这样了
+
+```
+    const button = document.querySelector(‘button’)
+    Rx.Observable.fromEvent(button, ‘click’).subscribe(() => console.log(‘clicked'))
+```
+
+简单的两行就将button 的click变成了Observable这样，其他的Observer就可以订阅到这个Observable进行相应的操作。
+如果只是简单的似乎也是没什么特别的，那么到底有什么用处呢？
+
+## 第二例子
+如果要实现一个click button的事件的，但是为了防止机器人点击，1S才会有效一次该怎么实现呢？
+如何不用Rxjs 怎么实现呢？
+
+```
+    const rate = 1000
+    Let lastClick = Date.now() - rate
+    const button = document.querySelector(‘button’)
+    Button.addEventListener(‘click’, () => {
+     If(Date.now - lastClick > rate) {
+        console.log(‘clicked!’)
+        lastClick = Date.now()
+    }
+})
+```
+
+上边的这段代码就是我们一般的实现方式，在这里我们引入了一个全局的状态变量 lastClick用来记录上次的点击时间，并在我们click callback去修改它，这样的实现显然不是一个好的实现方式。第一有全局的状态变量，第二函数不纯。再看看如果用Rxjs怎么实现呢？
+
+```
+    const button = document.querySelector(‘button’)
+    Rx.Observable.fromEvent(button, ‘click’)
+    .throttleTime(1000)
+    .subscribe(() => console.log(‘clicked’))
+```
+是不是相当的简单，如果把click事件看成一个水流，那么throttleTime就像是一个控制阀，他控制着多长时间开一次像下游放一次水。
+
+## 第三例子
+上边还只是一些简单的小例子，我们来看一个更加复杂一点的user case，第三个例子。
+假设我们有个search box 当用户输入的时候，会想后台api 发request， seach 对应的字段。这个需求听起来不难，每次发一个 request，然后拿后台返回的数据 render 一个list 就ok了，但是这里有一个问题。例如，
+
+```
+    // A request for rx
+    // B request for rxjs
+```    
+实际上是发出了两个request，所以我们会得到2个response，但是如果 request B 的response 比 request A 先回来，那么最后render出的结果就是Request A，但是这不是我们想想要的。如何解决这个问题呢，当然我们可以在sort 一下 response，当然如果用Rxjs那么会更简单，就是用SwitchMap，简单来说SwitchMap会订阅最后一个Observable给下游，所以无论你发了几个request，下游拿到的一定是最后一个reqeust的。代码例如这样
+
+```
+    inputValueObserverable
+    .switchMap(query => Rx.Observerable.fromProise(fetch(query)))
+    .subscribe(value => renderList(value))
+```
+
+以上是Rxjs的三个小例子，当然RxjS的强大不止于此，如果你刚兴趣，推荐一个书《深入浅出Rxjs》，这是目前看到了把Rxjs讲的比较明白的一本书了。当然我认为要真正的掌握Rxjs还要从思维上转变成为以数据流的方式来思考和设计Application。好了，希望这几个小例子能吸引你对于Rxjs的兴趣，一起学习。

@@ -1,0 +1,108 @@
+---
+layout: post
+title:  "来,我们来画一个栅格图-RAVE（3）"
+date:   2015-02-07 11:15:00
+tags:
+    - 前端开发
+    - visualization
+---
+相信如果读了上一篇文章的各位亲们，现在已经顺利的将RAVE的SDK环境搭建起来了吧。那么现在我们就是利用起来，画出一个栅格图出来。
+
+说是要画图，其实就是定义VizJSon 文件，定义好这个文件放到RAVE SDK中那么图就可以渲染出来了。
+说了这么久的VizJson，那它是由哪几部分组成的呢？其实很简单就是两部分，一个是Data，一个是Grammer。 Data里定义了想要展示的数据，Grammar，顾名思义语法，定义了图形的展示方式。比如现在我们要展示一个这样的数据，2011到2012赛季，英超比赛的前5名球队的获胜的比赛数。以下是这些数据。
+{"MCI":29,"MUN":29,"ARS":22,"TOT":20,"NEW":19}
+
+RAVE的Data定义：
+对于上述的数据，包括球队以及赢球数这两种数据。球队数据属于categories类型的数据，大家可以理解为枚举类型。赢球数为数值类型的数据。那么在Data中奖这个两类数据进行定义，在rows里记录具体的数据值。
+{% highlight JSON%}
+"data":
+[
+{
+  "id":"data",
+  "fields":
+  [
+     {
+          "id":"name",
+           "label":"name",
+           "categories":
+        [
+           "MCI",
+           "MUN",
+           "ARS",
+           "TOT",
+           "NEW"
+        ]
+     },
+     {
+          "id":"wins",
+           "label":"Game Wins"
+     }
+  ],
+  "rows":
+  [
+     [ 0,29],
+     [1,29],
+     [2,22],
+     [3,20],
+     [4,19]
+  ]
+}
+],
+{% endhighlight %}
+大家可以看到，我在data中定义出了这两种数据。并在rows里将所有的数据记录，记录了下来。那么data这一部分的数据就定义完成了。（可能有些看官看不太懂。因为VizJson的定义，利用的都是Json的数据格式，大家如果想深入研究，可以到w3school里先看下Json的数据格式，其实也不用太过纠结，一步步慢慢来好了。）
+
+在对data这部分定义完成以后，那下边我们就要进行grammer部分的定义了。在之前，先给大家简单的介绍一下RAVE的grammer。在RAVE中定义了一些基本类型来绘制图形，例如interval（条），point(点)，edge（边），polygon（多边形），line（线），area（区域）等等。那么对于栅格图来说，我们就可以使用interval来绘制。好了，那我们来看看具体的代码吧。
+{% highlight JSON%}
+"grammar":
+[
+   {
+      "coordinates":
+      {
+         "dimensions":
+         [
+            {
+               "axis":
+               {
+
+               }
+            },
+            {
+               "axis":
+               {
+
+               }
+            }
+         ],
+         "style":
+         {
+            "fill":"white"
+         }
+      },
+      "elements":
+      [
+         {
+            "type":"interval",
+            "position":
+            [
+               {
+                  "field":
+                  {
+                     "$ref":"name"
+                  }
+               },
+               {
+                  "field":
+                  {
+                     "$ref":"wins"
+                  }
+               }
+            ]
+         }
+      ]
+   }
+],
+{% endhighlight %}
+可以看到在element里，我用internal来绘制每一个栅格，他们的位置，又是用position这个属性所定义的，第一field定义了x轴的位置，第二个field定义了Y轴的位置。
+那么画出来的图是什么样子呢，请看下边：![图例1]({{url}}/resources/img/rave3-pic1.jpg)
+是不是有些丑呢，反正图表君觉的不漂亮，不要紧。下一篇，我们来美化美化它，give it some color to see see。
+好了，这篇就先讲这么多吧，感兴趣的同学，动起手来，简单的做一个栅格图吧。
