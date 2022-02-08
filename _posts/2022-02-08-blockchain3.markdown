@@ -64,7 +64,7 @@ Web 3 不仅有加密货币，区块链以及其他[加密经济产品](https://
 - 一个由基本金融原语组成的生态系统——贷款、衍生品、交易所——提供了任何人都能使用的、更复杂的金融应用程序的基本构件。
 - 随着技术人员对[加密经济设计领域](https://medium.com/l4-media/making-sense-of-cryptoeconomics-5edea77e4e8d)的探索，我们将创造 *新的货币类型*。我们才刚开始探索新货币，例如[协议代币](https://continuations.com/post/148098927445/crypto-tokens-and-the-coming-age-of-protocol#_=_)和[不可替代数字资产](https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24)。
 
-加密货币之所以成为可能，是因为Satoshi发明了[一种支持加密货币支付的网络]([https://www.bitcoin.com/bitcoin.pdf)，而且无需将控制权交给任何一家集中式的公司。比特币是 *去中心化* 的，因为它是由多个参与者“控制”的，包括从大型挖矿公司到个体节点运营者，再到核心协议开发者。他们都以不同方式、不同程度影响着整个网络，但没有一个个体拥有独占网络的权力。
+加密货币之所以成为可能，是因为Satoshi发明了[一种支持加密货币支付的网络](https://www.bitcoin.com/bitcoin.pdf)，而且无需将控制权交给任何一家集中式的公司。比特币是 *去中心化* 的，因为它是由多个参与者“控制”的，包括从大型挖矿公司到个体节点运营者，再到核心协议开发者。他们都以不同方式、不同程度影响着整个网络，但没有一个个体拥有独占网络的权力。
 
 **“去中心化”已成为 Web 3 的核心理念**。但是，通常它更多地用作口号而不是精确的技术描述。去中心化可以指代各种各样的可能性。如果一个平台由20个实体控制，那么它是去中心化的吗？100个实体呢？或者1万个？ 我们考虑的是什么样的[去中心化](https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274)呢？
 
