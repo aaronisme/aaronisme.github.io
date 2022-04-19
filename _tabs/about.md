@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-![](/assets/img/favicons/avatar-ac.png)
+![](/assets/img/favicons/avatar-ac-2.png)
 
 Aaron Chen is a software developer. This is his own blog, it will record the learning, thinking, and building experiences in the tech industry
 . Currently I am build the [Keystone hardware wallet](http://keyst.one/)。
