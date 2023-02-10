@@ -1,0 +1,81 @@
+---
+layout: post
+title:  "BitBox02固件代码浅析"
+date:   2022-02-08 01:15:00
+categories: Thinking
+tags:
+    - BlockChain
+---
+
+# 简述
+[BitBox02](https://shiftcrypto.ch/)是瑞士钱包公司Shift Crypto推出的一款硬件钱包, 目前有两种两个版本, 一个是多币种版本, 一个是BTC的单币种版本. 多币种版本支持BTC, ETH, ADA, BSC, FTM等一系列的区块链. BTC版本支持多签, Taproot的功能. BitBox02的代码完全开源, 可以在[Github](https://github.com/digitalbitbox/bitbox02-firmware)上找到. 通过阅读代码, 我做了些总计和分析. 下边通过4个方面做一个简单的介绍.
+
+# 硬件设计
+BitBox02采用MCU+SE的硬件设计, MCU采用Microchip的ATSAMD51J20A. 安全芯片采用Microchip的ATECC608B. MCU主要负责USB和上位机通讯. MCU采用I2C和安全芯片通讯. 
+![](https://raw.githubusercontent.com/digitalbitbox/bitbox02-firmware/master/doc/bb02-firmware-arch.svg)
+
+ATSAMD51J20A是一款ARM Cortex M4F核的MCU, 最大主频120MHz, 1M的Flash空间, 256KB的SRAM, 下文中简称为MCU. ATECC608B是一款安全芯片一般用于安全验证领域, 完成安全验证的相关操作, 下午中简称为608B. 
+
+# 用户私钥的保存
+对于硬件钱包来说, 如何安全的保存好用户的私钥这是核心的一个问题.对于BitBox2来说, 关于密钥的相关逻辑都集中在`keystore.c` 这个文件中. 可以找到其用户seed存储的关键逻辑是 `keystore_encrypt_and_store_seed` 这个方法.
+
+```c
+keystore_error_t keystore_encrypt_and_store_seed(
+    const uint8_t* seed,
+    size_t seed_length,
+    const char* password)
+{
+    if (memory_is_initialized()) {
+        return KEYSTORE_ERR_MEMORY;
+    }
+    keystore_lock();
+    if (!_validate_seed_length(seed_length)) {
+        return KEYSTORE_ERR_SEED_SIZE;
+    }
+    // Update the two kdf keys before setting a new password. This already
+    // happens on a device reset, but we do it here again anyway so the keys are
+    // initialized also on first use, reducing trust in the factory setup.
+    if (!securechip_update_keys()) {
+        return KEYSTORE_ERR_SECURECHIP;
+    }
+    uint8_t secret[32] = {0};
+    UTIL_CLEANUP_32(secret);
+    keystore_error_t res = _stretch_password(password, secret, NULL);
+    if (res != KEYSTORE_OK) {
+        return res;
+    }
+
+    size_t encrypted_seed_len = seed_length + 64;
+    uint8_t encrypted_seed[encrypted_seed_len];
+    UTIL_CLEANUP_32(encrypted_seed);
+    if (!cipher_aes_hmac_encrypt(seed, seed_length, encrypted_seed, &encrypted_seed_len, secret)) {
+        return KEYSTORE_ERR_ENCRYPT;
+    }
+    if (encrypted_seed_len > 255) { // sanity check, can't happen
+        Abort("keystore_encrypt_and_store_seed");
+    }
+    uint8_t encrypted_seed_len_u8 = (uint8_t)encrypted_seed_len;
+    if (!memory_set_encrypted_seed_and_hmac(encrypted_seed, encrypted_seed_len_u8)) {
+        return KEYSTORE_ERR_MEMORY;
+    }
+    if (!_verify_seed(password, seed, seed_length)) {
+        if (!memory_reset_hww()) {
+            return KEYSTORE_ERR_MEMORY;
+        }
+        return KEYSTORE_ERR_MEMORY;
+    }
+    return KEYSTORE_OK;
+}
+```
+
+**分析这个方法可以发现,BitBox02是使用用户的密码通过KDF函数生一个加密私钥, 然后通过AES加密的方式将用户的Seed进行加密. 最后将加密后的数据保存在MCU的flash中.**
+
+分析这个过程的细节, 可以发现BitBox02使用安全芯片608B生成了两把密钥 rollKey和kdf Key,他们都会在后边被使用在密钥衍生中. BitBox02将用的私钥加盐做哈希作为输入,首先使用608B的HKDF指令进行密钥衍生操作, 然后在利用kdf Key再次进行2轮的HKDF的密钥衍生, 生成的数据最后进行HMAC-SHA256的计算, 得到最后用于加密的用户Seed的密钥. 通过KDF函数基于用户的密码得到一把可以用于加密的密钥, 是安全产品上常见的方法.
+
+对于BitBox02来说, 用户的私钥(Seed)是在MCU中的flash里进行加密后存储, 加密用的密钥是通过608B中的Key来进行生成的.由于608B中key是无法读出的,所以加密后的数据是安全的.
+
+BitBox02中利用608B中的安全设计和机制, 来保证用户私钥的安全.
+
+# 签名过程的实现
+
+# Rust 和 C
