@@ -8,7 +8,7 @@ tags:
 ---
 
 # 简述
-[BitBox02](https://shiftcrypto.ch/) 是瑞士钱包公司Shift Crypto推出的一款硬件钱包, 目前有两种两个版本, 多币种版本，BTC的单币种版本。多币种版本支持BTC, ETH, ADA, BSC, FTM等一系列的区块链。BTC版本支持多签, Taproot等功能。BitBox02的代码完全开源, 可以在[Github](https://github.com/digitalbitbox/bitbox02-firmware)上找到。通过阅读代码, 我做了些总计和分析。下边通过几个方面做一个简单的介绍。
+[BitBox02](https://shiftcrypto.ch/) 是瑞士钱包公司Shift Crypto推出的一款硬件钱包, 目前有两种两个版本, 多币种版本，BTC的单币种版本。多币种版本支持BTC, ETH, ADA, BSC, FTM等一系列的区块链。BTC版本支持多签, Taproot等功能。BitBox02的代码完全开源, 可以在[Github](https://github.com/digitalbitbox/bitbox02-firmware)上找到。通过阅读代码, 我做了些总计和分析。下边通过几个方面做一个简单的介绍。 
 
 # 硬件设计
 **BitBox02采用MCU+SE的硬件设计, MCU采用Microchip的ATSAMD51J20A. 安全芯片采用Microchip的ATECC608B。**
@@ -170,3 +170,5 @@ pub async fn process(request: &pb::EthSignMessageRequest) -> Result<Response, Er
 
 # 小结
 以上就是对BitBox02中的代码的一个简单分析, BitBox02整体代码清晰易读的, 也有一些比较有意思的设计和实践, 值得学习和研究。
+
+*上文分析仅针对[这个代码节点](https://github.com/digitalbitbox/bitbox02-firmware/commit/ef4b0589b43c06f6398d88c8769ec1253ac4b1ec)。*
