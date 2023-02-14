@@ -1,23 +1,23 @@
 ---
 layout: post
 title:  "BitBox02固件代码浅析"
-date:   2022-02-08 01:15:00
+date:   2023-02-08 01:15:00
 categories: Thinking
 tags:
     - BlockChain
 ---
 
 # 简述
-[BitBox02](https://shiftcrypto.ch/)是瑞士钱包公司Shift Crypto推出的一款硬件钱包, 目前有两种两个版本, 一个是多币种版本, 一个是BTC的单币种版本. 多币种版本支持BTC, ETH, ADA, BSC, FTM等一系列的区块链. BTC版本支持多签, Taproot的功能. BitBox02的代码完全开源, 可以在[Github](https://github.com/digitalbitbox/bitbox02-firmware)上找到. 通过阅读代码, 我做了些总计和分析. 下边通过4个方面做一个简单的介绍.
+[BitBox02](https://shiftcrypto.ch/) 是瑞士钱包公司Shift Crypto推出的一款硬件钱包, 目前有两种两个版本, 多币种版本，BTC的单币种版本。多币种版本支持BTC, ETH, ADA, BSC, FTM等一系列的区块链。BTC版本支持多签, Taproot等功能。BitBox02的代码完全开源, 可以在[Github](https://github.com/digitalbitbox/bitbox02-firmware)上找到。通过阅读代码, 我做了些总计和分析。下边通过几个方面做一个简单的介绍。
 
 # 硬件设计
-BitBox02采用MCU+SE的硬件设计, MCU采用Microchip的ATSAMD51J20A. 安全芯片采用Microchip的ATECC608B. MCU主要负责USB和上位机通讯. MCU采用I2C和安全芯片通讯. 
+**BitBox02采用MCU+SE的硬件设计, MCU采用Microchip的ATSAMD51J20A. 安全芯片采用Microchip的ATECC608B。**
+MCU主要负责USB和上位机通讯. MCU采用I2C和安全芯片通讯. 
 ![](https://raw.githubusercontent.com/digitalbitbox/bitbox02-firmware/master/doc/bb02-firmware-arch.svg)
-
-ATSAMD51J20A是一款ARM Cortex M4F核的MCU, 最大主频120MHz, 1M的Flash空间, 256KB的SRAM, 下文中简称为MCU. ATECC608B是一款安全芯片一般用于安全验证领域, 完成安全验证的相关操作, 下午中简称为608B. 
+ATSAMD51J20A是一款ARM Cortex M4F核的MCU, 最大主频120MHz, 1M的Flash空间, 256KB的SRAM, 下文中简称为MCU。ATECC608B是一款安全芯片一般用于安全验证领域, 完成安全验证的相关操作, 下文中简称为608B。
 
 # 用户私钥的保存
-对于硬件钱包来说, 如何安全的保存好用户的私钥这是核心的一个问题.对于BitBox2来说, 关于密钥的相关逻辑都集中在`keystore.c` 这个文件中. 可以找到其用户seed存储的关键逻辑是 `keystore_encrypt_and_store_seed` 这个方法.
+对于硬件钱包来说, 如何安全保存用户的私钥是一个核心问题。对于BitBox2来说, 关于密钥的相关逻辑都集中在`keystore.c` 这个文件中。可以找到用户seed存储的关键逻辑是 `keystore_encrypt_and_store_seed` 这个方法.
 
 ```c
 keystore_error_t keystore_encrypt_and_store_seed(
@@ -70,12 +70,103 @@ keystore_error_t keystore_encrypt_and_store_seed(
 
 **分析这个方法可以发现,BitBox02是使用用户的密码通过KDF函数生一个加密私钥, 然后通过AES加密的方式将用户的Seed进行加密. 最后将加密后的数据保存在MCU的flash中.**
 
-分析这个过程的细节, 可以发现BitBox02使用安全芯片608B生成了两把密钥 rollKey和kdf Key,他们都会在后边被使用在密钥衍生中. BitBox02将用的私钥加盐做哈希作为输入,首先使用608B的HKDF指令进行密钥衍生操作, 然后在利用kdf Key再次进行2轮的HKDF的密钥衍生, 生成的数据最后进行HMAC-SHA256的计算, 得到最后用于加密的用户Seed的密钥. 通过KDF函数基于用户的密码得到一把可以用于加密的密钥, 是安全产品上常见的方法.
+分析这个过程的细节, 可以发现BitBox02使用安全芯片608B生成了两把密钥，rollKey和kdf Key,他们都会参与到密钥衍生中。BitBox02将用户密码加盐做哈希作为输入,首先使用608B指令进行密钥衍生操作, 然后在利用kdf Key再次进行2轮的HKDF的密钥衍生, 生成的数据最后进行HMAC-SHA256的计算, 得到最后用于加密的用户Seed的密钥。 通过KDF函数， 基于用户密码得到一把可以用于加密的密钥, 是安全产品上常见的方法。
 
-对于BitBox02来说, 用户的私钥(Seed)是在MCU中的flash里进行加密后存储, 加密用的密钥是通过608B中的Key来进行生成的.由于608B中key是无法读出的,所以加密后的数据是安全的.
-
-BitBox02中利用608B中的安全设计和机制, 来保证用户私钥的安全.
+对于BitBox02来说, 用户的私钥(Seed)是加密后放在MCU的flash里进行存储, 加密用的密钥是通过608B中的Key来进行生成的。由于安全芯片的特点，608B中key是无法读出的。 BitBox02中利用安全芯片608B的特点, 来进行用户私钥的存储。
 
 # 签名过程的实现
+作为一个硬件钱包另外一个重要的问题就是如何使用用户的私钥进行签名的操作, BitBox02依赖[libwally-core](https://wally.readthedocs.io) 进行钱包相关的业务逻辑计算。 例如:BIP-32, BIP-39和secp256k1签名相关计算。
+
+```c
+bool keystore_secp256k1_sign(
+    const uint32_t* keypath,
+    size_t keypath_len,
+    const uint8_t* msg32,
+    const uint8_t* host_nonce32,
+    uint8_t* sig_compact_out,
+    int* recid_out)
+{
+    if (keystore_is_locked()) {
+        return false;
+    }
+    struct ext_key xprv __attribute__((__cleanup__(keystore_zero_xkey))) = {0};
+    if (!_get_xprv_twice(keypath, keypath_len, &xprv)) {
+        return false;
+    }
+    const secp256k1_context* ctx = wally_get_secp_context();
+    secp256k1_ecdsa_signature secp256k1_sig = {0};
+    if (!secp256k1_anti_exfil_sign(
+            ctx,
+            &secp256k1_sig,
+            msg32,
+            xprv.priv_key + 1, // first byte is 0
+            host_nonce32,
+            recid_out)) {
+        return false;
+    }
+    if (!secp256k1_ecdsa_signature_serialize_compact(ctx, sig_compact_out, &secp256k1_sig)) {
+        return false;
+    }
+    return true;
+}
+```
+
+BitBox02的签名过程, 大致过程是这样的, 当用户输入密码后, 利用608B，计算得加密seed的AES key, 解密得到用户Seed, 然后根据需要的key path 计算得到对应的子私钥, 完成secp256k1的签名。
+
+有意思的是BitBox02在secp256k1的签名中引入了Anti-klepto的签名算法, 用来解决硬件钱包在Nonce选择时, 可能的作恶风险。简单来说secp256k1签名中有个核心问题就是Nonce的选择问题, 如果Nonce的选择不随机, 那么就有可能导致私钥的泄漏。具体可以参考这篇[文章](https://aaronchen.me/posts/nonce-reuse/)。
+
+目前主流钱包的实现方法都是使用符合[RFC6979](https://www.rfc-editor.org/rfc/rfc6979)规范的确定性 ECDSA的签名算法。这个算法可以保证，同一把私钥在签同一个消息的时候，Nonce是确定性的。但是这也会引入另外一个问题,就是用户需要相信硬件钱包厂商没有作恶,他们的Nonce计算的确是符合RFC6979规范的。
+
+Anti-klepto protocol的提出就是为了最大化的减小对硬件钱包的信任。简单来说就是将Nonce的产生过程分为两个部分，一部分Host机器产生, 另一部分是硬件钱包产生。 Host机器会验证最后签名中的Nonce是符合要求, 这样Nonce的产生不完全依赖于硬件钱包, 达到减少信任的目的。 
+
+Anti-klepto protocol充分体现了区块链世界中的Don‘t trust, verify的底层逻辑。关于anti-klepto protocol这里就不特别展开, 未来会写一篇新的文章来进行讨论.
 
 # Rust 和 C
+BitBox02的另外一个有意思的地方就是引入了Rust语言, Rust语言作为一门年轻的系统开发语言, 最近几年的发展十分迅猛, 它的一个重要的方法就是在嵌入式开发中的应用。但是目前为止,在嵌入式领域将Rust引入到生产系统中, BitBox02是我看到的第一家。BitBox02中Rust主要负责区块链相关的业务逻辑开发,相关的代码都组织在`src/rust`的文件夹中,例如Bitcoin,Ethereum,Cardano相关逻辑。
+
+在BitBox02中C的代码主要负责MCU的主体逻辑, Rust代码主要负责链相关的业务逻辑。C和Rust通过FFI来进行相互调用。
+
+```rust
+// Process a sign message request.
+///
+/// The result contains a 65 byte signature. The first 64 bytes are the secp256k1 signature in
+/// compact format (R and S values), and the last byte is the recoverable id (recid).
+pub async fn process(request: &pb::EthSignMessageRequest) -> Result<Response, Error> {
+    if request.msg.len() > 9999 {
+        return Err(Error::InvalidInput);
+    }
+
+    ....
+    // Verify address. We don't need the actual result, but we have to propagate validation or user
+    // abort errors.
+    super::pubrequest::process(&pub_request).await?;
+
+    verify_message::verify(&request.msg).await?;
+
+    let mut msg: Vec<u8> = Vec::new();
+    msg.extend(b"\x19Ethereum Signed Message:\n");
+    msg.extend(format!("{}", request.msg.len()).as_bytes());
+    msg.extend(&request.msg);
+
+    let sighash: [u8; 32] = sha3::Keccak256::digest(&msg).as_slice().try_into().unwrap();
+
+    let host_nonce = match request.host_nonce_commitment {
+        // Engage in the anti-klepto protocol if the host sends a host nonce commitment.
+        ...
+    };
+
+    let sign_result = bitbox02::keystore::secp256k1_sign(&request.keypath, &sighash, &host_nonce)?;
+
+    let mut signature: Vec<u8> = sign_result.signature.to_vec();
+    signature.push(sign_result.recid);
+
+    Ok(Response::Sign(pb::EthSignResponse { signature }))
+}
+```
+
+上边这个方法BitBox02中定义的一个签名message的代码片段, 主要业务逻辑用Rust进行编写, 在签名的时候调用了在`keystore.c`中C的签名方法完成签名。
+
+随着Rust生态的不断发展, 相信未来也会有越来越多的嵌入式项目会引入Rust作为开发语言进行开发。
+
+# 小结
+以上就是对BitBox02中的代码的一个简单分析, BitBox02整体代码清晰易读的, 也有一些比较有意思的设计和实践, 值得学习和研究。
