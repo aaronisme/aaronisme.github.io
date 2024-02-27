@@ -8,7 +8,7 @@ tags:
     - visualization
 ---
 
-本文是阅读Data Visualization with JavaScript(by Stephen A. Thomas)时的摘要和心得体会。感谢阮一峰老师的Blog，让我发现了这本好书。
+本文是阅读Data Visualization with JavaScript (by Stephen A. Thomas) 时的摘要和心得体会。感谢阮一峰老师的Blog，让我发现了这本好书。
 
 一提到数据可视化，我们就会想到绚丽的图表，精巧的动画。如果我们没有很强的艺术功底，难道就做不好数据可视化了吗？不是。数据可视化的目的是什么？是帮助用户理解数据。如果简单的图表能达到这样的目的，那么它就是一个好的数据可视化解决案例。下边让我们来看看那些基本的图表。
 
